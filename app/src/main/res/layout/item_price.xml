@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kingja.supershapeview.view.SuperShapeTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/stv_price"
+    style="@style/font_6_13"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingBottom="4dp"
+    android:paddingTop="4dp"
+    android:text="¥152-200"
+    app:super_cornerRadius="2dp"
+    app:super_solidColor="@color/white_hi"
+    app:super_strokeColor="@color/gray_hi"
+    app:super_strokeWidth="1px"/>

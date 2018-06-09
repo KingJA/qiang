@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white_hi"
+              android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/lv_discount"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="0dp"
+        android:divider="#00000000"
+        tools:listitem="@layout/item_discount"/>
+
+    <View style="@style/div_hor_gray"/>
+
+    <LinearLayout
+        android:id="@+id/ll_discount_center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_hi"
+        android:gravity="center"
+        android:padding="12dp">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@mipmap/icon_discount"/>
+
+        <TextView
+            style="@style/font_orange_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更多好券，去领券中心查看"/>
+    </LinearLayout>
+
+</LinearLayout>

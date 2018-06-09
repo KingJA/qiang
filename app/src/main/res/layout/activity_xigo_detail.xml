@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_hi">
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:id="@+id/ll_bottom_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View style="@style/div_hor_gray"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="12dp">
+
+
+                <TextView
+                    style="@style/font_orange_12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="总价:¥"/>
+
+
+                <TextView
+                    style="@style/font_orange_18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="158"/>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/font_f_17"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@color/orange_hi"
+                android:gravity="center"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="提交订单"/>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_above="@id/ll_bottom_price"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/font_3_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="再见邓丽君"/>
+
+            <View style="@style/div_hor_6_gray"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@mipmap/ic_clock"/>
+
+                <TextView
+                    style="@style/font_3_13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2018-01-01(周一)19:30"/>
+
+
+            </LinearLayout>
+
+            <View
+                style="@style/div_hor_gray"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="17dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@mipmap/ic_location"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/font_3_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="东南剧院"/>
+
+                        <TextView
+                            style="@style/font_6_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="车站大道215号"/>
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@mipmap/arrow_right"/>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <View style="@style/div_hor_6_gray"/>
+
+            <TextView
+                style="@style/font_3_13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="演出详情"/>
+
+            <View style="@style/div_hor_gray"/>
+
+            <TextView
+                style="@style/font_6_12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:text="1974年，邓丽君正式赴日发展，3月1于日本宝丽多唱片公司推出首张 邓丽君艺术照 邓丽君艺术照(65张) 日语单曲《今夜かしら明日かしら 》(《今夜或者明天》)[19] ；4月，邓丽君首度赴金门劳军；于东南亚出演《女记者》等三部舞台剧；10月，邓丽君以第二张单曲《空港》，打破宝丽多唱片公司旗下歌手的唱片销量纪录[20] ，并获得“日本音乐祭银赏”；11月，邓丽君凭《空港》一曲，从日本乐坛700余位新人中脱颖而出，获得1974年度“日本唱片大赏新人歌手赏”，同时获得“新宿音乐祭铜赏”、“银座音乐祭热演赏”。[19-20]"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.kingja.qiang">
+
+    <!--网络访问-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!--读取联系人-->
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <!--本地SD卡读写-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--相机-->
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <application
+        android:name="com.kingja.qiang.base.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name="com.kingja.qiang.activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <!--引导页-->
+        <activity
+            android:name="com.kingja.qiang.activity.GuideActivity"
+            android:screenOrientation="portrait"/>
+        <!--主界面-->
+        <activity
+            android:name="com.kingja.qiang.MainActivity"
+            android:screenOrientation="portrait"/>
+        <!--嘻购详情-->
+        <activity
+            android:name="com.kingja.qiang.activity.XigoDetailActivity"
+            android:screenOrientation="portrait"/>
+        <!--设置界面-->
+        <activity
+            android:name="com.kingja.qiang.page.setting.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <!--我的钱包-->
+        <activity
+            android:name="com.kingja.qiang.page.wallet.WalletActivity"
+            android:screenOrientation="portrait"/>
+        <!--我的优惠券-->
+        <activity
+            android:name="com.kingja.qiang.page.discount.DiscountActivity"
+            android:screenOrientation="portrait"/>
+        <!--我的好友-->
+        <activity
+            android:name="com.kingja.qiang.page.mine_friends.MineFriendsActivity"
+            android:screenOrientation="portrait"/>
+        <!--我的订单-->
+        <activity
+            android:name="com.kingja.qiang.activity.OrderActivity"
+            android:screenOrientation="portrait"/>
+        <!--我的消息-->
+        <activity
+            android:name="com.kingja.qiang.page.message.MessageActivity"
+            android:screenOrientation="portrait"/>
+        <!--个人信息-->
+        <activity
+            android:name="com.kingja.qiang.activity.PersonalActivity"
+            android:screenOrientation="portrait"/>
+        <!--登录-->
+        <activity
+            android:name="com.kingja.qiang.page.login.LoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
+        <!--注册-->
+        <activity
+            android:name="com.kingja.qiang.page.register.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <!--找回密码-->
+        <!--修改密码-->
+        <activity
+            android:name="com.kingja.qiang.page.modifypassword.ModifyPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <!--修改昵称-->
+        <activity
+            android:name="com.kingja.qiang.page.modify_nickname.ModifyNicknameActivity"
+            android:screenOrientation="portrait"/>
+        <!--更换手机号-->
+        <activity
+            android:name="com.kingja.qiang.activity.ModifyPhoneActivity"
+            android:screenOrientation="portrait"/>
+        <!--消息详情-->
+        <activity
+            android:name="com.kingja.qiang.activity.MsgDetailActivity"
+            android:screenOrientation="portrait"/>
+        <!--交易明细-->
+        <activity
+            android:name="com.kingja.qiang.page.deallist.DealListActivity"
+            android:screenOrientation="portrait"/>
+        <!--通讯录-->
+        <activity
+            android:name="com.kingja.qiang.activity.ContactsActivity"
+            android:screenOrientation="portrait"/>
+        <!--领券中心-->
+        <activity
+            android:name="com.kingja.qiang.activity.DiscountCenterActivity"
+            android:screenOrientation="portrait"/>
+        <!--购物车-->
+        <activity
+            android:name="com.kingja.qiang.activity.ShopCartActivity"
+            android:screenOrientation="portrait"/>
+        <!--收银台-->
+        <activity
+            android:name="com.kingja.qiang.activity.PayActivity"
+            android:screenOrientation="portrait"/>
+        <!--嬉逛分集详情-->
+        <activity
+            android:name="com.kingja.qiang.activity.XigoMultiDetailActivity"
+            android:screenOrientation="portrait"/>
+        <!--找回密码-->
+        <activity
+            android:name="com.kingja.qiang.page.forgetpassword.ForgetPasswordActivity"
+            android:screenOrientation="portrait"/>
+
+    </application>
+
+</manifest>

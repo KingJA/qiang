@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange_hi">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_circle_gray"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginLeft="14dp"
+                android:background="@mipmap/ic_search"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="搜索明星，演出，场馆"
+                android:textColorHint="#f2f2f2"
+                android:textSize="12sp"/>
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginRight="14dp"
+                android:background="@mipmap/ic_scan"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="6dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:background="@color/orange_hi"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="36dp"/>
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_xigo"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                app:tabIndicatorColor="@color/orange_hi"
+                app:tabIndicatorHeight="3dp"/>
+
+
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+    <!--搜索栏-->
+
+    <LinearLayout
+        android:id="@+id/ll_spinner_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kingja.popwindowsir.PopSpinner
+            android:id="@+id/spiner_show_type"
+            android:background="#ffffff"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:spinner_indicatorSelColor="@color/orange_hi"
+            app:spinner_indicatorNorColor="@color/c_9"
+            app:spinner_indicatorSzie="6dp"
+            app:spinner_indicatorText="演出类型"
+            app:spinner_marginIndicator="24dp"
+            app:spinner_textNorColor="@color/c_3"
+            app:spinner_textSelColor="@color/orange_hi"
+            app:spinner_textSize="12sp"/>
+        <com.kingja.popwindowsir.PopSpinner
+            android:id="@+id/spiner_place"
+            android:background="#ffffff"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:spinner_indicatorSelColor="@color/orange_hi"
+            app:spinner_indicatorNorColor="@color/c_9"
+            app:spinner_indicatorSzie="6dp"
+            app:spinner_indicatorText="场馆"
+            app:spinner_marginIndicator="24dp"
+            app:spinner_textNorColor="@color/c_3"
+            app:spinner_textSelColor="@color/orange_hi"
+            app:spinner_textSize="12sp"/>
+        <com.kingja.popwindowsir.PopSpinner
+            android:id="@+id/spiner_date"
+            android:background="#ffffff"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:spinner_indicatorSelColor="@color/orange_hi"
+            app:spinner_indicatorNorColor="@color/c_9"
+            app:spinner_indicatorSzie="6dp"
+            app:spinner_indicatorText="时间"
+            app:spinner_marginIndicator="24dp"
+            app:spinner_textNorColor="@color/c_3"
+            app:spinner_textSelColor="@color/orange_hi"
+            app:spinner_textSize="12sp"/>
+        <com.kingja.popwindowsir.PopSpinner
+            android:id="@+id/spiner_price"
+            android:background="#ffffff"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:spinner_indicatorSelColor="@color/orange_hi"
+            app:spinner_indicatorNorColor="@color/c_9"
+            app:spinner_indicatorSzie="6dp"
+            app:spinner_indicatorText="价格"
+            app:spinner_marginIndicator="24dp"
+            app:spinner_textNorColor="@color/c_3"
+            app:spinner_textSelColor="@color/orange_hi"
+            app:spinner_textSize="12sp"/>
+
+    </LinearLayout>
+    <!--<FrameLayout-->
+    <!--android:id="@+id/fl_content_higo"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"/>-->
+    <View style="@style/div_hor_gray"/>
+
+    <View style="@style/div_hor_gray"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_content_xigo"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"/>
+</LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_shopCart"
+        android:layout_margin="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@mipmap/ic_shopcart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
