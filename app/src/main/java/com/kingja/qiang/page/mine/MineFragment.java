@@ -3,20 +3,17 @@ package com.kingja.qiang.page.mine;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
-import com.kingja.qiang.page.mine_friends.MineFriendsActivity;
 import com.kingja.qiang.activity.OrderActivity;
 import com.kingja.qiang.activity.PersonalActivity;
-import com.kingja.qiang.page.setting.SettingActivity;
 import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.PersonalInfo;
-import com.kingja.qiang.page.discount.DiscountActivity;
 import com.kingja.qiang.page.login.LoginActivity;
 import com.kingja.qiang.page.message.MessageActivity;
+import com.kingja.qiang.page.modifypassword.ModifyPasswordActivity;
 import com.kingja.qiang.page.wallet.WalletActivity;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.SpManager;
@@ -25,7 +22,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Description:TODO
@@ -34,25 +30,17 @@ import butterknife.Unbinder;
  * Email:kingjavip@gmail.com
  */
 public class MineFragment extends BaseFragment implements MineContract.View {
-    @BindView(R.id.iv_mine_setting)
-    ImageView ivMineSetting;
 
     @Inject
     SpManager mSpManager;
-    @BindView(R.id.ll_personal_info)
-    LinearLayout llPersonalInfo;
-    @BindView(R.id.tv_login)
-    TextView tvLogin;
-
     @Inject
     MinePresenter minePresenter;
     @BindView(R.id.iv_mine_head)
     ImageView ivMineHead;
     @BindView(R.id.tv_nickname)
     TextView tvNickname;
-    @BindView(R.id.tv_mobile)
-    TextView tvMobile;
-    Unbinder unbinder;
+    @BindView(R.id.tv_login)
+    TextView tvLogin;
 
     @Override
     protected void initVariable() {
@@ -77,7 +65,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
         String token = mSpManager.getToken();
         if (TextUtils.isEmpty(token)) {
             tvLogin.setVisibility(View.VISIBLE);
-            llPersonalInfo.setVisibility(View.GONE);
+            tvNickname.setVisibility(View.GONE);
         } else {
             minePresenter.getPersonalInfo(mSpManager.getUID());
         }
@@ -90,35 +78,32 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     }
 
 
-    @OnClick({R.id.iv_mine_setting, R.id.rl_mine_wallet, R.id.rl_mine_discount, R.id.rl_mine_frined, R.id
-            .rl_mine_order, R.id.rl_mine_msg, R.id.ll_mine_personal, R.id.iv_mine_head, R.id.tv_login})
+    @OnClick({R.id.iv_mine_msg, R.id.rl_mine_visitor, R.id.rl_mine_personal, R.id.rl_mine_password, R.id
+            .rl_mine_contract, R.id.tv_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.iv_mine_setting:
-                GoUtil.goActivity(getActivity(), SettingActivity.class);
-                break;
-            case R.id.rl_mine_wallet:
-                GoUtil.goActivity(getActivity(), WalletActivity.class);
-                break;
-            case R.id.rl_mine_discount:
-                GoUtil.goActivity(getActivity(), DiscountActivity.class);
-                break;
-            case R.id.rl_mine_frined:
-                GoUtil.goActivity(getActivity(), MineFriendsActivity.class);
-                break;
-            case R.id.rl_mine_order:
-                GoUtil.goActivity(getActivity(), OrderActivity.class);
-                break;
-            case R.id.rl_mine_msg:
+            case R.id.iv_mine_msg:
+                //消息列表
                 GoUtil.goActivity(getActivity(), MessageActivity.class);
                 break;
-            case R.id.ll_mine_personal:
-                GoUtil.goActivity(getActivity(), LoginActivity.class);
+            case R.id.rl_mine_visitor:
+                //游客信息
+                GoUtil.goActivity(getActivity(), WalletActivity.class);
                 break;
-            case R.id.iv_mine_head:
+            case R.id.rl_mine_personal:
+                //个人信息
                 GoUtil.goActivity(getActivity(), PersonalActivity.class);
                 break;
+            case R.id.rl_mine_password:
+                //修改密码
+                GoUtil.goActivity(getActivity(), ModifyPasswordActivity.class);
+                break;
+            case R.id.rl_mine_contract:
+                //联系我们
+                GoUtil.goActivity(getActivity(), OrderActivity.class);
+                break;
             case R.id.tv_login:
+                //登录
                 GoUtil.goActivity(getActivity(), LoginActivity.class);
                 break;
             default:
@@ -139,10 +124,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     @Override
     public void onGetPersonalInfoSuccess(PersonalInfo personalInfo) {
         tvLogin.setVisibility(View.GONE);
-        llPersonalInfo.setVisibility(View.VISIBLE);
-
+        tvNickname.setVisibility(View.VISIBLE);
         tvNickname.setText(personalInfo.getNickname());
-        tvMobile.setText(personalInfo.getMobile());
     }
 
 }

@@ -8,6 +8,7 @@ import com.kingja.qiang.R;
 import com.kingja.qiang.adapter.OrderPageAdapter;
 import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.injector.component.AppComponent;
+import com.kingja.qiang.util.IndicatorUtil;
 
 import butterknife.BindView;
 
@@ -22,8 +23,8 @@ public class OrderFragment extends BaseFragment {
     TabLayout tabOrder;
     @BindView(R.id.vp_content_order)
     ViewPager vpContentOrder;
-    private String[] items = {"待使用", "待付款", "已完成"};
-    private Fragment mFragmentArr[] = new Fragment[3];
+    private String[] items = {"待使用", "全部订单"};
+    private Fragment mFragmentArr[] = new Fragment[2];
 
 
     @Override
@@ -41,14 +42,12 @@ public class OrderFragment extends BaseFragment {
         tabOrder.setTabMode(TabLayout.MODE_FIXED);
         tabOrder.addTab(tabOrder.newTab().setText(items[0]));
         tabOrder.addTab(tabOrder.newTab().setText(items[1]));
-        tabOrder.addTab(tabOrder.newTab().setText(items[2]));
+        tabOrder.post(() -> IndicatorUtil.setIndicator(tabOrder, 60, 60));
         mFragmentArr[0] = new UnusedFragment();
         mFragmentArr[1] = new UnusedFragment();
-        mFragmentArr[2] = new UnusedFragment();
         OrderPageAdapter mOrderPageAdapter = new OrderPageAdapter(getChildFragmentManager(), mFragmentArr,
                 items);
         vpContentOrder.setAdapter(mOrderPageAdapter);
-        vpContentOrder.setOffscreenPageLimit(2);
         tabOrder.setupWithViewPager(vpContentOrder);
     }
 

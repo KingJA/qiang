@@ -23,8 +23,7 @@ public class UnusedAdapter extends BaseLvAdapter<String> {
     public View simpleGetView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (convertView == null) {
-            convertView = View
-                    .inflate(context, R.layout.item_unused, null);
+            convertView = View.inflate(context, R.layout.item_unused, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {

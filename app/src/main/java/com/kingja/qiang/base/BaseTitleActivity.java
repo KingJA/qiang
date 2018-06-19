@@ -40,7 +40,6 @@ public abstract class BaseTitleActivity extends BaseActivity {
             flContent.addView(content, params);
             bind = ButterKnife.bind(this, rootView);
             // register after ButterKnife.bind()
-
         }
         return rootView;
     }

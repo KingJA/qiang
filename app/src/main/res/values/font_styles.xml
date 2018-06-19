@@ -141,7 +141,6 @@
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/white_hi</item>
     </style>
-
     <style name="font_f_20">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/white_hi</item>

@@ -44,7 +44,7 @@ public class UnusedFragment extends BaseFragment {
 
     @Override
     protected void initNet() {
-        loadService.showCallback(EmptyOrderCallback.class);
+        loadService.showSuccess();
     }
 
     @Override

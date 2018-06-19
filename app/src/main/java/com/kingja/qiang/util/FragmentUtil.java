@@ -6,11 +6,10 @@ import android.support.v4.app.FragmentTransaction;
 
 
 import com.kingja.qiang.R;
-import com.kingja.qiang.fragment.GuanggoFragment;
+import com.kingja.qiang.constant.NavConstant;
+import com.kingja.qiang.fragment.HomeFragment;
 import com.kingja.qiang.fragment.OrderFragment;
-import com.kingja.qiang.fragment.LovegoFragment;
 import com.kingja.qiang.page.mine.MineFragment;
-import com.kingja.qiang.fragment.XigoFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,23 +41,17 @@ public class FragmentUtil {
             return fragment;
         } else {
             switch (position) {
-                case 0:
-                    fragment = new XigoFragment();
+                case NavConstant.NAV_XIGO:
+                    fragment = new HomeFragment();
                     break;
-                case 1:
-                    fragment = new LovegoFragment();
-                    break;
-                case 2:
-                    fragment = new GuanggoFragment();
-                    break;
-                case 3:
+                case NavConstant.NAV_ORDER:
                     fragment = new OrderFragment();
                     break;
-                case 4:
+                case NavConstant.NAV_MINE:
                     fragment = new MineFragment();
                     break;
                 default:
-                    fragment = new XigoFragment();
+                    fragment = new HomeFragment();
                     break;
             }
             fragmentMap.put(position, fragment);

@@ -22,24 +22,12 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class MainActivity extends BaseActivity {
 
-    @BindView(R.id.iv_nav_higo)
+    @BindView(R.id.iv_nav_home)
     ImageView ivNavHigo;
-    @BindView(R.id.tv_nav_higo)
+    @BindView(R.id.tv_nav_home)
     TextView tvNavHigo;
-    @BindView(R.id.ll_nav_xigo)
+    @BindView(R.id.ll_nav_home)
     LinearLayout llNavHigo;
-    @BindView(R.id.iv_nav_lovego)
-    ImageView ivNavLovego;
-    @BindView(R.id.tv_nav_lovego)
-    TextView tvNavLovego;
-    @BindView(R.id.ll_nav_lovego)
-    LinearLayout llNavLovego;
-    @BindView(R.id.iv_nav_walkgo)
-    ImageView ivNavWalkgo;
-    @BindView(R.id.tv_nav_walkgo)
-    TextView tvNavWalkgo;
-    @BindView(R.id.ll_nav_guanggo)
-    LinearLayout llNavGuanggo;
     @BindView(R.id.iv_nav_order)
     ImageView ivNavOrder;
     @BindView(R.id.tv_nav_order)
@@ -74,8 +62,6 @@ public class MainActivity extends BaseActivity {
 
     }
 
-
-
     @Override
     public View getContentId() {
         return View.inflate(this, R.layout.activity_main, null);
@@ -98,17 +84,11 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.ll_nav_xigo, R.id.ll_nav_lovego, R.id.ll_nav_guanggo, R.id.ll_nav_order, R.id.ll_nav_mine})
+    @OnClick({R.id.ll_nav_home, R.id.ll_nav_order, R.id.ll_nav_mine})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.ll_nav_xigo:
+            case R.id.ll_nav_home:
                 selectTab(NavConstant.NAV_XIGO);
-                break;
-            case R.id.ll_nav_lovego:
-                selectTab(NavConstant.NAV_LOVEGO);
-                break;
-            case R.id.ll_nav_guanggo:
-                selectTab(NavConstant.NAV_GUANGGO);
                 break;
             case R.id.ll_nav_order:
                 selectTab(NavConstant.NAV_ORDER);
@@ -144,23 +124,15 @@ public class MainActivity extends BaseActivity {
         resetBottom();
         switch (index) {
             case NavConstant.NAV_XIGO:
-                ivNavHigo.setBackgroundResource(R.mipmap.ic_nav_xigo_sel);
+                ivNavHigo.setBackgroundResource(R.mipmap.ic_home_sel);
                 tvNavHigo.setTextColor(getResources().getColor(R.color.orange_hi));
                 break;
-            case NavConstant.NAV_LOVEGO:
-                ivNavLovego.setBackgroundResource(R.mipmap.ic_nav_lovego_sel);
-                tvNavLovego.setTextColor(getResources().getColor(R.color.orange_hi));
-                break;
-            case NavConstant.NAV_GUANGGO:
-                ivNavWalkgo.setBackgroundResource(R.mipmap.ic_nav_guanggo);
-                tvNavWalkgo.setTextColor(getResources().getColor(R.color.orange_hi));
-                break;
             case NavConstant.NAV_ORDER:
-                ivNavOrder.setBackgroundResource(R.mipmap.ic_nav_order_sel);
+                ivNavOrder.setBackgroundResource(R.mipmap.ic_order_sel);
                 tvNavJourney.setTextColor(getResources().getColor(R.color.orange_hi));
                 break;
             case NavConstant.NAV_MINE:
-                ivNavMine.setBackgroundResource(R.mipmap.ic_nav_mine_sel);
+                ivNavMine.setBackgroundResource(R.mipmap.ic_mine_sel);
                 tvNavMine.setTextColor(getResources().getColor(R.color.orange_hi));
                 break;
             default:
@@ -170,14 +142,11 @@ public class MainActivity extends BaseActivity {
     }
 
     private void resetBottom() {
-        ivNavHigo.setBackgroundResource(R.mipmap.ic_nav_xigo_nor);
-        ivNavLovego.setBackgroundResource(R.mipmap.ic_nav_lovego_nor);
-        ivNavOrder.setBackgroundResource(R.mipmap.ic_nav_order_nor);
-        ivNavMine.setBackgroundResource(R.mipmap.ic_nav_mine_nor);
+        ivNavHigo.setBackgroundResource(R.mipmap.ic_home_nor);
+        ivNavOrder.setBackgroundResource(R.mipmap.ic_order_nor);
+        ivNavMine.setBackgroundResource(R.mipmap.ic_mine_nor);
 
         tvNavHigo.setTextColor(getResources().getColor(R.color.gray_hi));
-        tvNavLovego.setTextColor(getResources().getColor(R.color.gray_hi));
-        tvNavWalkgo.setTextColor(getResources().getColor(R.color.gray_hi));
         tvNavJourney.setTextColor(getResources().getColor(R.color.gray_hi));
         tvNavMine.setTextColor(getResources().getColor(R.color.gray_hi));
     }

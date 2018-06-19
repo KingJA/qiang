@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
-              android:paddingBottom="24dp"
-              android:paddingTop="24dp"
-              android:paddingRight="12dp"
-              android:paddingLeft="12dp">
+              android:padding="12dp">
+
+    <RelativeLayout
+        android:layout_marginBottom="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单号：25462115"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="乐清市雁荡镇"/>
+    </RelativeLayout>
+
+    <View style="@style/div_hor_gray" />
 
     <LinearLayout
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -34,7 +52,7 @@
                     style="@style/font_3_15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="《寻梦环游记》"/>
+                    android:text="雁荡山灵石"/>
 
                 <TextView
                     style="@style/font_3_15"
@@ -64,7 +82,7 @@
                         style="@style/font_6_13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-02-22"/>
+                        android:text="出游时间：2018-02-22"/>
 
                 </LinearLayout>
 
@@ -78,6 +96,7 @@
 
 
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -98,14 +117,14 @@
 
 
             <com.kingja.supershapeview.view.SuperShapeTextView
+                style="@style/font_f_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:padding="6dp"
-                app:super_strokeColor="@color/orange_hi"
-                app:super_strokeWidth="1dp"
-                style="@style/font_orange_14"
                 android:text="查看券码"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                app:super_solidColor="@color/orange_hi"
+                app:super_strokeWidth="1dp"/>
         </LinearLayout>
 
     </LinearLayout>
