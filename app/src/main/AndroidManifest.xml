@@ -60,7 +60,7 @@
             android:screenOrientation="portrait"/>
         <!--我的消息-->
         <activity
-            android:name="com.kingja.qiang.page.message.MessageActivity"
+            android:name="com.kingja.qiang.page.msg.MessageActivity"
             android:screenOrientation="portrait"/>
         <!--个人信息-->
         <activity

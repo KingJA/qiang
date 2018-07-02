@@ -29,18 +29,22 @@ public abstract class ResultObserver<T> extends DefaultObserver<HttpResult<T>> {
         super.onStart();
         baseView.showLoading();
         RxRe.getInstance().add(baseView, this);
-        Log.e(TAG, "onStart: " );
+        Log.e(TAG, "onStart: ");
     }
 
     @Override
     public void onNext(HttpResult<T> httpResult) {
 
-       Logger.json(new Gson().toJson(httpResult));
+        Logger.json(new Gson().toJson(httpResult));
         baseView.hideLoading();
-        if (httpResult.getCode() == 200) {
+        if (httpResult.getCode() == 0) {
             onSuccess(httpResult.getData());
+        } else if (httpResult.getCode() == 1) {
+            ToastUtil.showText("系统错误，请联系客服");
+        } else if (httpResult.getCode() == -1) {
+            ToastUtil.showText("登录失效");
         } else {
-            ToastUtil.showText(httpResult.getMessage());
+            ToastUtil.showText(httpResult.getMsg());
         }
     }
 
@@ -49,17 +53,17 @@ public abstract class ResultObserver<T> extends DefaultObserver<HttpResult<T>> {
     @Override
     public void onError(Throwable e) {
         //记录错误
-        Log.e(TAG, "onError: "+e.toString() );
+        Log.e(TAG, "onError: " + e.toString());
         baseView.hideLoading();
     }
 
     @Override
     public void onComplete() {
-        Log.e(TAG, "onComplete: " );
+        Log.e(TAG, "onComplete: ");
     }
 
     public void cancleRequest() {
-        Log.e(TAG, "cancleRequest: " );
+        Log.e(TAG, "cancleRequest: ");
         cancel();
     }
 }

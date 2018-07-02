@@ -1,19 +1,21 @@
 package com.kingja.qiang.page.login;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
-import com.kingja.qiang.page.forgetpassword.ForgetPasswordActivity;
-import com.kingja.qiang.page.register.RegisterActivity;
 import com.kingja.qiang.base.BaseTitleActivity;
+import com.kingja.qiang.event.ResetLoginStatusEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.Login;
+import com.kingja.qiang.page.forgetpassword.ForgetPasswordActivity;
+import com.kingja.qiang.page.register.RegisterActivity;
 import com.kingja.qiang.util.CheckUtil;
 import com.kingja.qiang.util.GoUtil;
-import com.kingja.qiang.util.SpManager;
+import com.kingja.qiang.util.SpSir;
+
+import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
@@ -29,8 +31,6 @@ import butterknife.OnClick;
 public class LoginActivity extends BaseTitleActivity implements LoginContract.View {
     @Inject
     LoginPresenter mLoginPresenter;
-    @Inject
-    SpManager mSpManager;
     @BindView(R.id.et_login_name)
     EditText etLoginName;
     @BindView(R.id.et_login_password)
@@ -92,8 +92,8 @@ public class LoginActivity extends BaseTitleActivity implements LoginContract.Vi
             case R.id.tv_login_confirm:
                 String username = etLoginName.getText().toString().trim();
                 String password = etLoginPassword.getText().toString().trim();
-                if (CheckUtil.checkEmpty(username, "请输入用户名") && CheckUtil.checkEmpty(password, "请输入密码")) {
-                    mLoginPresenter.login(username, password);
+                if (CheckUtil.checkPhoneFormat(username) && CheckUtil.checkEmpty(password, "请输入密码")) {
+                    mLoginPresenter.login(username, password, "", "", "");
                 }
                 break;
             default:
@@ -113,10 +113,17 @@ public class LoginActivity extends BaseTitleActivity implements LoginContract.Vi
 
     @Override
     public void onLoginSuccess(Login login) {
-        Log.e(TAG, "getToken: "+ login.getToken() );
-        mSpManager.putToken(login.getToken());
-        mSpManager.putUID(login.getUid()+"");
+        save2Localhost(login);
+        EventBus.getDefault().post(new ResetLoginStatusEvent());
         finish();
+    }
+
+    private void save2Localhost(Login login) {
+        SpSir.getInstance().putHeadImg(login.getHeadImg());
+        SpSir.getInstance().putUserId(login.getUserId());
+        SpSir.getInstance().putToken(login.getToken());
+        SpSir.getInstance().putMobile(login.getMobile());
+        SpSir.getInstance().putNickName(login.getNickName());
     }
 
 }

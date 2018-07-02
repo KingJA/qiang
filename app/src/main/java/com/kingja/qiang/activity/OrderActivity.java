@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import com.kingja.qiang.R;
 import com.kingja.qiang.adapter.OrderPageAdapter;
 import com.kingja.qiang.base.BaseTitleActivity;
-import com.kingja.qiang.fragment.UnusedFragment;
+import com.kingja.qiang.fragment.UnusedOrderFragment;
 import com.kingja.qiang.injector.component.AppComponent;
 
 import butterknife.BindView;
@@ -53,10 +53,10 @@ public class OrderActivity extends BaseTitleActivity {
         tabOrder.addTab(tabOrder.newTab().setText(items[1]));
         tabOrder.addTab(tabOrder.newTab().setText(items[2]));
         tabOrder.addTab(tabOrder.newTab().setText(items[3]));
-        mFragmentArr[0] = new UnusedFragment();
-        mFragmentArr[1] = new UnusedFragment();
-        mFragmentArr[2] = new UnusedFragment();
-        mFragmentArr[3] = new UnusedFragment();
+        mFragmentArr[0] = new UnusedOrderFragment();
+        mFragmentArr[1] = new UnusedOrderFragment();
+        mFragmentArr[2] = new UnusedOrderFragment();
+        mFragmentArr[3] = new UnusedOrderFragment();
         OrderPageAdapter mOrderPageAdapter = new OrderPageAdapter(getSupportFragmentManager(), mFragmentArr,
                 items);
         vpContentOrder.setAdapter(mOrderPageAdapter);

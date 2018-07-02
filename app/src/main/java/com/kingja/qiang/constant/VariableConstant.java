@@ -15,7 +15,7 @@ public class VariableConstant {
         /*找回密码*/
         String BACK = "back";
         /*注册*/
-        String REGISTER = "register";
+        String REGISTER = "1";
         /*登录*/
         String LOGIN = "login";
         /*更换手机号*/

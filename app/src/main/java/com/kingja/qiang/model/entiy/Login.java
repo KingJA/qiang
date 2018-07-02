@@ -9,16 +9,32 @@ package com.kingja.qiang.model.entiy;
  */
 public class Login {
 
-
     /**
      * token : 5sd565asd55645wdac
      * uid : 123
      * expires_in : 1532158889
      */
-
+    private String headImg;
+    private String nickName;
     private String token;
-    private int uid;
-    private String expires_in;
+    private String userId;
+    private String mobile;
+
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 
     public String getToken() {
         return token;
@@ -28,19 +44,19 @@ public class Login {
         this.token = token;
     }
 
-    public int getUid() {
-        return uid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getExpires_in() {
-        return expires_in;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setExpires_in(String expires_in) {
-        this.expires_in = expires_in;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

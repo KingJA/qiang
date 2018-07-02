@@ -52,6 +52,9 @@ public class App extends MultiDexApplication {
         setupComponent();
     }
 
+    public static SharedPreferences getSp() {
+        return mSharedPreferences;
+    }
     private void initLoadSir() {
         LoadSir.beginBuilder()
                 .addCallback(new ErrorNetworkCallback())

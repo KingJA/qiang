@@ -11,14 +11,19 @@ import android.widget.ImageView;
  */
 public class ImageLoader implements IImageLoader {
     private ImageLoader() {
-        imageLoader=new GlideLoader();
+        imageLoader = new GlideLoader();
     }
+
     private static ImageLoader mGlideLoader;
     private static IImageLoader imageLoader;
 
     @Override
     public void loadImage(Context context, String url, int resourceId, ImageView view) {
         imageLoader.loadImage(context, url, resourceId, view);
+    }
+
+    public void loadImage(Context context, String url, ImageView view) {
+        loadImage(context, url, -1, view);
     }
 
     public static ImageLoader getInstance() {

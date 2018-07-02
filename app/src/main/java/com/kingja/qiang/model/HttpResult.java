@@ -9,7 +9,7 @@ package com.kingja.qiang.model;
 public class HttpResult<T> {
 
     private int code;
-    private String message;
+    private String msg;
 
     private T data;
 
@@ -21,12 +21,12 @@ public class HttpResult<T> {
         this.code = code;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public T getData() {

@@ -28,8 +28,8 @@
 
             <ImageView
                 android:id="@+id/iv_mine_head"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginRight="16dp"
                 android:background="@mipmap/bg_head"/>
 
@@ -39,14 +39,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="蒜末先生"/>
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/tv_login"
-                android:padding="12dp"
-                style="@style/font_f_18"
-                android:text="注册/登录"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
         </LinearLayout>
 
 
@@ -200,5 +192,19 @@
             android:background="@mipmap/arrow_right"/>
 
     </RelativeLayout>
-    <View style="@style/div_hor_gray"/>
+    <View style="@style/div_hor_6_gray"/>
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_quit"
+        android:background="@color/white_hi"
+        style="@style/font_orange_15"
+        android:padding="12dp"
+        android:gravity="center"
+        android:text="退出登录"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
 </LinearLayout>

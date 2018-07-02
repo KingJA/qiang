@@ -28,13 +28,19 @@ import retrofit2.http.Path;
 public interface UserService {
     /*登录*/
     @FormUrlEncoded
-    @POST("login")
-    Observable<HttpResult<Login>> login(@Field("mobile") String mobile, @Field("password") String password);
+    @POST("/app/user/login")
+    Observable<HttpResult<Login>> login(@Field("mobile") String mobile, @Field("password") String password, @Field
+            ("deviceId") String deviceId, @Field("deviceName") String deviceName, @Field("osName") String osName);
+
+    /*发送验证码*/
+    @FormUrlEncoded
+    @POST("/app/user/smsmessage")
+    Observable<HttpResult<String>> sms(@Field("mobile") String mobile, @Field("flag") String flag);
 
     /*注册*/
     @FormUrlEncoded
-    @POST("register")
-    Observable<HttpResult<Object>> register(@Field("mobile") String mobile, @Field("password") String password,
+    @POST("/app/user/register")
+    Observable<HttpResult<Object>> register(@Field("mobile") String mobile, @Field("passwd") String password,
                                             @Field("code") String code);
 
     /*忘记密码*/
@@ -65,10 +71,6 @@ public interface UserService {
     @GET("me/wallet")
     Observable<HttpResult<Wallet>> wallet();
 
-    /*发送验证码*/
-    @FormUrlEncoded
-    @POST("sms")
-    Observable<HttpResult<Object>> sms(@Field("mobile") String mobile, @Field("type") String type);
 
     /*修改昵称*/
     @FormUrlEncoded

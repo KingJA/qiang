@@ -12,6 +12,6 @@
         android:layout_height="match_parent"
         android:divider="@color/bg_hi"
         android:dividerHeight="6dp"
-        tools:listitem="@layout/item_unused"/>
+        tools:listitem="@layout/item_order_unused"/>
 
 </LinearLayout>

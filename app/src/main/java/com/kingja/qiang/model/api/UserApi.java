@@ -6,6 +6,7 @@ import com.kingja.qiang.model.entiy.Login;
 import com.kingja.qiang.model.service.UserService;
 import com.kingja.qiang.model.HttpResult;
 import com.kingja.qiang.util.AddTokenInterceptor;
+import com.kingja.qiang.util.TokenHeadInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,6 +18,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
 
 /**
  * 项目名称：和ApiService相关联
@@ -36,13 +38,12 @@ public class UserApi {
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
-                .addInterceptor(new AddTokenInterceptor())
+                .addInterceptor(new TokenHeadInterceptor())
                 .build();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-
                 .client(client)
                 .build();
         userService = retrofit.create(UserService.class);
@@ -52,8 +53,9 @@ public class UserApi {
         return userService;
     }
 
-    public Observable<HttpResult<Login>> login(String userName, String password) {
-        return userService.login(userName, password).subscribeOn(Schedulers.io())
+    public Observable<HttpResult<Login>> login(String userName, String password, String deviceId, String deviceName,
+                                               String osName) {
+        return userService.login(userName, password, deviceId, deviceName, osName).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

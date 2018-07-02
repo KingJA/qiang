@@ -16,7 +16,8 @@ public interface LoginContract {
     }
 
     interface Presenter extends BasePresenter<View> {
-        void login(String username, String password);
+        void login(String mobile, String password, String deviceId, String deviceName,
+                   String osName);
 
     }
 }

@@ -19,7 +19,7 @@ public class GlideLoader implements IImageLoader {
         Glide.with(context)
                 .load(Constants.BASE_URL + url)
                 .centerCrop()
-                .placeholder(resourceId == 0 ? R.drawable.ic_launcher_background : resourceId)
+                .placeholder(resourceId == -1 ? R.mipmap.ic_logo : resourceId)
                 .crossFade()
                 .into(view);
     }

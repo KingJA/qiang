@@ -13,7 +13,7 @@ import com.kingja.qiang.util.IndicatorUtil;
 import butterknife.BindView;
 
 /**
- * Description:TODO
+ * Description:订单列表
  * Create Time:2018/1/22 13:24
  * Author:KingJA
  * Email:kingjavip@gmail.com
@@ -43,8 +43,8 @@ public class OrderFragment extends BaseFragment {
         tabOrder.addTab(tabOrder.newTab().setText(items[0]));
         tabOrder.addTab(tabOrder.newTab().setText(items[1]));
         tabOrder.post(() -> IndicatorUtil.setIndicator(tabOrder, 60, 60));
-        mFragmentArr[0] = new UnusedFragment();
-        mFragmentArr[1] = new UnusedFragment();
+        mFragmentArr[0] = new UnusedOrderFragment();
+        mFragmentArr[1] = new AllOrderFragment();
         OrderPageAdapter mOrderPageAdapter = new OrderPageAdapter(getChildFragmentManager(), mFragmentArr,
                 items);
         vpContentOrder.setAdapter(mOrderPageAdapter);

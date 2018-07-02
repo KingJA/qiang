@@ -20,6 +20,7 @@
             android:background="@mipmap/icon_register_phone"/>
 
         <EditText
+            android:inputType="number"
             android:id="@+id/et_register_mobile"
             style="@style/BgNullEditText"
             android:layout_width="match_parent"
@@ -48,6 +49,7 @@
         <EditText
             android:id="@+id/et_register_code"
             style="@style/BgNullEditText"
+            android:inputType="number"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"

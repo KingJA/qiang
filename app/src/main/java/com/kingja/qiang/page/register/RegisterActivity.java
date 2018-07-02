@@ -15,6 +15,7 @@ import com.kingja.qiang.util.CheckUtil;
 import com.kingja.qiang.util.CountTimer;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.supershapeview.view.SuperShapeTextView;
+import com.orhanobut.logger.Logger;
 
 import javax.inject.Inject;
 
@@ -158,7 +159,7 @@ public class RegisterActivity extends BaseTitleActivity implements RegisterContr
 
     @Override
     public void onRegisterSuccess() {
-        ToastUtil.showText("用户注册成功");
+        ToastUtil.showText("恭喜你，注册成功!");
         finish();
     }
 
