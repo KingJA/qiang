@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kingja.qiang.R;
-import com.kingja.qiang.activity.OrderActivity;
+import com.kingja.qiang.activity.ContactUsActivity;
 import com.kingja.qiang.activity.PersonalActivity;
 import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.event.ResetLoginStatusEvent;
@@ -20,7 +20,6 @@ import com.kingja.qiang.page.modifypassword.ModifyPasswordActivity;
 import com.kingja.qiang.page.wallet.WalletActivity;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.SpSir;
-import com.kingja.qiang.util.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -125,7 +124,7 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.rl_mine_contract:
                 //联系我们
-                GoUtil.goActivity(getActivity(), OrderActivity.class);
+                GoUtil.goActivity(getActivity(), ContactUsActivity.class);
                 break;
             case R.id.tv_quit:
                 //退出登录
