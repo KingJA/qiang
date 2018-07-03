@@ -7,10 +7,15 @@ import android.widget.ImageView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
+import com.kingja.qiang.event.RefreshNicknameEvent;
+import com.kingja.qiang.event.ResetLoginStatusEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.util.CheckUtil;
+import com.kingja.qiang.util.SpSir;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.supershapeview.view.SuperShapeEditText;
+
+import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
@@ -32,6 +37,7 @@ public class ModifyNicknameActivity extends BaseTitleActivity implements View.On
 
     @Inject
     ModifyNicknamePresenter modifyNicknamePresenter;
+    private String nickname;
 
     @OnClick({R.id.iv_nickname_clear})
     public void click(View view) {
@@ -95,7 +101,7 @@ public class ModifyNicknameActivity extends BaseTitleActivity implements View.On
 
     @Override
     public void onClick(View v) {
-        String nickname = setNickname.getText().toString().trim();
+        nickname = setNickname.getText().toString().trim();
         if (CheckUtil.checkEmpty(nickname, "请输入昵称")) {
             modifyNicknamePresenter.modifyNickname(nickname);
         }
@@ -113,6 +119,8 @@ public class ModifyNicknameActivity extends BaseTitleActivity implements View.On
 
     @Override
     public void onModifyNicknameSuccess() {
+        SpSir.getInstance().putNickName(nickname);
+        EventBus.getDefault().post(new RefreshNicknameEvent());
         ToastUtil.showText("昵称修改成功");
         finish();
     }

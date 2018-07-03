@@ -11,12 +11,14 @@ import com.kingja.qiang.R;
 import com.kingja.qiang.activity.ContactUsActivity;
 import com.kingja.qiang.activity.PersonalActivity;
 import com.kingja.qiang.base.BaseFragment;
+import com.kingja.qiang.event.RefreshNicknameEvent;
 import com.kingja.qiang.event.ResetLoginStatusEvent;
 import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.login.LoginActivity;
-import com.kingja.qiang.page.message.MessageActivity;
+import com.kingja.qiang.page.message.MsgActivity;
 import com.kingja.qiang.page.modifypassword.ModifyPasswordActivity;
+import com.kingja.qiang.page.visitor.VisitorActivity;
 import com.kingja.qiang.page.wallet.WalletActivity;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.SpSir;
@@ -24,6 +26,8 @@ import com.kingja.qiang.util.SpSir;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -34,7 +38,7 @@ import butterknife.OnClick;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class MineFragment extends BaseFragment {
+public class MineFragment extends BaseFragment implements MineContract.View{
 
     @BindView(R.id.iv_mine_head)
     ImageView ivMineHead;
@@ -42,6 +46,9 @@ public class MineFragment extends BaseFragment {
     TextView tvNickname;
     @BindView(R.id.tv_quit)
     TextView tvQuit;
+
+    @Inject
+    MinePresenter minePresenter;
 
     @Override
     protected void initVariable() {
@@ -58,6 +65,7 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void initViewAndListener() {
+        minePresenter.attachView(this);
         EventBus.getDefault().register(this);
         initLoginStatus();
     }
@@ -108,11 +116,11 @@ public class MineFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.iv_mine_msg:
                 //消息列表
-                GoUtil.goActivity(getActivity(), MessageActivity.class);
+                GoUtil.goActivity(getActivity(), MsgActivity.class);
                 break;
             case R.id.rl_mine_visitor:
                 //游客信息
-                GoUtil.goActivity(getActivity(), WalletActivity.class);
+                GoUtil.goActivity(getActivity(), VisitorActivity.class);
                 break;
             case R.id.rl_mine_personal:
                 //个人信息
@@ -148,14 +156,32 @@ public class MineFragment extends BaseFragment {
     }
 
     private void quit() {
-        SpSir.getInstance().clearData();
-        initLoginStatus();
+        minePresenter.logout();
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void resetLoginStatus(ResetLoginStatusEvent resetLoginStatusEvent) {
         initLoginStatus();
     }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void setNickname(RefreshNicknameEvent refreshNicknameEvent) {
+        tvNickname.setText(SpSir.getInstance().getNickname());
+    }
 
+    @Override
+    public void showLoading() {
+        setProgressShow(true);
+    }
 
+    @Override
+    public void hideLoading() {
+        setProgressShow(false);
+    }
+
+    @Override
+    public void onLogoutSuccess() {
+        SpSir.getInstance().clearData();
+        initLoginStatus();
+    }
 }

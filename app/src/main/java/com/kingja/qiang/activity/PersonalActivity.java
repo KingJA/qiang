@@ -5,25 +5,34 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
+import com.kingja.qiang.event.RefreshNicknameEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.modify_nickname.ModifyNicknameActivity;
 import com.kingja.qiang.util.GoUtil;
+import com.kingja.qiang.util.SpSir;
 import com.kingja.qiang.util.ToastUtil;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -47,6 +56,8 @@ public class PersonalActivity extends BaseTitleActivity {
     @BindView(R.id.rl_personal_nickanme)
     RelativeLayout rlPersonalNickanme;
     private static final int REQUEST_CODE_CHOOSE = 0;
+    @BindView(R.id.tv_nickname)
+    TextView tvNickname;
 
     @OnClick({R.id.rl_personal_head, R.id.rl_personal_nickanme})
     public void onViewClicked(View view) {
@@ -120,7 +131,14 @@ public class PersonalActivity extends BaseTitleActivity {
 
     @Override
     public void initVariable() {
+        EventBus.getDefault().register(this);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -145,7 +163,7 @@ public class PersonalActivity extends BaseTitleActivity {
 
     @Override
     protected void initData() {
-
+        tvNickname.setText(SpSir.getInstance().getNickname());
     }
 
     @Override
@@ -153,4 +171,8 @@ public class PersonalActivity extends BaseTitleActivity {
 
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void setNickname(RefreshNicknameEvent refreshNicknameEvent) {
+        tvNickname.setText(SpSir.getInstance().getNickname());
+    }
 }

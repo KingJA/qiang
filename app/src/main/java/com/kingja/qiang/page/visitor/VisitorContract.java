@@ -1,8 +1,9 @@
-package com.kingja.qiang.page.mine;
+package com.kingja.qiang.page.visitor;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-import com.kingja.qiang.model.entiy.PersonalInfo;
+
+import java.util.List;
 
 /**
  * Description：TODO
@@ -10,13 +11,14 @@ import com.kingja.qiang.model.entiy.PersonalInfo;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public interface MineContract {
+public interface VisitorContract {
     interface View extends BaseView {
-        void onLogoutSuccess();
+        void onGetVisitorsSuccess(List<Visitor> visitors);
+
     }
 
     interface Presenter extends BasePresenter<View> {
-        void logout();
+        void getVisitors(Integer page, Integer pageSize);
 
     }
 }

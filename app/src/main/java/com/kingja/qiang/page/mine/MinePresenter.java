@@ -22,6 +22,8 @@ public class MinePresenter implements MineContract.Presenter {
     private UserApi mApi;
     private MineContract.View mView;
 
+
+
     @Inject
     public MinePresenter(UserApi mApi) {
         this.mApi = mApi;
@@ -38,13 +40,12 @@ public class MinePresenter implements MineContract.Presenter {
     }
 
     @Override
-    public void getPersonalInfo(String uid) {
-        mApi.getUserService().getPersonalInfo(uid).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
-                .mainThread()).subscribe
-                (new ResultObserver<PersonalInfo>(mView) {
+    public void logout() {
+        mApi.getUserService().logout().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe
+                (new ResultObserver<Object>(mView) {
                     @Override
-                    protected void onSuccess(PersonalInfo personalInfo) {
-                        mView.onGetPersonalInfoSuccess(personalInfo);
+                    protected void onSuccess(Object object) {
+                        mView.onLogoutSuccess();
                     }
                 });
     }

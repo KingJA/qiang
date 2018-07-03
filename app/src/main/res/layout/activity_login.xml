@@ -26,6 +26,7 @@
         android:theme="@style/MyEditTextLine"/>
 
     <EditText
+        android:singleLine="true"
         android:id="@+id/et_login_password"
         style="@style/font_3_15"
         android:layout_width="match_parent"

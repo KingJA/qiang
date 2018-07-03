@@ -7,10 +7,22 @@ package com.kingja.qiang.model.entiy;
  * Email:kingjavip@gmail.com
  */
 public class Message {
+    private Integer id;
     private String title;
-    private Integer status;
     private String content;
-    private String created_at;
+    private String createdAt;
+    /**
+     * 是否已读 1是 0否
+     */
+    private Integer isread;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -18,14 +30,6 @@ public class Message {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public String getContent() {
@@ -36,11 +40,19 @@ public class Message {
         this.content = content;
     }
 
-    public String getCreated_at() {
-        return created_at;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Integer getIsread() {
+        return isread;
+    }
+
+    public void setIsread(Integer isread) {
+        this.isread = isread;
     }
 }

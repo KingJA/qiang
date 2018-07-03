@@ -1,9 +1,9 @@
-package com.kingja.qiang.page.message;
+package com.kingja.qiang.page.visitor;
 
 import android.support.annotation.NonNull;
 
+import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.model.api.UserApi;
-import com.kingja.qiang.model.entiy.Message;
 import com.kingja.qiang.rx.ResultObserver;
 
 import java.util.List;
@@ -20,17 +20,17 @@ import io.reactivex.schedulers.Schedulers;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class MessagePresenter implements MessageContract.Presenter {
+public class VisitorPresenter implements VisitorContract.Presenter {
     private UserApi mApi;
-    private MessageContract.View mView;
+    private VisitorContract.View mView;
 
     @Inject
-    public MessagePresenter(UserApi mApi) {
+    public VisitorPresenter(UserApi mApi) {
         this.mApi = mApi;
     }
 
     @Override
-    public void attachView(@NonNull MessageContract.View view) {
+    public void attachView(@NonNull VisitorContract.View view) {
         this.mView = view;
     }
 
@@ -40,13 +40,13 @@ public class MessagePresenter implements MessageContract.Presenter {
     }
 
     @Override
-    public void getMessage() {
-        mApi.getUserService().message(1, 20).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+    public void getVisitors(Integer page, Integer pageSize) {
+        mApi.getUserService().getVisitors(page, pageSize).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
                 .mainThread()).subscribe
-                (new ResultObserver<List<Message>>(mView) {
+                (new ResultObserver<List<Visitor>>(mView) {
                     @Override
-                    protected void onSuccess(List<Message> messages) {
-                        mView.onGetMessageSuccess(messages);
+                    protected void onSuccess(List<Visitor> visitors) {
+                        mView.onGetVisitorsSuccess(visitors);
                     }
                 });
     }
