@@ -10,7 +10,7 @@ public class Visitor {
     private String id;
     private String name;
     private String mobile;
-    private String idcard;
+    private String idcode;
     /**
      * 1默认 0非默认
      */
@@ -40,12 +40,12 @@ public class Visitor {
         this.mobile = mobile;
     }
 
-    public String getIdcard() {
-        return idcard;
+    public String getIdcode() {
+        return idcode;
     }
 
-    public void setIdcard(String idcard) {
-        this.idcard = idcard;
+    public void setIdcode(String idcode) {
+        this.idcode = idcode;
     }
 
     public Integer getIsdefault() {

@@ -79,7 +79,7 @@ public interface UserService {
     @FormUrlEncoded
     @POST("/app/tourist/add")
     Observable<HttpResult<List<Visitor>>> addVisitor(@Field("name") String name, @Field("mobile") String mobile,
-                                                     @Field("idcard") String idcard);
+                                                     @Field("idcode") String idcard);
 
     //=================================================================================
     /*忘记密码*/
