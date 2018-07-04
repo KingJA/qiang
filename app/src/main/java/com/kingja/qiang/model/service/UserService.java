@@ -97,6 +97,10 @@ public interface UserService {
     Observable<HttpResult<Object>> editVisitor(@Field("touristId") String touristId, @Field("name") String name, @Field
             ("mobile") String mobile, @Field("idcode") String idcode);
 
+    /*上传头像*/
+    @POST("/app/user/changeHeadimg")
+    Observable<HttpResult<Object>> uploadHeadImg(@Field("touristId") String touristId);
+
     //=================================================================================
     /*忘记密码*/
     @FormUrlEncoded
