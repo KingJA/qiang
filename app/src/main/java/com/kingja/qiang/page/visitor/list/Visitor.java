@@ -1,4 +1,6 @@
-package com.kingja.qiang.page.visitor;
+package com.kingja.qiang.page.visitor.list;
+
+import java.io.Serializable;
 
 /**
  * Description:TODO
@@ -6,7 +8,7 @@ package com.kingja.qiang.page.visitor;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class Visitor {
+public class Visitor implements Serializable{
     private String id;
     private String name;
     private String mobile;

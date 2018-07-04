@@ -1,8 +1,7 @@
-package com.kingja.qiang.page.visitor;
+package com.kingja.qiang.page.visitor.list;
 
 import android.support.annotation.NonNull;
 
-import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.model.api.UserApi;
 import com.kingja.qiang.rx.ResultObserver;
 
@@ -47,6 +46,30 @@ public class VisitorPresenter implements VisitorContract.Presenter {
                     @Override
                     protected void onSuccess(List<Visitor> visitors) {
                         mView.onGetVisitorsSuccess(visitors);
+                    }
+                });
+    }
+
+    @Override
+    public void deleteVisitor(String touristId,int position) {
+        mApi.getUserService().deleteVisitor(touristId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+                .mainThread()).subscribe
+                (new ResultObserver<Object>(mView) {
+                    @Override
+                    protected void onSuccess(Object obj) {
+                        mView.onDeleteVisitorSuccess(position);
+                    }
+                });
+    }
+
+    @Override
+    public void defaultVisitor(String touristId, int position) {
+        mApi.getUserService().defaultVisitor(touristId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+                .mainThread()).subscribe
+                (new ResultObserver<Object>(mView) {
+                    @Override
+                    protected void onSuccess(Object obj) {
+                        mView.onDefaultVisitorSuccess(position);
                     }
                 });
     }

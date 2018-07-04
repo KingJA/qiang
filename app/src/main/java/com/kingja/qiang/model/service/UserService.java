@@ -8,7 +8,7 @@ import com.kingja.qiang.model.entiy.Login;
 import com.kingja.qiang.model.entiy.Message;
 import com.kingja.qiang.model.entiy.PersonalInfo;
 import com.kingja.qiang.model.entiy.Wallet;
-import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.page.visitor.list.Visitor;
 
 import java.util.List;
 
@@ -78,8 +78,24 @@ public interface UserService {
     @Headers("Content-Type:application/x-www-form-urlencoded;charset=utf-8")
     @FormUrlEncoded
     @POST("/app/tourist/add")
-    Observable<HttpResult<List<Visitor>>> addVisitor(@Field("name") String name, @Field("mobile") String mobile,
-                                                     @Field("idcode") String idcard);
+    Observable<HttpResult<Object>> addVisitor(@Field("name") String name, @Field("mobile") String mobile,
+                                              @Field("idcode") String idcode);
+
+    /*删除游客信息*/
+    @FormUrlEncoded
+    @POST("/app/tourist/delete")
+    Observable<HttpResult<Object>> deleteVisitor(@Field("touristId") String touristId);
+
+    /*设为默认游客*/
+    @FormUrlEncoded
+    @POST("/app/tourist/default")
+    Observable<HttpResult<Object>> defaultVisitor(@Field("touristId") String touristId);
+
+    /*编辑游客信息*/
+    @FormUrlEncoded
+    @POST("/app/tourist/change")
+    Observable<HttpResult<Object>> editVisitor(@Field("touristId") String touristId, @Field("name") String name, @Field
+            ("mobile") String mobile, @Field("idcode") String idcode);
 
     //=================================================================================
     /*忘记密码*/

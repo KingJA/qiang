@@ -1,60 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-    android:padding="12dp">
-
-    <TextView
-        android:text="张三"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+<com.kingja.qiang.ui.DrawHelperLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawHelperLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_hi">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="手机号码"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
 
-        <RelativeLayout
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_visitor_name"
+            style="@style/font_3_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="张三"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical">
+
             <TextView
+                style="@style/font_6_13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="手机号码"/>
 
-                android:text="18888888888"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <TextView
+                    android:id="@+id/tv_visitor_phone"
+                    style="@style/font_6_13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18888888888"/>
+
+                <ImageView
+                    android:id="@+id/iv_visitor_edit"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@mipmap/ic_edit"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                style="@style/font_6_13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="身份证号"/>
+
+            <TextView
+                android:id="@+id/tv_visitor_idcard"
+                style="@style/font_6_13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="330388111111221111">
+            </TextView>
+
+
+        </LinearLayout>
+
+        <View style="@style/div_hor_gray"/>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+
             <ImageView
-                android:layout_alignParentRight="true"
-                android:background="@mipmap/ic_edit"
-                android:text="18888888888"
-                android:layout_width="15dp"
-                android:layout_height="15dp"/>
-        </RelativeLayout>
+                android:id="@+id/iv_visitor_default"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginRight="12dp"
+                android:background="@mipmap/ic_default_nor"/>
 
+            <TextView
+                android:id="@+id/tv_visitor_default"
+                style="@style/font_orange_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="设为默认">
+            </TextView>
+        </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/delete_hi"
+        android:gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
         <TextView
-            android:text="身份证号"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="330388111111221111"
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
-        </TextView>
-
+            android:id="@+id/tv_visitor_delete"
+            style="@style/font_f_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"/>
 
     </LinearLayout>
-
-</LinearLayout>
+</com.kingja.qiang.ui.DrawHelperLayout>

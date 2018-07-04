@@ -6,6 +6,7 @@
 
 
     <color name="orange_hi">#EA1022</color>
+    <color name="delete_hi">#EC4D3D</color>
     <color name="orange_light_hi">#f9986b</color>
     <color name="orange_hi_light">#FCD2BC</color>
     <color name="green_hi">#64C99F</color>

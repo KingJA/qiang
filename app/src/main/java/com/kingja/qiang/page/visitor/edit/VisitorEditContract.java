@@ -1,9 +1,7 @@
-package com.kingja.qiang.page.visitor;
+package com.kingja.qiang.page.visitor.edit;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-
-import java.util.List;
 
 /**
  * Description：TODO
@@ -11,14 +9,14 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public interface VisitorContract {
+public interface VisitorEditContract {
     interface View extends BaseView {
-        void onGetVisitorsSuccess(List<Visitor> visitors);
+        void onEditVisitorSuccess();
 
     }
 
     interface Presenter extends BasePresenter<View> {
-        void getVisitors(Integer page, Integer pageSize);
+        void editVisitor(String touristId,String name, String mobile, String idcode);
 
     }
 }

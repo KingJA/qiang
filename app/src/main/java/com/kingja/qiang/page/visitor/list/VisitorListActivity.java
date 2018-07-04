@@ -1,4 +1,4 @@
-package com.kingja.qiang.page.visitor;
+package com.kingja.qiang.page.visitor.list;
 
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,9 +13,14 @@ import com.kingja.qiang.adapter.VisitorAdapter;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.callback.EmptyMsgCallback;
 import com.kingja.qiang.constant.Constants;
+import com.kingja.qiang.event.RefreshVisitorsEvent;
 import com.kingja.qiang.injector.component.AppComponent;
+import com.kingja.qiang.page.visitor.add.VisitorAddActivity;
+import com.kingja.qiang.page.visitor.edit.VisitorEditActivity;
 import com.kingja.qiang.util.GoUtil;
-import com.kingja.qiang.util.ToastUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,18 +36,25 @@ import butterknife.OnItemClick;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class VisitorActivity extends BaseTitleActivity implements VisitorContract.View {
+public class VisitorListActivity extends BaseTitleActivity implements VisitorContract.View, VisitorAdapter
+        .OnVistorOperListener {
     @BindView(R.id.lv_msg)
     ListView lvMsg;
     @Inject
-   VisitorPresenter visitorPresenter;
+    VisitorPresenter visitorPresenter;
     private VisitorAdapter mVisitorAdapter;
     private List<Visitor> visitors = new ArrayList<>();
     private LoadService loadService;
 
     @Override
     public void initVariable() {
+        EventBus.getDefault().register(this);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -60,7 +72,7 @@ public class VisitorActivity extends BaseTitleActivity implements VisitorContrac
 
     @Override
     protected int getContentView() {
-        return R.layout.activity_mine_msg;
+        return R.layout.activity_mine_visitor;
     }
 
     @Override
@@ -73,21 +85,20 @@ public class VisitorActivity extends BaseTitleActivity implements VisitorContrac
 
     @OnItemClick(R.id.lv_msg)
     public void itemClick(AdapterView<?> parent, View view, int position, long id) {
-        GoUtil.goActivity(VisitorActivity.this, MsgDetailActivity.class);
+        GoUtil.goActivity(VisitorListActivity.this, MsgDetailActivity.class);
     }
 
     @Override
     protected void initData() {
         setRightClick("新增游客", v -> {
-            ToastUtil.showText("新增游客信息");
-
+            GoUtil.goActivity(VisitorListActivity.this, VisitorAddActivity.class);
         });
-
+        mVisitorAdapter.setOnVistorOperListener(this);
     }
 
     @Override
     protected void initNet() {
-        visitorPresenter.getVisitors(1, Constants.PAGE_SIZE);
+        visitorPresenter.getVisitors(1, Constants.PAGE_SIZE_100);
     }
 
     @Override
@@ -108,5 +119,35 @@ public class VisitorActivity extends BaseTitleActivity implements VisitorContrac
             loadService.showSuccess();
             mVisitorAdapter.setData(visitors);
         }
+    }
+
+    @Override
+    public void onDeleteVisitorSuccess(int position) {
+        mVisitorAdapter.removeItem(position);
+    }
+
+    @Override
+    public void onDefaultVisitorSuccess(int position) {
+        mVisitorAdapter.setDefault(position);
+    }
+
+    @Subscribe
+    public void refreshVisitors(RefreshVisitorsEvent refreshVisitorsEvent) {
+        visitorPresenter.getVisitors(1, Constants.PAGE_SIZE_100);
+    }
+
+    @Override
+    public void onDeleteVisitor(String touristId, int position) {
+        visitorPresenter.deleteVisitor(touristId, position);
+    }
+
+    @Override
+    public void onDefaultVisitor(String touristId, int position) {
+        visitorPresenter.defaultVisitor(touristId, position);
+    }
+
+    @Override
+    public void onEditVisitor(Visitor visitor) {
+        VisitorEditActivity.goActivity(this,visitor);
     }
 }

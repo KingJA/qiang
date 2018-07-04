@@ -1,12 +1,16 @@
 package com.kingja.qiang.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.kingja.qiang.R;
-import com.kingja.qiang.model.entiy.Message;
-import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.page.visitor.list.Visitor;
+import com.kingja.qiang.util.ToastUtil;
 
 import java.util.List;
 
@@ -17,20 +21,50 @@ import java.util.List;
  * Email:kingjavip@gmail.com
  */
 public class VisitorAdapter extends BaseLvAdapter<Visitor> {
+    private OnVistorOperListener onVistorOperListener;
+
     public VisitorAdapter(Context context, List<Visitor> list) {
         super(context, list);
     }
 
     @Override
     public View simpleGetView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder = null;
+        ViewHolder viewHolder;
         if (convertView == null) {
             convertView = View
-                    .inflate(context, R.layout.item_msg, null);
+                    .inflate(context, R.layout.item_visitor, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
+        }
+        viewHolder.tv_visitor_name.setText(list.get(position).getName());
+        viewHolder.tv_visitor_phone.setText(list.get(position).getMobile());
+        viewHolder.tv_visitor_idcard.setText(list.get(position).getIdcode());
+        viewHolder.iv_visitor_edit.setOnClickListener(v -> {
+            if (onVistorOperListener != null) {
+                onVistorOperListener.onEditVisitor(list.get(position));
+            }
+        });
+        viewHolder.tv_visitor_delete.setOnClickListener(v -> {
+            if (onVistorOperListener != null) {
+                onVistorOperListener.onDeleteVisitor(list.get(position).getId(), position);
+            }
+        });
+        viewHolder.iv_visitor_default.setOnClickListener(v -> {
+            if (onVistorOperListener != null) {
+                onVistorOperListener.onDefaultVisitor(list.get(position).getId(), position);
+            }
+        });
+
+        if (list.get(position).getIsdefault() == 1) {
+            viewHolder.iv_visitor_default.setBackgroundResource(R.mipmap.ic_default_sel);
+            viewHolder.tv_visitor_default.setText("默认游客");
+            viewHolder.tv_visitor_default.setTextColor(ContextCompat.getColor(context, R.color.orange_hi));
+        } else {
+            viewHolder.iv_visitor_default.setBackgroundResource(R.mipmap.ic_default_nor);
+            viewHolder.tv_visitor_default.setText("设为默认");
+            viewHolder.tv_visitor_default.setTextColor(ContextCompat.getColor(context, R.color.c_6));
         }
         return convertView;
     }
@@ -42,9 +76,41 @@ public class VisitorAdapter extends BaseLvAdapter<Visitor> {
 
     public class ViewHolder {
         public final View root;
+        TextView tv_visitor_name;
+        TextView tv_visitor_phone;
+        TextView tv_visitor_idcard;
+        TextView tv_visitor_default;
+        TextView tv_visitor_delete;
+        ImageView iv_visitor_default;
+        ImageView iv_visitor_edit;
 
         public ViewHolder(View root) {
             this.root = root;
+            tv_visitor_name = root.findViewById(R.id.tv_visitor_name);
+            tv_visitor_phone = root.findViewById(R.id.tv_visitor_phone);
+            tv_visitor_idcard = root.findViewById(R.id.tv_visitor_idcard);
+            tv_visitor_default = root.findViewById(R.id.tv_visitor_default);
+            iv_visitor_default = root.findViewById(R.id.iv_visitor_default);
+            iv_visitor_edit = root.findViewById(R.id.iv_visitor_edit);
+            tv_visitor_delete = root.findViewById(R.id.tv_visitor_delete);
         }
+    }
+
+    public interface OnVistorOperListener {
+        void onDeleteVisitor(String touristId, int position);
+        void onDefaultVisitor(String touristId, int position);
+        void onEditVisitor(Visitor visitor);
+    }
+
+    public void setOnVistorOperListener(OnVistorOperListener onVistorOperListener) {
+        this.onVistorOperListener = onVistorOperListener;
+    }
+
+    public void setDefault(int position) {
+        for (Visitor visitor : list) {
+            visitor.setIsdefault(0);
+        }
+        list.get(position).setIsdefault(1);
+        notifyDataSetChanged();
     }
 }

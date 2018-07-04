@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.event.RefreshNicknameEvent;
-import com.kingja.qiang.event.ResetLoginStatusEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.util.CheckUtil;
 import com.kingja.qiang.util.SpSir;
@@ -91,7 +90,13 @@ public class ModifyNicknameActivity extends BaseTitleActivity implements View.On
                 ivNicknameClear.setVisibility(s.length() > 0 ? View.VISIBLE : View.GONE);
             }
         });
+        initNickname();
+    }
 
+    private void initNickname() {
+        String nickname = SpSir.getInstance().getNickname();
+        setNickname.setText(nickname);
+        setNickname.setSelection(nickname.length());
     }
 
     @Override

@@ -18,8 +18,7 @@ import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.login.LoginActivity;
 import com.kingja.qiang.page.message.MsgActivity;
 import com.kingja.qiang.page.modifypassword.ModifyPasswordActivity;
-import com.kingja.qiang.page.visitor.VisitorActivity;
-import com.kingja.qiang.page.wallet.WalletActivity;
+import com.kingja.qiang.page.visitor.list.VisitorListActivity;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.SpSir;
 
@@ -120,7 +119,7 @@ public class MineFragment extends BaseFragment implements MineContract.View{
                 break;
             case R.id.rl_mine_visitor:
                 //游客信息
-                GoUtil.goActivity(getActivity(), VisitorActivity.class);
+                GoUtil.goActivity(getActivity(), VisitorListActivity.class);
                 break;
             case R.id.rl_mine_personal:
                 //个人信息

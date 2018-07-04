@@ -125,9 +125,17 @@
         <activity
             android:name=".activity.ContactUsActivity"
             android:screenOrientation="portrait"/>
-       <!--联系我们-->
+       <!--游客里诶包-->
         <activity
-            android:name=".page.visitor.VisitorActivity"
+            android:name=".page.visitor.list.VisitorListActivity"
+            android:screenOrientation="portrait"/>
+        <!--新增游客-->
+        <activity
+            android:name=".page.visitor.add.VisitorAddActivity"
+            android:screenOrientation="portrait"/>
+      <!--修改游客信息-->
+        <activity
+            android:name=".page.visitor.edit.VisitorEditActivity"
             android:screenOrientation="portrait"/>
 
     </application>
