@@ -6,7 +6,7 @@ import android.widget.RelativeLayout;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.activity.ModifyPhoneActivity;
-import com.kingja.qiang.activity.PersonalActivity;
+import com.kingja.qiang.page.mine.headimg.PersonalActivity;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.discount.DiscountActivity;

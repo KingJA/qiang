@@ -1,26 +1,29 @@
-package com.kingja.qiang.activity;
+package com.kingja.qiang.page.mine.headimg;
 
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
+import com.kingja.qiang.event.RefreshHeadImgEvent;
 import com.kingja.qiang.event.RefreshNicknameEvent;
+import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.modify_nickname.ModifyNicknameActivity;
+import com.kingja.qiang.util.FileUtil;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.SpSir;
 import com.kingja.qiang.util.ToastUtil;
+import com.kingja.supershapeview.view.SuperShapeImageView;
+import com.orhanobut.logger.Logger;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -29,11 +32,16 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
 import permissions.dispatcher.OnPermissionDenied;
@@ -48,9 +56,9 @@ import permissions.dispatcher.RuntimePermissions;
  * Email:kingjavip@gmail.com
  */
 @RuntimePermissions
-public class PersonalActivity extends BaseTitleActivity {
+public class PersonalActivity extends BaseTitleActivity implements PersonalContract.View {
     @BindView(R.id.iv_personal_head)
-    ImageView ivPersonalHead;
+    SuperShapeImageView ivPersonalHead;
     @BindView(R.id.rl_personal_head)
     RelativeLayout rlPersonalHead;
     @BindView(R.id.rl_personal_nickanme)
@@ -58,6 +66,8 @@ public class PersonalActivity extends BaseTitleActivity {
     private static final int REQUEST_CODE_CHOOSE = 0;
     @BindView(R.id.tv_nickname)
     TextView tvNickname;
+    @Inject
+    PersonalPresenter personalPresenter;
 
     @OnClick({R.id.rl_personal_head, R.id.rl_personal_nickanme})
     public void onViewClicked(View view) {
@@ -71,7 +81,6 @@ public class PersonalActivity extends BaseTitleActivity {
             default:
                 break;
         }
-
     }
 
     @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE})
@@ -121,12 +130,23 @@ public class PersonalActivity extends BaseTitleActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
             mSelected = Matisse.obtainResult(data);
-            Glide.with(this)
-                    .load(mSelected.get(0))
-                    .centerCrop()
-                    .crossFade()
-                    .into(ivPersonalHead);
+
+//            Glide.with(this)
+//                    .load(mSelected.get(0))
+//                    .centerCrop()
+//                    .crossFade()
+//                    .into(ivPersonalHead);
+
+            uploadHeadImg(mSelected.get(0));
         }
+    }
+
+    private void uploadHeadImg(Uri uri) {
+        Logger.d("uri:"+uri.toString());
+        File  headImgFile = FileUtil.getFileByUri(uri,this);
+        RequestBody body = RequestBody.create(MediaType.parse("image/jpg"), headImgFile);
+        MultipartBody.Part photoPart = MultipartBody.Part.createFormData("headimg", headImgFile.getName(), body);
+        personalPresenter.uploadHeadImg(photoPart);
     }
 
     @Override
@@ -143,7 +163,10 @@ public class PersonalActivity extends BaseTitleActivity {
 
     @Override
     protected void initComponent(AppComponent appComponent) {
-
+        DaggerPersonalCompnent.builder()
+                .appComponent(appComponent)
+                .build()
+                .inject(this);
     }
 
     @Override
@@ -158,11 +181,13 @@ public class PersonalActivity extends BaseTitleActivity {
 
     @Override
     protected void initView() {
-
+        personalPresenter.attachView(this);
     }
 
     @Override
     protected void initData() {
+        String headImg = SpSir.getInstance().getHeadImg();
+        ImageLoader.getInstance().loadImage(this, headImg, ivPersonalHead);
         tvNickname.setText(SpSir.getInstance().getNickname());
     }
 
@@ -174,5 +199,22 @@ public class PersonalActivity extends BaseTitleActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void setNickname(RefreshNicknameEvent refreshNicknameEvent) {
         tvNickname.setText(SpSir.getInstance().getNickname());
+    }
+
+    @Override
+    public void showLoading() {
+        setProgressShow(true);
+    }
+
+    @Override
+    public void hideLoading() {
+        setProgressShow(false);
+    }
+
+    @Override
+    public void onUploadHeadImgSuccess(String url) {
+        SpSir.getInstance().putHeadImg(url);
+        EventBus.getDefault().post(new RefreshHeadImgEvent());
+        ImageLoader.getInstance().loadImage(this, url, ivPersonalHead);
     }
 }

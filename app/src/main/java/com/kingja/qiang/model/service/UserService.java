@@ -8,16 +8,21 @@ import com.kingja.qiang.model.entiy.Login;
 import com.kingja.qiang.model.entiy.Message;
 import com.kingja.qiang.model.entiy.PersonalInfo;
 import com.kingja.qiang.model.entiy.Wallet;
+import com.kingja.qiang.page.order.Order;
+import com.kingja.qiang.page.order.orderdetail.OrderDetail;
 import com.kingja.qiang.page.visitor.list.Visitor;
 
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 /**
@@ -98,8 +103,19 @@ public interface UserService {
             ("mobile") String mobile, @Field("idcode") String idcode);
 
     /*上传头像*/
+    @Multipart
     @POST("/app/user/changeHeadimg")
-    Observable<HttpResult<Object>> uploadHeadImg(@Field("touristId") String touristId);
+    Observable<HttpResult<String>> uploadHeadImg(@Part MultipartBody.Part headImg);
+
+    /*获取订单列表*/
+    @FormUrlEncoded
+    @POST("/app/order/list")
+    Observable<HttpResult<List<Order>>> getOrders(@Field("page") Integer page, @Field("pageSize") Integer pageSize,
+                                                  @Field("status") Integer status);
+    /*获取订单详情*/
+    @FormUrlEncoded
+    @POST("/app/order/ticketcode")
+    Observable<HttpResult<OrderDetail>> getOrderDetail(@Field("orderId") String orderId);
 
     //=================================================================================
     /*忘记密码*/

@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import com.kingja.qiang.R;
 import com.kingja.qiang.adapter.OrderPageAdapter;
 import com.kingja.qiang.base.BaseTitleActivity;
-import com.kingja.qiang.fragment.UnusedOrderFragment;
+import com.kingja.qiang.page.order.unused.UnusedOrderFragment;
 import com.kingja.qiang.injector.component.AppComponent;
 
 import butterknife.BindView;

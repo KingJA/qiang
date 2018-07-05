@@ -12,7 +12,7 @@
     <!--相机-->
     <uses-permission android:name="android.permission.CAMERA"/>
     <!--拨打电话-->
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <application
         android:name="com.kingja.qiang.base.App"
         android:allowBackup="true"
@@ -33,8 +33,8 @@
             android:screenOrientation="portrait"/>
         <!--主界面-->
         <!--<activity-->
-            <!--android:name="com.kingja.qiang.MainActivity"-->
-            <!--android:screenOrientation="portrait"/>-->
+        <!--android:name="com.kingja.qiang.MainActivity"-->
+        <!--android:screenOrientation="portrait"/>-->
         <!--嘻购详情-->
         <activity
             android:name="com.kingja.qiang.activity.XigoDetailActivity"
@@ -65,7 +65,7 @@
             android:screenOrientation="portrait"/>
         <!--个人信息-->
         <activity
-            android:name="com.kingja.qiang.activity.PersonalActivity"
+            android:name="com.kingja.qiang.page.mine.headimg.PersonalActivity"
             android:screenOrientation="portrait"/>
         <!--登录-->
         <activity
@@ -121,11 +121,11 @@
         <activity
             android:name="com.kingja.qiang.page.forgetpassword.ForgetPasswordActivity"
             android:screenOrientation="portrait"/>
-       <!--联系我们-->
+        <!--联系我们-->
         <activity
             android:name=".activity.ContactUsActivity"
             android:screenOrientation="portrait"/>
-       <!--游客里诶包-->
+        <!--游客里诶包-->
         <activity
             android:name=".page.visitor.list.VisitorListActivity"
             android:screenOrientation="portrait"/>
@@ -133,9 +133,13 @@
         <activity
             android:name=".page.visitor.add.VisitorAddActivity"
             android:screenOrientation="portrait"/>
-      <!--修改游客信息-->
+        <!--修改游客信息-->
         <activity
             android:name=".page.visitor.edit.VisitorEditActivity"
+            android:screenOrientation="portrait"/>
+        <!--获取订单详情-->
+        <activity
+            android:name=".page.order.orderdetail.OrderDetailActivity"
             android:screenOrientation="portrait"/>
 
     </application>

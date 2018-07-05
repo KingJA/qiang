@@ -7,98 +7,82 @@
               android:padding="12dp">
 
     <RelativeLayout
-        android:layout_marginBottom="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:orientation="horizontal">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="订单号：25462115"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="订单号："/>
+            <TextView
+                android:id="@+id/tv_order_orderno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25462115"/>
+
+        </LinearLayout>
+
+
 
         <TextView
+            android:id="@+id/tv_order_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="乐清市雁荡镇"/>
     </RelativeLayout>
 
-    <View style="@style/div_hor_gray" />
+    <View style="@style/div_hor_gray"/>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/direct_1"/>
 
 
         <LinearLayout
-            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginRight="10dp"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/direct_1"/>
-
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_order_title"
+                    style="@style/font_3_15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="雁荡山灵石"/>
 
-                    <TextView
-                        style="@style/font_3_15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="雁荡山灵石"/>
-
-                    <TextView
-                        android:id="@+id/tv_order_status"
-                        style="@style/font_3_15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="待使用"/>
+                <TextView
+                    android:id="@+id/tv_order_status"
+                    style="@style/font_3_15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="待使用"/>
 
 
-                </RelativeLayout>
+            </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            style="@style/font_6_13"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="有效期："/>
-
-                        <TextView
-                            style="@style/font_6_13"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="出游时间：2018-02-22"/>
-
-                    </LinearLayout>
-
-
-                    <TextView
-                        style="@style/font_6_13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="¥58"/>
-
-
-                </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -108,32 +92,78 @@
                         style="@style/font_6_13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="数量："/>
+                        android:text="出游时间："/>
+
+                    <TextView
+                        android:id="@+id/tv_order_date"
+                        style="@style/font_6_13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2018-02-22"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true">
 
                     <TextView
                         style="@style/font_6_13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1张"/>
+                        android:text="¥"/>
+
+                    <TextView
+                        android:id="@+id/tv_order_payamount"
+                        style="@style/font_6_13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="58"/>
 
                 </LinearLayout>
 
 
-                <com.kingja.supershapeview.view.SuperShapeTextView
-                    android:id="@+id/stv_order_detail"
-                    style="@style/font_f_13"
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/font_6_13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:padding="6dp"
-                    android:text="查看券码"
-                    app:super_solidColor="@color/orange_hi"
-                    app:super_strokeWidth="1dp"/>
+                    android:text="数量："/>
+
+                <TextView
+                    android:id="@+id/tv_order_quantity"
+                    style="@style/font_6_13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"/>
+
+                <TextView
+                    style="@style/font_6_13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张"/>
             </LinearLayout>
 
+
+            <com.kingja.supershapeview.view.SuperShapeTextView
+                android:id="@+id/stv_order_detail"
+                style="@style/font_f_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:padding="6dp"
+                android:text="查看券码"
+                app:super_solidColor="@color/orange_hi"
+                app:super_strokeWidth="1dp"/>
         </LinearLayout>
 
-
+    </LinearLayout>
 
 
 </LinearLayout>

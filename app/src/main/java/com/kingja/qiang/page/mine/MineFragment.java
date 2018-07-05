@@ -9,7 +9,8 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kingja.qiang.R;
 import com.kingja.qiang.activity.ContactUsActivity;
-import com.kingja.qiang.activity.PersonalActivity;
+import com.kingja.qiang.event.RefreshHeadImgEvent;
+import com.kingja.qiang.page.mine.headimg.PersonalActivity;
 import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.event.RefreshNicknameEvent;
 import com.kingja.qiang.event.ResetLoginStatusEvent;
@@ -21,6 +22,7 @@ import com.kingja.qiang.page.modifypassword.ModifyPasswordActivity;
 import com.kingja.qiang.page.visitor.list.VisitorListActivity;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.SpSir;
+import com.kingja.supershapeview.view.SuperShapeImageView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -40,7 +42,7 @@ import butterknife.OnClick;
 public class MineFragment extends BaseFragment implements MineContract.View{
 
     @BindView(R.id.iv_mine_head)
-    ImageView ivMineHead;
+    SuperShapeImageView ivMineHead;
     @BindView(R.id.tv_nickname)
     TextView tvNickname;
     @BindView(R.id.tv_quit)
@@ -91,7 +93,7 @@ public class MineFragment extends BaseFragment implements MineContract.View{
             //未登录
             tvQuit.setVisibility(View.GONE);
             tvNickname.setText("注册/登录");
-            ivMineHead.setBackgroundResource(R.mipmap.ic_logo);
+            ivMineHead.setImageResource(R.mipmap.ic_logo);
             tvNickname.setOnClickListener(v -> {
                 GoUtil.goActivity(getActivity(), LoginActivity.class);
             });
@@ -163,9 +165,16 @@ public class MineFragment extends BaseFragment implements MineContract.View{
     public void resetLoginStatus(ResetLoginStatusEvent resetLoginStatusEvent) {
         initLoginStatus();
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void setNickname(RefreshNicknameEvent refreshNicknameEvent) {
         tvNickname.setText(SpSir.getInstance().getNickname());
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void setHeadImg(RefreshHeadImgEvent refreshHeadImgEvent) {
+        String headImg = SpSir.getInstance().getHeadImg();
+        ImageLoader.getInstance().loadImage(getActivity(), headImg, ivMineHead);
     }
 
     @Override

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:background="@color/bg_hi"
               android:orientation="vertical">
 
@@ -26,19 +27,30 @@
             android:layout_centerVertical="true"
             android:gravity="center_vertical">
 
-            <ImageView
+          <!--  <ImageView
+                android:scaleType="centerCrop"
                 android:id="@+id/iv_mine_head"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginRight="16dp"
-                android:background="@mipmap/bg_head"/>
+                android:src="@mipmap/bg_head"/>-->
+
+            <com.kingja.supershapeview.view.SuperShapeImageView
+                android:id="@+id/iv_mine_head"
+                android:layout_marginRight="16dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:onClick="changeIvStyle"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/bg_head"
+                app:super_cornerRadius="60dp"/>
 
             <TextView
                 android:id="@+id/tv_nickname"
                 style="@style/font_f_17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="蒜末先生"/>
+                android:text="注册/登录"/>
         </LinearLayout>
 
 

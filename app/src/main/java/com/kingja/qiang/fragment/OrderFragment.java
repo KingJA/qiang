@@ -8,6 +8,8 @@ import com.kingja.qiang.R;
 import com.kingja.qiang.adapter.OrderPageAdapter;
 import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.injector.component.AppComponent;
+import com.kingja.qiang.page.order.all.AllOrderFragment;
+import com.kingja.qiang.page.order.unused.UnusedOrderFragment;
 import com.kingja.qiang.util.IndicatorUtil;
 
 import butterknife.BindView;

@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
+import com.kingja.qiang.page.order.Order;
 import com.kingja.supershapeview.view.SuperShapeTextView;
 
 import java.util.List;
@@ -17,8 +18,8 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class AllOrderAdapter extends BaseLvAdapter<String> {
-    public AllOrderAdapter(Context context, List<String> list) {
+public class AllOrderAdapter extends BaseLvAdapter<Order> {
+    public AllOrderAdapter(Context context, List<Order> list) {
         super(context, list);
     }
 
@@ -40,7 +41,7 @@ public class AllOrderAdapter extends BaseLvAdapter<String> {
 
     @Override
     public int getCount() {
-        return 27;
+        return list.size();
     }
 
     public class ViewHolder {
