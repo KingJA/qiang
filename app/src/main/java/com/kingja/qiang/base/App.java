@@ -23,6 +23,8 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.squareup.leakcanary.LeakCanary;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 /**
  * Description：App
@@ -39,6 +41,7 @@ public class App extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        initJPush();
         initLoadSir();
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
@@ -50,11 +53,21 @@ public class App extends MultiDexApplication {
         sInstance = this;
         mSharedPreferences = getSharedPreferences(Constants.APPLICATION_NAME, MODE_PRIVATE);
         setupComponent();
+        String registrationID = JPushInterface.getRegistrationID(this);
+        Logger.d("registrationID:"+registrationID);
+    }
+
+    private void initJPush() {
+        // 设置开启日志,发布时请关闭日志
+        JPushInterface.setDebugMode(true);
+        // 初始化 JPush
+        JPushInterface.init(this);
     }
 
     public static SharedPreferences getSp() {
         return mSharedPreferences;
     }
+
     private void initLoadSir() {
         LoadSir.beginBuilder()
                 .addCallback(new ErrorNetworkCallback())

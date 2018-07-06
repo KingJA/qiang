@@ -6,6 +6,7 @@ import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.util.CheckUtil;
+import com.kingja.qiang.util.EncryptUtil;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.supershapeview.view.SuperShapeEditText;
 
@@ -35,7 +36,7 @@ public class ModifyPasswordActivity extends BaseTitleActivity implements ModifyP
         String repeatPassword = setModifyPasswordRepeat.getText().toString().trim();
         if (CheckUtil.checkEmpty(newPassword, "请输入新密码") && CheckUtil.checkEmpty(repeatPassword, "请输入重复密码") &&
                 CheckUtil.checkSame(newPassword, repeatPassword, "两次输入密码不一致")) {
-            modifyPasswordPresenter.modifyPassword(newPassword);
+            modifyPasswordPresenter.modifyPassword(EncryptUtil.getMd5(newPassword));
         }
     }
 

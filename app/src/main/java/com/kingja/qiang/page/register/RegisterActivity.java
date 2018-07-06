@@ -13,6 +13,7 @@ import com.kingja.qiang.constant.VariableConstant;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.util.CheckUtil;
 import com.kingja.qiang.util.CountTimer;
+import com.kingja.qiang.util.EncryptUtil;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.supershapeview.view.SuperShapeTextView;
 import com.orhanobut.logger.Logger;
@@ -92,7 +93,7 @@ public class RegisterActivity extends BaseTitleActivity implements RegisterContr
         String password = etRegisterPassword.getText().toString().trim();
         if (CheckUtil.checkPhoneFormat(mobile) && CheckUtil.checkEmpty(code, "请输入验证码") && CheckUtil.checkEmpty
                 (password, "请输入密码")) {
-            registerPresenter.register(mobile, password, code);
+            registerPresenter.register(mobile, EncryptUtil.getMd5(password), code);
         }
     }
 

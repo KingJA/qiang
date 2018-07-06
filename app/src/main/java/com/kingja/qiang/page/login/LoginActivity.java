@@ -12,8 +12,10 @@ import com.kingja.qiang.model.entiy.Login;
 import com.kingja.qiang.page.forgetpassword.ForgetPasswordActivity;
 import com.kingja.qiang.page.register.RegisterActivity;
 import com.kingja.qiang.util.CheckUtil;
+import com.kingja.qiang.util.EncryptUtil;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.SpSir;
+import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -21,6 +23,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Description:登录
@@ -93,7 +96,7 @@ public class LoginActivity extends BaseTitleActivity implements LoginContract.Vi
                 String username = etLoginName.getText().toString().trim();
                 String password = etLoginPassword.getText().toString().trim();
                 if (CheckUtil.checkPhoneFormat(username) && CheckUtil.checkEmpty(password, "请输入密码")) {
-                    mLoginPresenter.login(username, password, "", "", "");
+                    mLoginPresenter.login(username, EncryptUtil.getMd5(password), JPushInterface.getRegistrationID(this), "", "");
                 }
                 break;
             default:

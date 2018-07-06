@@ -1,1 +1,1 @@
-include ':app', ':rangebarsir'
+include ':app'
