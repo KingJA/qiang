@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AbsListView;
 
@@ -28,6 +29,11 @@ public class RefreshSwipeRefreshLayout extends SwipeRefreshLayout {
     public RefreshSwipeRefreshLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         setColorSchemeResources(R.color.orange_hi);
+        setProgressViewOffset(false, 0, dp2px(24));
+    }
+
+    protected int dp2px(int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
 
     public void setScrollUpChild(View view) {

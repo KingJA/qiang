@@ -44,7 +44,7 @@ public class MsgActivity extends BaseTitleActivity implements MessageContract.Vi
 
     public static final Integer MSG_OPER_READ = 1;
     public static final Integer MSG_OPER_DELETE = 2;
-    private int page = 1;
+    private int page;
     private boolean hasMore;
 
     @Override
