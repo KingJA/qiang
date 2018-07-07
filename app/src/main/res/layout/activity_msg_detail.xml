@@ -12,12 +12,14 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_msg_title"
             style="@style/font_3_16"
             android:text="折现问题通知"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:id="@+id/tv_msg_date"
             android:layout_marginTop="12dp"
             style="@style/font_9_13"
             android:text="2018-02-15"
@@ -28,6 +30,7 @@
 <View style="@style/div_hor_gray"/>
 
     <TextView
+        android:id="@+id/tv_msg_content"
         style="@style/font_6_13"
         android:text="关于元旦促销活动的通知集团各商场市场部: 一年一度的元旦节即将来临, 集团将开展面对消费者的促销活动"
         android:padding="12dp"

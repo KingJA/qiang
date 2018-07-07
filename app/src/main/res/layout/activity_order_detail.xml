@@ -96,7 +96,7 @@
 
         <com.kingja.supershapeview.view.SuperShapeLinearLayout
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:layout_width="240dp"
             android:layout_height="wrap_content"

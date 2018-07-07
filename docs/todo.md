@@ -30,3 +30,6 @@
 * 列表的下拉刷新
 * 分页
 * 密码MD5
+* SwipeRefreshLayout没在顶部就开始刷新: 重写RefreshSwipeRefreshLayout
+* ListView和子item点击冲突
+* ListView 上拉刷新

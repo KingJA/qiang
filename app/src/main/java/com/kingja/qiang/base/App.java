@@ -12,6 +12,7 @@ import com.kingja.qiang.callback.EmptyMsgCallback;
 import com.kingja.qiang.callback.EmptyOrderCallback;
 import com.kingja.qiang.callback.ErrorNetworkCallback;
 import com.kingja.qiang.callback.LoadingCallback;
+import com.kingja.qiang.callback.UnLoginCallback;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.injector.component.DaggerAppComponent;
@@ -19,6 +20,7 @@ import com.kingja.qiang.injector.module.ApiModule;
 import com.kingja.qiang.injector.module.AppModule;
 import com.kingja.qiang.injector.module.SpModule;
 import com.kingja.loadsir.core.LoadSir;
+import com.kingja.qiang.util.SpSir;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.squareup.leakcanary.LeakCanary;
@@ -53,8 +55,7 @@ public class App extends MultiDexApplication {
         sInstance = this;
         mSharedPreferences = getSharedPreferences(Constants.APPLICATION_NAME, MODE_PRIVATE);
         setupComponent();
-        String registrationID = JPushInterface.getRegistrationID(this);
-        Logger.d("registrationID:"+registrationID);
+        Logger.d("token:"+ SpSir.getInstance().getToken());
     }
 
     private void initJPush() {
@@ -77,6 +78,7 @@ public class App extends MultiDexApplication {
                 .addCallback(new EmptyOrderCallback())
                 .addCallback(new EmptyMsgCallback())
                 .addCallback(new EmptyDealCallback())
+                .addCallback(new UnLoginCallback())
                 .commit();
     }
 

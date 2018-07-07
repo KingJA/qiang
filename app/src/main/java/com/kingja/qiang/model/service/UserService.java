@@ -112,10 +112,16 @@ public interface UserService {
     @POST("/app/order/list")
     Observable<HttpResult<List<Order>>> getOrders(@Field("page") Integer page, @Field("pageSize") Integer pageSize,
                                                   @Field("status") Integer status);
+
     /*获取订单详情*/
     @FormUrlEncoded
     @POST("/app/order/ticketcode")
     Observable<HttpResult<OrderDetail>> getOrderDetail(@Field("orderId") String orderId);
+
+    /*删除/已读消息 1 已读2 删除*/
+    @FormUrlEncoded
+    @POST("/app/message/confirm")
+    Observable<HttpResult<Object>> confirmMsg(@Field("messageId") String messageId, @Field("flag") Integer flag);
 
     //=================================================================================
     /*忘记密码*/

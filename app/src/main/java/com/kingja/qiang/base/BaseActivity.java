@@ -39,8 +39,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         AppManager.getAppManager().addActivity(this);
     }
 
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
     /*初始化公共组件*/
     private void initCommon() {

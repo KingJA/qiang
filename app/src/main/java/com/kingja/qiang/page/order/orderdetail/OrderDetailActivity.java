@@ -7,9 +7,8 @@ import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
+import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.injector.component.AppComponent;
-import com.kingja.qiang.page.order.OrderPresenter;
-import com.kingja.qiang.page.order.all.DaggerAllOrderCompnent;
 
 import javax.inject.Inject;
 
@@ -96,6 +95,12 @@ public class OrderDetailActivity extends BaseTitleActivity implements OrderDetai
 
     @Override
     public void onGetOrderDetailSuccess(OrderDetail orderDetail) {
-
+       tvOrderTitle.setText(orderDetail.getSubject());
+       tvOrderVisitor.setText(orderDetail.getTourists());
+       tvOrderQuantity.setText(String.valueOf(orderDetail.getQuantity()));
+       tvOrderPaydate.setText(orderDetail.getPaidAt());
+       tvOrderOrderId.setText(orderDetail.getId());
+       tvOrderCode.setText(orderDetail.getTicketcode());
+        ImageLoader.getInstance().loadImage(this,orderDetail.getQrcodeurl(),R.mipmap.bg_qcode,ivOrderQcode);
     }
 }

@@ -40,13 +40,49 @@ public class MessagePresenter implements MessageContract.Presenter {
     }
 
     @Override
-    public void getMessage() {
-        mApi.getUserService().message(1, 20).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+    public void getMessage(Integer page, Integer pageSize) {
+        mApi.getUserService().message(page, pageSize).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
                 .mainThread()).subscribe
                 (new ResultObserver<List<Message>>(mView) {
                     @Override
                     protected void onSuccess(List<Message> messages) {
                         mView.onGetMessageSuccess(messages);
+                    }
+                });
+    }
+
+    @Override
+    public void getMoreMessage(Integer page, Integer pageSize) {
+        mApi.getUserService().message(page, pageSize).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+                .mainThread()).subscribe
+                (new ResultObserver<List<Message>>(mView) {
+                    @Override
+                    protected void onSuccess(List<Message> messages) {
+                        mView.onGetMoreMessageSuccess(messages);
+                    }
+                });
+    }
+
+    @Override
+    public void deleteMessage(String messageId, Integer flag,int position) {
+        mApi.getUserService().confirmMsg(messageId, flag).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+                .mainThread()).subscribe
+                (new ResultObserver<Object>(mView) {
+                    @Override
+                    protected void onSuccess(Object obj) {
+                        mView.onDeleteMessageSuccess(position);
+                    }
+                });
+    }
+
+    @Override
+    public void readMessage(String messageId, Integer flag, int position) {
+        mApi.getUserService().confirmMsg(messageId, flag).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+                .mainThread()).subscribe
+                (new ResultObserver<Object>(mView) {
+                    @Override
+                    protected void onSuccess(Object obj) {
+                        mView.onReadMessageSuccess(position);
                     }
                 });
     }

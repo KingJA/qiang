@@ -1,13 +1,15 @@
 package com.kingja.qiang.model.entiy;
 
+import java.io.Serializable;
+
 /**
  * Description:我的消息
  * Create Time:2018/4/18 15:18
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class Message {
-    private Integer id;
+public class Message implements Serializable{
+    private String id;
     private String title;
     private String content;
     private String createdAt;
@@ -16,11 +18,11 @@ public class Message {
      */
     private Integer isread;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

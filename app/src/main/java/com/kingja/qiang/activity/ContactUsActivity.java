@@ -2,7 +2,6 @@ package com.kingja.qiang.activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
 
 import com.kingja.qiang.R;
@@ -11,7 +10,6 @@ import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.supershapeview.view.SuperShapeTextView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -26,7 +24,7 @@ public class ContactUsActivity extends BaseTitleActivity {
 
     @OnClick({R.id.stv_contact_phone})
     public void click(View view) {
-        callPhone("057765666666");
+        callPhone("057788218708");
     }
 
     public void callPhone(String phoneNum) {

@@ -21,8 +21,10 @@ import com.kingja.qiang.page.message.MsgActivity;
 import com.kingja.qiang.page.modifypassword.ModifyPasswordActivity;
 import com.kingja.qiang.page.visitor.list.VisitorListActivity;
 import com.kingja.qiang.util.GoUtil;
+import com.kingja.qiang.util.LoginChecker;
 import com.kingja.qiang.util.SpSir;
 import com.kingja.supershapeview.view.SuperShapeImageView;
+import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -117,19 +119,19 @@ public class MineFragment extends BaseFragment implements MineContract.View{
         switch (view.getId()) {
             case R.id.iv_mine_msg:
                 //消息列表
-                GoUtil.goActivity(getActivity(), MsgActivity.class);
+                LoginChecker.goActivity(getActivity(), MsgActivity.class);
                 break;
             case R.id.rl_mine_visitor:
                 //游客信息
-                GoUtil.goActivity(getActivity(), VisitorListActivity.class);
+                LoginChecker.goActivity(getActivity(), VisitorListActivity.class);
                 break;
             case R.id.rl_mine_personal:
                 //个人信息
-                GoUtil.goActivity(getActivity(), PersonalActivity.class);
+                LoginChecker.goActivity(getActivity(), PersonalActivity.class);
                 break;
             case R.id.rl_mine_password:
                 //修改密码
-                GoUtil.goActivity(getActivity(), ModifyPasswordActivity.class);
+                LoginChecker.goActivity(getActivity(), ModifyPasswordActivity.class);
                 break;
             case R.id.rl_mine_contract:
                 //联系我们
@@ -157,8 +159,9 @@ public class MineFragment extends BaseFragment implements MineContract.View{
     }
 
     private void quit() {
+        SpSir.getInstance().clearData();
+        EventBus.getDefault().post(new ResetLoginStatusEvent());
         minePresenter.logout();
-
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -189,7 +192,6 @@ public class MineFragment extends BaseFragment implements MineContract.View{
 
     @Override
     public void onLogoutSuccess() {
-        SpSir.getInstance().clearData();
-        initLoginStatus();
+        Logger.d("成功退出");
     }
 }

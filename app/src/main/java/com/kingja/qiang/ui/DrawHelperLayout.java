@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 /**
- * Description：TODO
- * Create Time：2016/8/15 16:18
+ * Description:TODO
+ * Create Time:2016/8/15 16:18
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
@@ -28,6 +28,7 @@ public class DrawHelperLayout extends FrameLayout {
     private int mRange;
     private int mWidth;
     private int mHeight;
+    private OnRootClickListener onRootClickListener;
 
     public ViewGroup getContentView() {
         return mContentView;
@@ -204,7 +205,7 @@ public class DrawHelperLayout extends FrameLayout {
         return State.DRAGING;
     }
 
-    public void close(boolean isSmooth) {
+    private void close(boolean isSmooth) {
         if (isSmooth) {
             if (mViewDragHelper.smoothSlideViewTo(getContentView(), 0, 0)) {
                 ViewCompat.postInvalidateOnAnimation(this);
@@ -214,7 +215,7 @@ public class DrawHelperLayout extends FrameLayout {
         }
     }
 
-    public void open(boolean isSmooth) {
+    private void open(boolean isSmooth) {
         if (isSmooth) {
             if (mViewDragHelper.smoothSlideViewTo(getContentView(), -mRange, 0)) {
                 ViewCompat.postInvalidateOnAnimation(this);
@@ -266,8 +267,24 @@ public class DrawHelperLayout extends FrameLayout {
         return mViewDragHelper.shouldInterceptTouchEvent(ev);
     }
 
+    private float downX;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                downX = event.getX();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                break;
+            case MotionEvent.ACTION_UP:
+                float daltX = Math.abs(downX - event.getX());
+                if (daltX < 10 && onRootClickListener != null) {
+                    onRootClickListener.onRootClick();
+                }
+                break;
+
+        }
         mViewDragHelper.processTouchEvent(event);
         return true;
     }
@@ -298,5 +315,14 @@ public class DrawHelperLayout extends FrameLayout {
         mWidth = getContentView().getMeasuredWidth();
         mHeight = getContentView().getMeasuredHeight();
 
+    }
+
+    public void setOnRootClickListener(OnRootClickListener onRootClickListener) {
+
+        this.onRootClickListener = onRootClickListener;
+    }
+
+    public interface OnRootClickListener {
+        void onRootClick();
     }
 }
