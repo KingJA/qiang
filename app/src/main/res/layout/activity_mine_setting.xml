@@ -156,5 +156,5 @@
         android:text="退出登录"
         app:super_cornerRadius="4dp"
         android:layout_marginTop="24dp"
-        app:super_solidColor="@color/orange_hi"/>
+        app:super_solidColor="@color/red_hi"/>
 </LinearLayout>

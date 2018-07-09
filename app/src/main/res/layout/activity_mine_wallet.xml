@@ -65,7 +65,7 @@
         android:padding="12dp"
         android:text="充值"
         app:super_cornerRadius="4dp"
-        app:super_solidColor="@color/orange_hi"/>
+        app:super_solidColor="@color/red_hi"/>
 
     <com.kingja.supershapeview.view.SuperShapeTextView
         android:id="@+id/stv_deal"

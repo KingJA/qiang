@@ -91,9 +91,9 @@
                 android:id="@+id/tab_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabIndicatorColor="@color/orange_hi"
+                app:tabIndicatorColor="@color/red_hi"
                 app:tabIndicatorHeight="2dp"
-                app:tabSelectedTextColor="@color/orange_hi"
+                app:tabSelectedTextColor="@color/red_hi"
                 app:tabTextColor="@color/c_3"/>
 
 

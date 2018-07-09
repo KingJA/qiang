@@ -40,11 +40,11 @@ public class DiscountCenterAdapter extends BaseLvAdapter<String> {
             viewHolder.sstv_operate.setText("立即领取");
             viewHolder.sstv_operate.setTextColor(context.getResources().getColor(R.color.white_hi));
             viewHolder.iv_discount_stramp.setVisibility(View.GONE);
-            superManager.setSolidColor(context.getResources().getColor(R.color.orange_hi));
+            superManager.setSolidColor(context.getResources().getColor(R.color.red_hi));
         } else {
             viewHolder.sstv_operate.setText("去使用");
             viewHolder.iv_discount_stramp.setVisibility(View.VISIBLE);
-            viewHolder.sstv_operate.setTextColor(context.getResources().getColor(R.color.orange_hi));
+            viewHolder.sstv_operate.setTextColor(context.getResources().getColor(R.color.red_hi));
             superManager.setSolidColor(context.getResources().getColor(R.color.white_hi));
         }
 

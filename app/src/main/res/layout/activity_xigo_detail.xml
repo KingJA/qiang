@@ -25,14 +25,14 @@
 
 
                 <TextView
-                    style="@style/font_orange_12"
+                    style="@style/font_red_12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="总价:¥"/>
 
 
                 <TextView
-                    style="@style/font_orange_18"
+                    style="@style/font_red_18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="158"/>
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:background="@color/orange_hi"
+                android:background="@color/red_hi"
                 android:gravity="center"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"

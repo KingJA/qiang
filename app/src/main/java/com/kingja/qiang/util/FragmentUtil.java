@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.constant.NavConstant;
-import com.kingja.qiang.fragment.HomeFragment;
+import com.kingja.qiang.fragment.XigouFragment;
 import com.kingja.qiang.fragment.OrderFragment;
 import com.kingja.qiang.page.mine.MineFragment;
 
@@ -42,7 +42,7 @@ public class FragmentUtil {
         } else {
             switch (position) {
                 case NavConstant.NAV_XIGO:
-                    fragment = new HomeFragment();
+                    fragment = new XigouFragment();
                     break;
                 case NavConstant.NAV_ORDER:
                     fragment = new OrderFragment();
@@ -51,7 +51,7 @@ public class FragmentUtil {
                     fragment = new MineFragment();
                     break;
                 default:
-                    fragment = new HomeFragment();
+                    fragment = new XigouFragment();
                     break;
             }
             fragmentMap.put(position, fragment);

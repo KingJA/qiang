@@ -36,8 +36,8 @@ public class PriceAdapter extends BaseLvAdapter<String> {
         viewHolder.stv_price.setText(list.get(position));
         SuperManager superManager = viewHolder.stv_price.getSuperManager();
         if (selectPosition == position) {
-            superManager.setSolidColor(context.getResources().getColor(R.color.orange_hi));
-            superManager.setStrokeColor(context.getResources().getColor(R.color.orange_hi));
+            superManager.setSolidColor(context.getResources().getColor(R.color.red_hi));
+            superManager.setStrokeColor(context.getResources().getColor(R.color.red_hi));
             viewHolder.stv_price.setTextColor(context.getResources().getColor(R.color.white_hi));
         }else{
             superManager.setSolidColor(context.getResources().getColor(R.color.white_hi));

@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orange_hi">
+        android:background="@color/red_hi">
 
         <LinearLayout
+            android:id="@+id/ll_home_search"
             android:layout_width="match_parent"
             android:layout_height="28dp"
             android:layout_marginBottom="8dp"
@@ -31,14 +29,14 @@
                 android:layout_marginLeft="14dp"
                 android:background="@mipmap/ic_search"/>
 
-            <EditText
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
                 android:background="@null"
-                android:hint="搜索明星，演出，场馆"
+                android:hint="搜景点、门票..."
                 android:textColorHint="#f2f2f2"
                 android:textSize="12sp"/>
 
@@ -64,7 +62,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:background="@color/orange_hi"/>
+                android:background="@color/red_hi"/>
 
             <View
                 android:layout_width="match_parent"
@@ -85,7 +83,7 @@
                 android:id="@+id/tab_xigo"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
-                app:tabIndicatorColor="@color/orange_hi"
+                app:tabIndicatorColor="@color/red_hi"
                 app:tabIndicatorHeight="3dp"/>
 
 
@@ -105,13 +103,13 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:spinner_indicatorSelColor="@color/orange_hi"
+            app:spinner_indicatorSelColor="@color/red_hi"
             app:spinner_indicatorNorColor="@color/c_9"
             app:spinner_indicatorSzie="6dp"
-            app:spinner_indicatorText="演出类型"
+            app:spinner_indicatorText="全部区域"
             app:spinner_marginIndicator="24dp"
             app:spinner_textNorColor="@color/c_3"
-            app:spinner_textSelColor="@color/orange_hi"
+            app:spinner_textSelColor="@color/red_hi"
             app:spinner_textSize="12sp"/>
         <com.kingja.popwindowsir.PopSpinner
             android:id="@+id/spiner_place"
@@ -119,13 +117,13 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:spinner_indicatorSelColor="@color/orange_hi"
+            app:spinner_indicatorSelColor="@color/red_hi"
             app:spinner_indicatorNorColor="@color/c_9"
             app:spinner_indicatorSzie="6dp"
-            app:spinner_indicatorText="场馆"
+            app:spinner_indicatorText="全部类型"
             app:spinner_marginIndicator="24dp"
             app:spinner_textNorColor="@color/c_3"
-            app:spinner_textSelColor="@color/orange_hi"
+            app:spinner_textSelColor="@color/red_hi"
             app:spinner_textSize="12sp"/>
         <com.kingja.popwindowsir.PopSpinner
             android:id="@+id/spiner_date"
@@ -133,13 +131,13 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:spinner_indicatorSelColor="@color/orange_hi"
+            app:spinner_indicatorSelColor="@color/red_hi"
             app:spinner_indicatorNorColor="@color/c_9"
             app:spinner_indicatorSzie="6dp"
-            app:spinner_indicatorText="时间"
+            app:spinner_indicatorText="日期选择"
             app:spinner_marginIndicator="24dp"
             app:spinner_textNorColor="@color/c_3"
-            app:spinner_textSelColor="@color/orange_hi"
+            app:spinner_textSelColor="@color/red_hi"
             app:spinner_textSize="12sp"/>
         <com.kingja.popwindowsir.PopSpinner
             android:id="@+id/spiner_price"
@@ -147,13 +145,13 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:spinner_indicatorSelColor="@color/orange_hi"
+            app:spinner_indicatorSelColor="@color/red_hi"
             app:spinner_indicatorNorColor="@color/c_9"
             app:spinner_indicatorSzie="6dp"
-            app:spinner_indicatorText="价格"
+            app:spinner_indicatorText="折扣率"
             app:spinner_marginIndicator="24dp"
             app:spinner_textNorColor="@color/c_3"
-            app:spinner_textSelColor="@color/orange_hi"
+            app:spinner_textSelColor="@color/red_hi"
             app:spinner_textSize="12sp"/>
 
     </LinearLayout>
@@ -172,13 +170,3 @@
         android:layout_height="0px"
         android:layout_weight="1"/>
 </LinearLayout>
-
-    <ImageView
-        android:id="@+id/iv_shopCart"
-        android:layout_margin="24dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:background="@mipmap/ic_shopcart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</RelativeLayout>

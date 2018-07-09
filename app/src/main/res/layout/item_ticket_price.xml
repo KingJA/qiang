@@ -35,7 +35,7 @@
             android:paddingTop="6dp"
             android:text="购票"
             app:super_cornerRadius="2dp"
-            app:super_solidColor="@color/orange_hi"/>
+            app:super_solidColor="@color/red_hi"/>
 
         <com.kingja.supershapeview.view.SuperShapeTextView
             style="@style/font_f_13"
@@ -72,14 +72,14 @@
                 android:text="预订价"/>
 
             <TextView
-                style="@style/font_orange_15"
+                style="@style/font_red_15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:text="¥"/>
 
             <TextView
-                style="@style/font_orange_15"
+                style="@style/font_red_15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"

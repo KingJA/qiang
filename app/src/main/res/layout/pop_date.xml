@@ -33,7 +33,7 @@
 
         <TextView
             style="@style/font_f_17"
-            android:background="@color/orange_hi"
+            android:background="@color/red_hi"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"

@@ -8,6 +8,7 @@ import com.kingja.qiang.model.entiy.Login;
 import com.kingja.qiang.model.entiy.Message;
 import com.kingja.qiang.model.entiy.PersonalInfo;
 import com.kingja.qiang.model.entiy.Wallet;
+import com.kingja.qiang.page.home.Ticket;
 import com.kingja.qiang.page.order.Order;
 import com.kingja.qiang.page.order.orderdetail.OrderDetail;
 import com.kingja.qiang.page.visitor.list.Visitor;
@@ -122,6 +123,15 @@ public interface UserService {
     @FormUrlEncoded
     @POST("/app/message/confirm")
     Observable<HttpResult<Object>> confirmMsg(@Field("messageId") String messageId, @Field("flag") Integer flag);
+
+
+    /*获取产品列表*/
+    @FormUrlEncoded
+    @POST("/app/product/list")
+    Observable<HttpResult<List<Ticket>>> getTickets(@Field("areaId") String areaId, @Field("productTypeId") String
+            productTypeId, @Field("useDates") String useDates, @Field("discountRate") String discountRate, @Field
+                                                      ("keyword") String keyword, @Field("page") Integer page,
+                                                    @Field("pageSize") Integer pageSize, @Field("status") Integer status);
 
     //=================================================================================
     /*忘记密码*/

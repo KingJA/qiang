@@ -125,15 +125,15 @@ public class MainActivity extends BaseActivity {
         switch (index) {
             case NavConstant.NAV_XIGO:
                 ivNavHigo.setBackgroundResource(R.mipmap.ic_home_sel);
-                tvNavHigo.setTextColor(getResources().getColor(R.color.orange_hi));
+                tvNavHigo.setTextColor(getResources().getColor(R.color.red_hi));
                 break;
             case NavConstant.NAV_ORDER:
                 ivNavOrder.setBackgroundResource(R.mipmap.ic_order_sel);
-                tvNavJourney.setTextColor(getResources().getColor(R.color.orange_hi));
+                tvNavJourney.setTextColor(getResources().getColor(R.color.red_hi));
                 break;
             case NavConstant.NAV_MINE:
                 ivNavMine.setBackgroundResource(R.mipmap.ic_mine_sel);
-                tvNavMine.setTextColor(getResources().getColor(R.color.orange_hi));
+                tvNavMine.setTextColor(getResources().getColor(R.color.red_hi));
                 break;
             default:
                 break;

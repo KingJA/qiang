@@ -48,10 +48,10 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:text="满150减8"
-                android:textColor="@color/orange_hi"
+                android:textColor="@color/red_hi"
                 android:textSize="10sp"
                 app:super_cornerRadius="4dp"
-                app:super_strokeColor="@color/orange_hi"
+                app:super_strokeColor="@color/red_hi"
                 app:super_strokeWidth="1dp"/>
 
 
@@ -81,7 +81,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    style="@style/font_orange_14"
+                    style="@style/font_red_14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"
@@ -89,7 +89,7 @@
                     android:text="¥"/>
 
                 <TextView
-                    style="@style/font_orange_18"
+                    style="@style/font_red_18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"
@@ -97,7 +97,7 @@
                     android:text="55"/>
 
                 <TextView
-                    style="@style/font_orange_10"
+                    style="@style/font_red_10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"

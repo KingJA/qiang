@@ -9,7 +9,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orange_hi">
+        android:background="@color/red_hi">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,7 +62,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:background="@color/orange_hi"/>
+                android:background="@color/red_hi"/>
 
             <View
                 android:layout_width="match_parent"
@@ -145,7 +145,7 @@
                 android:id="@+id/tab_higo"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
-                app:tabIndicatorColor="@color/orange_hi"
+                app:tabIndicatorColor="@color/red_hi"
                 app:tabIndicatorHeight="3dp"/>
 
 

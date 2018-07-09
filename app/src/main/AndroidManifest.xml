@@ -143,6 +143,10 @@
         <activity
             android:name=".page.order.orderdetail.OrderDetailActivity"
             android:screenOrientation="portrait"/>
+        <!--搜索设置页-->
+        <activity
+            android:name=".activity.SearchDetailActivity"
+            android:screenOrientation="portrait"/>
 
 
         <!--JPush-->

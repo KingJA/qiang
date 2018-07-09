@@ -162,7 +162,7 @@
                     android:layout_gravity="end"
                     android:padding="6dp"
                     android:text="查看券码"
-                    app:super_solidColor="@color/orange_hi"
+                    app:super_solidColor="@color/red_hi"
                     app:super_strokeWidth="1dp"/>
             </LinearLayout>
 

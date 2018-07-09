@@ -2,14 +2,14 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/orange_hi</item>
-        <item name="colorPrimaryDark">@color/orange_hi</item>
-        <item name="colorAccent">@color/orange_hi</item>
+        <item name="colorPrimary">@color/red_hi</item>
+        <item name="colorPrimaryDark">@color/red_hi</item>
+        <item name="colorAccent">@color/red_hi</item>
     </style>
 
     <style name="PhotoTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/orange_hi</item>
-        <item name="colorPrimaryDark">@color/orange_hi</item>
+        <item name="colorPrimary">@color/red_hi</item>
+        <item name="colorPrimaryDark">@color/red_hi</item>
         <item name="toolbar">@style/Toolbar.Zhihu</item>
         <item name="album.title.color">@color/zhihu_album_title_text</item>
         <item name="album.count.color">@color/zhihu_album_count_text</item>
@@ -49,7 +49,7 @@
 
     <style name="MyEditTextLine" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/gray_hi</item>
-        <item name="colorControlActivated">@color/orange_hi</item>
+        <item name="colorControlActivated">@color/red_hi</item>
     </style>
 
     <style name="Action_Button">

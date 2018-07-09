@@ -27,7 +27,7 @@
                 android:text="价格："/>
 
             <TextView
-                style="@style/font_orange_13"
+                style="@style/font_red_13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="¥150-200"/>
@@ -80,7 +80,7 @@
 
         <TextView
             style="@style/font_f_17"
-            android:background="@color/orange_hi"
+            android:background="@color/red_hi"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"

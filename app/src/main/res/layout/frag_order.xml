@@ -7,7 +7,7 @@
 
     <TextView
         android:gravity="center"
-        android:background="@color/orange_hi"
+        android:background="@color/red_hi"
         android:id="@+id/tv_title_title"
         style="@style/font_f_18"
         android:layout_width="match_parent"
@@ -17,8 +17,8 @@
         android:id="@+id/tab_order"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        app:tabIndicatorColor="@color/orange_hi"
-        app:tabSelectedTextColor="@color/orange_hi"
+        app:tabIndicatorColor="@color/red_hi"
+        app:tabSelectedTextColor="@color/red_hi"
         app:tabTextColor="@color/c_3"
         app:tabIndicatorHeight="2dp"/>
     <View style="@style/div_hor_6_gray"/>

@@ -34,14 +34,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        style="@style/font_orange_15"
+                        style="@style/font_red_15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"
                         android:text="¥"/>
 
                     <TextView
-                        style="@style/font_orange_31"
+                        style="@style/font_red_31"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20"/>
@@ -49,7 +49,7 @@
                 </LinearLayout>
 
                 <TextView
-                    style="@style/font_orange_11"
+                    style="@style/font_red_11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -102,7 +102,7 @@
                 android:paddingTop="4dp"
                 android:text="去使用"
                 app:super_cornerRadius="4dp"
-                app:super_solidColor="@color/orange_hi"/>
+                app:super_solidColor="@color/red_hi"/>
 
         </LinearLayout>
 

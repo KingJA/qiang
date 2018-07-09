@@ -37,7 +37,7 @@
 
             <TextView
                 android:id="@+id/tv_nav_home"
-                style="@style/font_orange_10"
+                style="@style/font_red_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"

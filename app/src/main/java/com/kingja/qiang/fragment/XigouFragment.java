@@ -1,30 +1,30 @@
 package com.kingja.qiang.fragment;
 
-import android.content.res.Resources;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.kingja.qiang.R;
-import com.kingja.qiang.activity.ShopCartActivity;
-import com.kingja.qiang.adapter.SpinerAdapter;
-import com.kingja.qiang.adapter.XigoPageAdapter;
-import com.kingja.qiang.base.BaseFragment;
-import com.kingja.qiang.injector.component.AppComponent;
-import com.kingja.qiang.ui.DataPop;
-import com.kingja.qiang.ui.PricePop;
-import com.kingja.qiang.util.GoUtil;
 import com.kingja.popwindowsir.ListPop;
 import com.kingja.popwindowsir.PopConfig;
 import com.kingja.popwindowsir.PopHelper;
 import com.kingja.popwindowsir.PopSpinner;
+import com.kingja.qiang.R;
+import com.kingja.qiang.activity.SearchDetailActivity;
+import com.kingja.qiang.adapter.SpinerAdapter;
+import com.kingja.qiang.adapter.XigoPageAdapter;
+import com.kingja.qiang.base.BaseFragment;
+import com.kingja.qiang.injector.component.AppComponent;
+import com.kingja.qiang.page.home.beselling.BesellFragment;
+import com.kingja.qiang.page.home.selling.SellingFragment;
+import com.kingja.qiang.ui.DataPop;
+import com.kingja.qiang.ui.PricePop;
+import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.IndicatorUtil;
+import com.kingja.qiang.util.ToastUtil;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
 
 import butterknife.BindView;
@@ -37,9 +37,11 @@ import butterknife.Unbinder;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class HomeFragment extends BaseFragment {
+public class XigouFragment extends BaseFragment {
     @BindView(R.id.tab_xigo)
     TabLayout tabXigo;
+    @BindView(R.id.ll_home_search)
+    LinearLayout llHomeSearch;
     @BindView(R.id.vp_content_xigo)
     ViewPager vpContentXigo;
     @BindView(R.id.ll_spinner_root)
@@ -53,9 +55,9 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.spiner_price)
     PopSpinner spinerPrice;
     Unbinder unbinder;
-    private String[] items = {"直营", "代购"};
+    private String[] items = {"在售", "待售"};
     private Fragment mFragmentArr[] = new Fragment[2];
-    private int[] icons = {R.mipmap.ic_owner_sell, R.mipmap.ic_agency};
+    private int[] icons = {R.mipmap.ic_selling, R.mipmap.ic_beselling};
     private String[] showTypes = {"演唱会", "话剧戏剧", "戏曲艺术", "音乐会", "体育赛事", "亲自演出", "休闲展览"};
     private String[] showPlaces = {"温州大剧院", "东南剧院", "鹿城文化中心", "温州体院馆"};
     private ListPop placePop;
@@ -64,7 +66,7 @@ public class HomeFragment extends BaseFragment {
     private PricePop pricePop;
 
 
-    @OnClick({R.id.spiner_show_type, R.id.spiner_place, R.id.spiner_date, R.id.spiner_price, R.id.iv_shopCart})
+    @OnClick({R.id.spiner_show_type, R.id.spiner_place, R.id.spiner_date, R.id.spiner_price, R.id.ll_home_search})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.spiner_show_type:
@@ -79,9 +81,8 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.spiner_price:
                 break;
-            case R.id.iv_shopCart:
-//                GoUtil.goActivity(getActivity(), ShopCartActivity.class);
-                GoUtil.goActivity(getActivity(), ShopCartActivity.class);
+            case R.id.ll_home_search:
+                GoUtil.goActivity(getActivity(),SearchDetailActivity.class);
                 break;
             default:
                 break;
@@ -106,8 +107,8 @@ public class HomeFragment extends BaseFragment {
         tabXigo.addTab(tabXigo.newTab().setText(items[1]));
         tabXigo.post(() -> IndicatorUtil.setIndicator(tabXigo, 60, 60));
 
-        mFragmentArr[0] = new DirectgoFragment();
-        mFragmentArr[1] = new DirectgoFragment();
+        mFragmentArr[0] = new SellingFragment();
+        mFragmentArr[1] = new BesellFragment();
         XigoPageAdapter mHigoPageAdapter = new XigoPageAdapter(getActivity(), getChildFragmentManager(), mFragmentArr,
                 items, icons);
         vpContentXigo.setAdapter(mHigoPageAdapter);

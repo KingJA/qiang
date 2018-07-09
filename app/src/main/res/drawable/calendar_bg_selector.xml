@@ -7,10 +7,10 @@
     <color android:color="@color/orange_hi_light"/>
   </item>
   <item android:state_selected="true">
-    <color android:color="@color/orange_hi"/>
+    <color android:color="@color/red_hi"/>
   </item>
   <item android:state_pressed="true">
-    <color android:color="@color/orange_hi"/>
+    <color android:color="@color/red_hi"/>
   </item>
   <item app:tsquare_state_current_month="false">
     <color android:color="@color/bg_hi"/>
@@ -20,7 +20,7 @@
   </item>
   <item app:tsquare_state_today="true">
     <shape android:shape="oval">
-      <solid android:color="@color/orange_hi"/>
+      <solid android:color="@color/red_hi"/>
       <stroke
           android:width="4dp"
           android:color="@color/tran_hi"/>

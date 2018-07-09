@@ -9,7 +9,7 @@ package com.kingja.qiang.constant;
  */
 public class Constants {
     public static final String BASE_URL = "http://116.62.220.255";
-    public static final int PAGE_SIZE = 10;
+    public static final int PAGE_SIZE = 3;
     public static final int PAGE_SIZE_5 = 5;
     public static final int PAGE_FIRST = 1;
     public static final int PAGE_SIZE_100 = 100;

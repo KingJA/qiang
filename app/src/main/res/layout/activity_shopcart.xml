@@ -57,14 +57,14 @@
                 android:text="合计:"/>
 
             <TextView
-                style="@style/font_orange_16"
+                style="@style/font_red_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
                 android:text="¥"/>
 
             <TextView
-                style="@style/font_orange_16"
+                style="@style/font_red_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"/>
@@ -75,7 +75,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:background="@color/orange_hi"
+            android:background="@color/red_hi"
             android:gravity="center">
 
             <TextView

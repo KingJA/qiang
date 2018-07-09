@@ -4,13 +4,11 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.page.visitor.list.Visitor;
-import com.kingja.qiang.util.ToastUtil;
 
 import java.util.List;
 
@@ -60,7 +58,7 @@ public class VisitorAdapter extends BaseLvAdapter<Visitor> {
         if (list.get(position).getIsdefault() == 1) {
             viewHolder.iv_visitor_default.setBackgroundResource(R.mipmap.ic_default_sel);
             viewHolder.tv_visitor_default.setText("默认游客");
-            viewHolder.tv_visitor_default.setTextColor(ContextCompat.getColor(context, R.color.orange_hi));
+            viewHolder.tv_visitor_default.setTextColor(ContextCompat.getColor(context, R.color.red_hi));
         } else {
             viewHolder.iv_visitor_default.setBackgroundResource(R.mipmap.ic_default_nor);
             viewHolder.tv_visitor_default.setText("设为默认");

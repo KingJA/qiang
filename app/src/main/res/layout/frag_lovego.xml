@@ -8,8 +8,8 @@
         android:id="@+id/tab_lovego"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        app:tabIndicatorColor="@color/orange_hi"
-        app:tabSelectedTextColor="@color/orange_hi"
+        app:tabIndicatorColor="@color/red_hi"
+        app:tabSelectedTextColor="@color/red_hi"
         app:tabTextColor="@color/c_3"
         app:tabIndicatorHeight="2dp"/>
     <View style="@style/div_hor_gray"/>

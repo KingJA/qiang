@@ -14,7 +14,7 @@
 
     <TextView
         android:layout_marginBottom="36dp"
-        style="@style/font_orange_13"
+        style="@style/font_red_13"
         android:text="目前还没交易明细"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

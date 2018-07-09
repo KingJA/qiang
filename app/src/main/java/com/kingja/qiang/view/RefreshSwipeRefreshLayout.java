@@ -28,11 +28,11 @@ public class RefreshSwipeRefreshLayout extends SwipeRefreshLayout {
 
     public RefreshSwipeRefreshLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        setColorSchemeResources(R.color.orange_hi);
+        setColorSchemeResources(R.color.red_hi);
         setProgressViewOffset(false, 0, dp2px(24));
     }
 
-    protected int dp2px(int dp) {
+    private int dp2px(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
 

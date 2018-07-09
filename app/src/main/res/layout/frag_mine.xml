@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="@color/orange_hi">
+        android:background="@color/red_hi">
 
         <ImageView
             android:id="@+id/iv_mine_msg"
@@ -211,7 +211,7 @@
         android:visibility="gone"
         android:id="@+id/tv_quit"
         android:background="@color/white_hi"
-        style="@style/font_orange_15"
+        style="@style/font_red_15"
         android:padding="12dp"
         android:gravity="center"
         android:text="退出登录"
