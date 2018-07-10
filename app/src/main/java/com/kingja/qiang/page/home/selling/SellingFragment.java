@@ -1,28 +1,21 @@
 package com.kingja.qiang.page.home.selling;
 
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.kingja.qiang.R;
-import com.kingja.qiang.activity.MsgDetailActivity;
-import com.kingja.qiang.activity.XigoMultiDetailActivity;
 import com.kingja.qiang.adapter.SellingAdapter;
 import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.callback.EmptyMsgCallback;
+import com.kingja.qiang.callback.TicketCallback;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.home.Ticket;
 import com.kingja.qiang.page.home.TicketContract;
 import com.kingja.qiang.page.home.TicketPresenter;
-import com.kingja.qiang.page.message.DaggerMessageCompnent;
-import com.kingja.qiang.page.order.OrderPresenter;
-import com.kingja.qiang.page.visitor.list.VisitorListActivity;
-import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.qiang.view.PullToBottomListView;
 import com.kingja.qiang.view.RefreshSwipeRefreshLayout;
@@ -91,7 +84,12 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
         lv.setOnScrollToBottom(this);
         mSellingAdapter = new SellingAdapter(getActivity(), tickets);
         lv.setAdapter(mSellingAdapter);
-        loadService = LoadSir.getDefault().register(lv);
+        LoadSir loadSir = new LoadSir.Builder()
+                .addCallback(new TicketCallback())
+                .addCallback(new EmptyMsgCallback())
+                .setDefaultCallback(TicketCallback.class)
+                .build();
+                loadService = loadSir.register(lv);
     }
 
     @Override

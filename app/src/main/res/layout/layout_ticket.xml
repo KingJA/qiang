@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/white_hi">
+
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:textColor="@color/bg_hi"
+                    android:background="@color/bg_hi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="距抢购开始2天2时22分"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:textColor="@color/bg_hi"
+                android:background="@color/bg_hi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="乐清市雁荡镇"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical">
+
+
+            <ImageView
+                android:layout_width="116dp"
+                android:layout_height="116dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/bg_hi"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/bg_hi"
+                    android:background="@color/bg_hi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="乐清市雁荡镇"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="限量发售6张"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="使用日期：2018-07-15"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="门市价¥86"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="抢购价¥88"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:textColor="@color/bg_hi"
+                    android:background="@color/bg_hi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="距抢购开始2天2时22分"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:textColor="@color/bg_hi"
+                android:background="@color/bg_hi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="乐清市雁荡镇"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical">
+
+
+            <ImageView
+                android:layout_width="116dp"
+                android:layout_height="116dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/bg_hi"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/bg_hi"
+                    android:background="@color/bg_hi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="乐清市雁荡镇"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="限量发售6张"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="使用日期：2018-07-15"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="门市价¥86"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="抢购价¥88"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:textColor="@color/bg_hi"
+                    android:background="@color/bg_hi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="距抢购开始2天2时22分"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:textColor="@color/bg_hi"
+                android:background="@color/bg_hi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="乐清市雁荡镇"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical">
+
+
+            <ImageView
+                android:layout_width="116dp"
+                android:layout_height="116dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/bg_hi"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/bg_hi"
+                    android:background="@color/bg_hi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="乐清市雁荡镇"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="限量发售6张"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="使用日期：2018-07-15"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="门市价¥86"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="抢购价¥88"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:padding="12dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:textColor="@color/bg_hi"
+                    android:background="@color/bg_hi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="距抢购开始2天2时22分"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:textColor="@color/bg_hi"
+                android:background="@color/bg_hi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="乐清市雁荡镇"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical">
+
+
+            <ImageView
+                android:layout_width="116dp"
+                android:layout_height="116dp"
+                android:layout_marginRight="12dp"
+                android:background="@color/bg_hi"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textColor="@color/bg_hi"
+                    android:background="@color/bg_hi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="乐清市雁荡镇"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="限量发售6张"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="使用日期：2018-07-15"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="门市价¥86"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="2dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/bg_hi"
+                        android:background="@color/bg_hi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="抢购价¥88"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

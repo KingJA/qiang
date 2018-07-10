@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="icon,label,theme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -34,9 +34,9 @@
             android:name="com.kingja.qiang.activity.GuideActivity"
             android:screenOrientation="portrait"/>
         <!--主界面-->
-        <!--<activity-->
-        <!--android:name="com.kingja.qiang.MainActivity"-->
-        <!--android:screenOrientation="portrait"/>-->
+        <activity
+            android:name="com.kingja.qiang.MainActivity"
+            android:screenOrientation="portrait"/>
         <!--嘻购详情-->
         <activity
             android:name="com.kingja.qiang.activity.XigoDetailActivity"
@@ -145,7 +145,12 @@
             android:screenOrientation="portrait"/>
         <!--搜索设置页-->
         <activity
-            android:name=".activity.SearchDetailActivity"
+            android:name=".page.search.SearchDetailActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--搜索结果页-->
+        <activity
+            android:name=".page.search.result.SearchResultActivity"
             android:screenOrientation="portrait"/>
 
 
@@ -164,6 +169,8 @@
                 <category android:name="com.kingja.qiang"/>
             </intent-filter>
         </receiver>
+
+        <service android:name=".service.initialize.InitializeService"/>
 
 
     </application>

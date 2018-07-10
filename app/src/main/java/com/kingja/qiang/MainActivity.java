@@ -53,7 +53,6 @@ public class MainActivity extends BaseActivity {
     public void initVariable() {
         MainActivityPermissionsDispatcher.checkPermissionsWithPermissionCheck(this);
         checkPermissions();
-
     }
 
     @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.READ_CONTACTS, Manifest.permission

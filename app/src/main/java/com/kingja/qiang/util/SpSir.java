@@ -1,6 +1,7 @@
 package com.kingja.qiang.util;
 
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.kingja.qiang.base.App;
 
@@ -16,6 +17,8 @@ public class SpSir {
     private static final String HEADIMG = "headImg";
     private static final String USERID = "userId";
     private static final String MOBILE = "mobile";
+    private static final String HOTSEARCH = "HOTSEARCH";
+    private static final String HistorySearch = "HistorySearch";
     private static final String EMPTY_STRING = "";
     private static SpSir mSpSir;
     private SharedPreferences mSp;
@@ -57,6 +60,13 @@ public class SpSir {
         return getString(HEADIMG);
     }
 
+    public String getHotSearch() {
+        return getString(HOTSEARCH);
+    }
+    public String getHistorySearch() {
+        return getString(HistorySearch);
+    }
+
     /*================================PUT================================*/
 
 
@@ -78,6 +88,26 @@ public class SpSir {
 
     public void putHeadImg(String headImg) {
         putString(HEADIMG, headImg);
+    }
+
+    public void putHotSearch(String hotsearch) {
+        putString(HOTSEARCH, hotsearch);
+    }
+    public void addHistorySearch(String historySearch) {
+        if (TextUtils.isEmpty(historySearch)) {
+            return;
+        }
+        for (String history : getHistorySearch().split("#")) {
+            if (historySearch.equals(history)) {
+                return;
+            }
+        }
+        StringBuffer sb = new StringBuffer(historySearch).append("#").append(getHistorySearch());
+        putString(HistorySearch, sb.toString());
+    }
+
+    public void clearHistorySearch() {
+        putString(HistorySearch, "");
     }
 
 

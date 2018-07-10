@@ -4,6 +4,7 @@ import com.kingja.qiang.model.HttpResult;
 import com.kingja.qiang.model.entiy.Deal;
 import com.kingja.qiang.model.entiy.Discount;
 import com.kingja.qiang.model.entiy.Friend;
+import com.kingja.qiang.model.entiy.HotSearch;
 import com.kingja.qiang.model.entiy.Login;
 import com.kingja.qiang.model.entiy.Message;
 import com.kingja.qiang.model.entiy.PersonalInfo;
@@ -132,6 +133,10 @@ public interface UserService {
             productTypeId, @Field("useDates") String useDates, @Field("discountRate") String discountRate, @Field
                                                       ("keyword") String keyword, @Field("page") Integer page,
                                                     @Field("pageSize") Integer pageSize, @Field("status") Integer status);
+    /*获取热搜*/
+    @FormUrlEncoded
+    @POST("/app/product/hotsearch")
+    Observable<HttpResult<List<HotSearch>>> getHotSearch(@Field("limit") int areaId);
 
     //=================================================================================
     /*忘记密码*/

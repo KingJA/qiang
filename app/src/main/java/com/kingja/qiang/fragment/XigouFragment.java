@@ -12,7 +12,7 @@ import com.kingja.popwindowsir.PopConfig;
 import com.kingja.popwindowsir.PopHelper;
 import com.kingja.popwindowsir.PopSpinner;
 import com.kingja.qiang.R;
-import com.kingja.qiang.activity.SearchDetailActivity;
+import com.kingja.qiang.page.search.SearchDetailActivity;
 import com.kingja.qiang.adapter.SpinerAdapter;
 import com.kingja.qiang.adapter.XigoPageAdapter;
 import com.kingja.qiang.base.BaseFragment;
@@ -23,7 +23,6 @@ import com.kingja.qiang.ui.DataPop;
 import com.kingja.qiang.ui.PricePop;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.IndicatorUtil;
-import com.kingja.qiang.util.ToastUtil;
 
 import java.util.Arrays;
 

@@ -22,4 +22,14 @@ public class DialogUtil {
                 .onPositive(callback)
                 .show();
     }
+
+    public static void showDoubleDialog(Context context,String message, MaterialDialog.SingleButtonCallback callback) {
+        new MaterialDialog.Builder(context)
+                .content(message)
+                .positiveText("确认")
+                .negativeText("取消")
+                .positiveColor(ContextCompat.getColor(context, R.color.gray_hi))
+                .onPositive(callback)
+                .show();
+    }
 }
