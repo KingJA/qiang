@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import com.kingja.qiang.model.api.UserApi;
 import com.kingja.qiang.rx.ResultObserver;
 import com.kingja.qiang.util.ToastUtil;
-import com.orhanobut.logger.Logger;
 
 import javax.inject.Inject;
 

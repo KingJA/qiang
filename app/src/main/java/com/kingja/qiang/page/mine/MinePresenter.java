@@ -3,7 +3,6 @@ package com.kingja.qiang.page.mine;
 import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
-import com.kingja.qiang.model.entiy.PersonalInfo;
 import com.kingja.qiang.rx.ResultObserver;
 
 import javax.inject.Inject;

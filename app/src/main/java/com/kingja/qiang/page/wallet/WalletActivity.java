@@ -4,11 +4,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
-import com.kingja.qiang.page.deallist.DealListActivity;
-import com.kingja.qiang.page.mine.headimg.PersonalActivity;
 import com.kingja.qiang.base.BaseActivity;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.Wallet;
+import com.kingja.qiang.page.deallist.DealListActivity;
+import com.kingja.qiang.page.mine.headimg.PersonalActivity;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.supershapeview.view.SuperShapeTextView;
 

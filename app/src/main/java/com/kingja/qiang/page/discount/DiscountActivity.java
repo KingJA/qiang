@@ -4,6 +4,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.kingja.loadsir.callback.Callback;
+import com.kingja.loadsir.core.LoadService;
+import com.kingja.loadsir.core.LoadSir;
 import com.kingja.qiang.R;
 import com.kingja.qiang.activity.DiscountCenterActivity;
 import com.kingja.qiang.adapter.DiscountAdapter;
@@ -12,9 +15,6 @@ import com.kingja.qiang.callback.EmptyMsgCallback;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.Discount;
 import com.kingja.qiang.util.GoUtil;
-import com.kingja.loadsir.callback.Callback;
-import com.kingja.loadsir.core.LoadService;
-import com.kingja.loadsir.core.LoadSir;
 
 import java.util.ArrayList;
 import java.util.List;

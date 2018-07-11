@@ -1,4 +1,4 @@
-package com.kingja.qiang.page.visitor.add;
+package com.kingja.qiang.page.detail;
 
 import android.support.annotation.NonNull;
 
@@ -17,17 +17,17 @@ import io.reactivex.schedulers.Schedulers;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class VisitorAddPresenter implements VisitorAddContract.Presenter {
+public class TicketDetailPresenter implements TicketDetailContract.Presenter {
     private UserApi mApi;
-    private VisitorAddContract.View mView;
+    private TicketDetailContract.View mView;
 
     @Inject
-    public VisitorAddPresenter(UserApi mApi) {
+    public TicketDetailPresenter(UserApi mApi) {
         this.mApi = mApi;
     }
 
     @Override
-    public void attachView(@NonNull VisitorAddContract.View view) {
+    public void attachView(@NonNull TicketDetailContract.View view) {
         this.mView = view;
     }
 
@@ -37,13 +37,13 @@ public class VisitorAddPresenter implements VisitorAddContract.Presenter {
     }
 
     @Override
-    public void addVisitor(String name,String mobile, String idcode) {
-        mApi.getUserService().addVisitor( name, mobile,  idcode).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+    public void getTicketDetail(String productId) {
+        mApi.getUserService().getTicketDetail(productId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
                 .mainThread()).subscribe
-                (new ResultObserver<Object>(mView) {
+                (new ResultObserver<TicketDetail>(mView) {
                     @Override
-                    protected void onSuccess(Object obj) {
-                        mView.onAddVisitorSuccess();
+                    protected void onSuccess(TicketDetail ticketDetail) {
+                        mView.onGetTicketDetailSuccess(ticketDetail);
                     }
                 });
     }

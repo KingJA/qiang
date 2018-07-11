@@ -2,8 +2,6 @@ package com.kingja.qiang.page.home;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-import com.kingja.qiang.model.entiy.Message;
-import com.kingja.qiang.page.home.Ticket;
 
 import java.util.List;
 

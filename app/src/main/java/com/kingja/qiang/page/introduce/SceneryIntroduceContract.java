@@ -1,9 +1,8 @@
-package com.kingja.qiang.page.order;
+package com.kingja.qiang.page.introduce;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-
-import java.util.List;
+import com.kingja.qiang.page.detail.TicketDetail;
 
 /**
  * Description：TODO
@@ -11,13 +10,13 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public interface OrderContract {
+public interface SceneryIntroduceContract {
     interface View extends BaseView {
-        void onGetOrdersSuccess(List<Order> orders);
+        void onGetSceneryIntroduceSuccess(SceneryIntroduce sceneryIntroduce);
     }
 
     interface Presenter extends BasePresenter<View> {
-        void getOrders(Integer page,Integer pageSize,Integer status);
+        void getSceneryIntroduce(String scenicId);
 
     }
 }

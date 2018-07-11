@@ -2,7 +2,6 @@ package com.kingja.qiang.page.mine;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-import com.kingja.qiang.model.entiy.PersonalInfo;
 
 /**
  * Description：TODO

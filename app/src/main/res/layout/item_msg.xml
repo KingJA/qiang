@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.kingja.qiang.ui.DrawHelperLayout
+<com.kingja.qiang.view.DrawHelperLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawHelperLayout"
     android:layout_width="match_parent"
@@ -79,4 +79,4 @@
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
-</com.kingja.qiang.ui.DrawHelperLayout>
+</com.kingja.qiang.view.DrawHelperLayout>

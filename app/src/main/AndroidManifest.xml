@@ -31,6 +31,7 @@
         </activity>
         <!--引导页-->
         <activity
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:name="com.kingja.qiang.activity.GuideActivity"
             android:screenOrientation="portrait"/>
         <!--主界面-->
@@ -116,9 +117,6 @@
             android:name="com.kingja.qiang.activity.PayActivity"
             android:screenOrientation="portrait"/>
         <!--嬉逛分集详情-->
-        <activity
-            android:name="com.kingja.qiang.activity.XigoMultiDetailActivity"
-            android:screenOrientation="portrait"/>
         <!--找回密码-->
         <activity
             android:name="com.kingja.qiang.page.forgetpassword.ForgetPasswordActivity"
@@ -151,6 +149,16 @@
         <!--搜索结果页-->
         <activity
             android:name=".page.search.result.SearchResultActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--景区详情页-->
+        <activity
+            android:name=".page.detail.TicketDetailActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--景区介绍页-->
+        <activity
+            android:name=".page.introduce.SceneryIntroduceActivity"
             android:screenOrientation="portrait"/>
 
 

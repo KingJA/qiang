@@ -1,9 +1,7 @@
-package com.kingja.qiang.page.order;
+package com.kingja.qiang.page.detail;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-
-import java.util.List;
 
 /**
  * Description：TODO
@@ -11,13 +9,13 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public interface OrderContract {
+public interface TicketDetailContract {
     interface View extends BaseView {
-        void onGetOrdersSuccess(List<Order> orders);
+        void onGetTicketDetailSuccess(TicketDetail ticketDetail);
     }
 
     interface Presenter extends BasePresenter<View> {
-        void getOrders(Integer page,Integer pageSize,Integer status);
+        void getTicketDetail(String productId);
 
     }
 }

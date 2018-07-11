@@ -7,7 +7,6 @@ import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 

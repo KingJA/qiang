@@ -16,7 +16,6 @@ import com.kingja.qiang.util.CountTimer;
 import com.kingja.qiang.util.EncryptUtil;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.supershapeview.view.SuperShapeTextView;
-import com.orhanobut.logger.Logger;
 
 import javax.inject.Inject;
 

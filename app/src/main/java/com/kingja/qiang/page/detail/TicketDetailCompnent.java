@@ -1,4 +1,4 @@
-package com.kingja.qiang.page.visitor.edit;
+package com.kingja.qiang.page.detail;
 
 
 import com.kingja.qiang.injector.annotation.PerActivity;
@@ -8,6 +8,6 @@ import dagger.Component;
 
 @PerActivity
 @Component(dependencies = AppComponent.class)
-public interface VisitorEditCompnent {
-    void inject(VisitorEditActivity activity);
+public interface TicketDetailCompnent {
+    void inject(TicketDetailActivity target);
 }

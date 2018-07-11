@@ -97,7 +97,7 @@
                 app:tabTextColor="@color/c_3"/>
 
 
-            <com.kingja.qiang.ui.FixedListView
+            <com.kingja.qiang.view.FixedListView
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/lv_ticket_price"
                 android:layout_width="match_parent"

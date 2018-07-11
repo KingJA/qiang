@@ -15,7 +15,6 @@ import com.kingja.qiang.util.CheckUtil;
 import com.kingja.qiang.util.EncryptUtil;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.SpSir;
-import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 

@@ -3,8 +3,6 @@ package com.kingja.qiang.page.home;
 import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
-import com.kingja.qiang.page.home.Ticket;
-import com.kingja.qiang.page.home.TicketContract;
 import com.kingja.qiang.rx.ResultObserver;
 
 import java.util.List;

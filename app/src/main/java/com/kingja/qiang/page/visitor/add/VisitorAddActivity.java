@@ -8,7 +8,6 @@ import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.event.RefreshVisitorsEvent;
 import com.kingja.qiang.injector.component.AppComponent;
-import com.kingja.qiang.page.visitor.list.DaggerVisitorCompnent;
 import com.kingja.qiang.util.CheckUtil;
 import com.kingja.qiang.util.ToastUtil;
 

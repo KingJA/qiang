@@ -22,7 +22,6 @@ import com.kingja.qiang.model.entiy.HotSearch;
 import com.kingja.qiang.page.search.result.SearchResultActivity;
 import com.kingja.qiang.util.DialogUtil;
 import com.kingja.qiang.util.SpSir;
-import com.kingja.qiang.util.ToastUtil;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;

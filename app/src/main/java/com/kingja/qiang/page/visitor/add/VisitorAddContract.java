@@ -2,11 +2,6 @@ package com.kingja.qiang.page.visitor.add;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-import com.kingja.qiang.page.visitor.list.Visitor;
-
-import java.util.List;
-
-import retrofit2.http.Field;
 
 /**
  * Description：TODO

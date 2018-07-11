@@ -16,7 +16,6 @@ import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.order.Order;
 import com.kingja.qiang.page.order.OrderContract;
 import com.kingja.qiang.page.order.OrderPresenter;
-import com.kingja.qiang.page.visitor.list.DaggerVisitorCompnent;
 import com.kingja.qiang.util.LoginChecker;
 import com.kingja.qiang.view.RefreshSwipeRefreshLayout;
 

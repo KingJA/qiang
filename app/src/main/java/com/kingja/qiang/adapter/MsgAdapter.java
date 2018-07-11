@@ -3,14 +3,12 @@ package com.kingja.qiang.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.model.entiy.Message;
 import com.kingja.qiang.page.message.MsgActivity;
-import com.kingja.qiang.page.visitor.list.Visitor;
-import com.kingja.qiang.ui.DrawHelperLayout;
+import com.kingja.qiang.view.DrawHelperLayout;
 
 import java.util.List;
 
