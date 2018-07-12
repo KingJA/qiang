@@ -13,10 +13,20 @@ public class Visitor implements Serializable{
     private String name;
     private String mobile;
     private String idcode;
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    private boolean isSelected;
     /**
      * 1默认 0非默认
      */
-    private Integer isdefault;
+    private int isdefault;
 
     public String getId() {
         return id;
@@ -50,11 +60,11 @@ public class Visitor implements Serializable{
         this.idcode = idcode;
     }
 
-    public Integer getIsdefault() {
+    public int getIsdefault() {
         return isdefault;
     }
 
-    public void setIsdefault(Integer isdefault) {
+    public void setIsdefault(int isdefault) {
         this.isdefault = isdefault;
     }
 }

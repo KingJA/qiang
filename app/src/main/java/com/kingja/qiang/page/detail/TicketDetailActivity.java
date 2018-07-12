@@ -2,6 +2,9 @@ package com.kingja.qiang.page.detail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,11 +12,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
+import com.kingja.qiang.adapter.VisitorTabAdapter;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.introduce.SceneryIntroduceActivity;
+import com.kingja.qiang.page.visitor.list.Visitor;
 import com.kingja.qiang.view.ChangeNumberView;
+import com.kingja.qiang.view.RvItemDecoration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,12 +34,12 @@ import butterknife.OnClick;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class TicketDetailActivity extends BaseTitleActivity implements TicketDetailContract.View, ChangeNumberView.OnChangeNumberListener {
+public class TicketDetailActivity extends BaseTitleActivity implements TicketDetailContract.View, ChangeNumberView
+        .OnChangeNumberListener {
 
     private String productId;
     @Inject
     TicketDetailPresenter ticketDetailPresenter;
-
     private ImageView mIvDetailImg;
     private TextView mTvDetailTitle;
     private TextView mTvDetailArea;
@@ -46,6 +55,8 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     private RelativeLayout mRlTicketIntroduce;
     private TicketDetail ticketDetail;
     private ChangeNumberView mCcvTicketDetail;
+    private List<Visitor> visitors = new ArrayList<>();
+    private VisitorTabAdapter visitorTabAdapter;
 
 
     @OnClick({R.id.rl_ticket_introduce, R.id.tv_detail_buy})
@@ -103,16 +114,27 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
         mTvDetailTotalPrice = findViewById(R.id.tv_detail_totalPrice);
         mRlTicketIntroduce = findViewById(R.id.rl_ticket_introduce);
         mCcvTicketDetail = findViewById(R.id.ccv_ticket_detail);
+        visitorTabAdapter = new VisitorTabAdapter(this, visitors);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
+        mRvTicketDetail.setLayoutManager(layoutManager);
+        mRvTicketDetail.setAdapter(visitorTabAdapter);
+        mRvTicketDetail.setItemAnimator(new DefaultItemAnimator());
+        mRvTicketDetail.addItemDecoration(new RvItemDecoration(this, RvItemDecoration.LayoutStyle.HORIZONTAL_LIST,
+                12, 0x00ffffff));
     }
 
     @Override
     protected void initData() {
         mCcvTicketDetail.setOnChangeNumberListener(this);
+
     }
 
     @Override
     protected void initNet() {
         ticketDetailPresenter.getTicketDetail(productId);
+        ticketDetailPresenter.getVisitors(1, 10);
     }
 
     public static void goActivity(Context context, String productId) {
@@ -148,7 +170,26 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     }
 
     @Override
+    public void onGetVisitorsSuccess(List<Visitor> visitors) {
+        visitorTabAdapter.setData(getSelectVisitor(visitors));
+    }
+
+    private List<Visitor> getSelectVisitor(List<Visitor> visitors) {
+        for (Visitor visitor : visitors) {
+            if (visitor.getIsdefault() == 1) {
+                visitor.setSelected(true);
+            }
+        }
+        return visitors;
+    }
+
+    @Override
+    public void onSumbitOrderSuccess(String orderId) {
+
+    }
+
+    @Override
     public void onChangeNumber(int number) {
-        mTvDetailTotalPrice.setText(String.valueOf(number*ticketDetail.getBuyPrice()));
+        mTvDetailTotalPrice.setText(String.valueOf(number * ticketDetail.getBuyPrice()));
     }
 }

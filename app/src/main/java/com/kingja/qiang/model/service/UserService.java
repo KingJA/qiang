@@ -136,6 +136,7 @@ public interface UserService {
                                                             ("keyword") String keyword, @Field("page") Integer page,
                                                     @Field("pageSize") Integer pageSize, @Field("status") Integer
                                                             status);
+
     /*获取热搜*/
     @FormUrlEncoded
     @POST("/app/product/hotsearch")
@@ -150,6 +151,12 @@ public interface UserService {
     @FormUrlEncoded
     @POST("/app/product/scenic")
     Observable<HttpResult<SceneryIntroduce>> getSceneryIntroduce(@Field("scenicId") String scenicId);
+
+    /*订单保存*/
+    @FormUrlEncoded
+    @POST("/app/order/submit")
+    Observable<HttpResult<String>> sumbitOrder(@Field("productId") String productId, @Field("touristIds")
+            String touristIds, @Field("quantity") int quantity, @Field("from") String from);
 
     //=================================================================================
     /*忘记密码*/

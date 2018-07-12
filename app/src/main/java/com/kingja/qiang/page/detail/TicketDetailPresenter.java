@@ -3,7 +3,10 @@ package com.kingja.qiang.page.detail;
 import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
+import com.kingja.qiang.page.visitor.list.Visitor;
 import com.kingja.qiang.rx.ResultObserver;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -46,5 +49,22 @@ public class TicketDetailPresenter implements TicketDetailContract.Presenter {
                         mView.onGetTicketDetailSuccess(ticketDetail);
                     }
                 });
+    }
+
+    @Override
+    public void getVisitors(Integer page, Integer pageSize) {
+        mApi.getUserService().getVisitors(page, pageSize).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+                .mainThread()).subscribe
+                (new ResultObserver<List<Visitor>>(mView) {
+                    @Override
+                    protected void onSuccess(List<Visitor> visitors) {
+                        mView.onGetVisitorsSuccess(visitors);
+                    }
+                });
+    }
+
+    @Override
+    public void sumbitOrder(String productId, String touristIds, int quantity, String from) {
+
     }
 }
