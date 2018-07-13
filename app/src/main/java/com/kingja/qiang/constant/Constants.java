@@ -9,13 +9,14 @@ package com.kingja.qiang.constant;
  */
 public class Constants {
     public static final String BASE_URL = "http://116.62.220.255";
-    public static final int PAGE_SIZE = 3;
+    public static final int PAGE_SIZE = 20;
     public static final int PAGE_SIZE_5 = 5;
     public static final int PAGE_FIRST = 1;
     public static final int PAGE_SIZE_100 = 100;
     public static final int ORDER_STATUS_UNUSED = 1;
     public static final int ORDER_STATUS_ALL = 3;
     public static final String APPLICATION_NAME = "KingJA_SP";
+    public static final String PLATFORM_ANDROID = "android";
     public static final String EXTRA_QUESTION = "EXTRA_QUESTION";
     public static final int GRIDVIEW_IMG_COUNT = 3;
     public static final int GRIDVIEW_GIFT_COUNT = 4;

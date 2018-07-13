@@ -12,6 +12,7 @@ import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.callback.EmptyMsgCallback;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.injector.component.AppComponent;
+import com.kingja.qiang.page.detail.TicketDetailActivity;
 import com.kingja.qiang.page.home.Ticket;
 import com.kingja.qiang.page.home.TicketContract;
 import com.kingja.qiang.page.home.TicketPresenter;
@@ -47,10 +48,11 @@ public class BesellFragment extends BaseFragment implements TicketContract.View,
     private int page;
     private boolean hasMore;
 
+
     @OnItemClick(R.id.lv)
     public void itemClick(AdapterView<?> parent, View view, int position, long id) {
         Ticket ticket = (Ticket) parent.getItemAtPosition(position);
-        ToastUtil.showText("敬请期待");
+        TicketDetailActivity.goActivity(getActivity(),ticket.getId());
     }
 
     @Override

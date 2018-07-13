@@ -1,15 +1,20 @@
-package com.kingja.qiang.page.visitor.add;
+package com.kingja.qiang.page.visitor.prefect;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
-import com.kingja.qiang.event.AddVisitorEvent;
+import com.kingja.qiang.event.PrfectVisitorEvent;
 import com.kingja.qiang.event.RefreshVisitorsEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.page.visitor.edit.VisitorEditContract;
+import com.kingja.qiang.page.visitor.edit.VisitorEditPresenter;
 import com.kingja.qiang.util.CheckUtil;
 import com.kingja.qiang.util.ToastUtil;
 
@@ -21,12 +26,12 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Description:TODO
+ * Description:完善游客信息
  * Create Time:2018/7/4 14:54
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class VisitorAddActivity extends BaseTitleActivity implements VisitorAddContract.View {
+public class VisitorPrefectActivity extends BaseTitleActivity implements VisitorEditContract.View {
     @BindView(R.id.et_visitor_name)
     EditText etVisitorName;
     @BindView(R.id.et_visitor_phone)
@@ -36,7 +41,8 @@ public class VisitorAddActivity extends BaseTitleActivity implements VisitorAddC
     @BindView(R.id.tv_visitor_confirm)
     TextView tvVisitorConfirm;
     @Inject
-    VisitorAddPresenter visitorAddPresenter;
+    VisitorEditPresenter visitorEditPresenter;
+    private Visitor visitor;
 
     @OnClick({R.id.tv_visitor_confirm})
     public void click(View view) {
@@ -44,24 +50,25 @@ public class VisitorAddActivity extends BaseTitleActivity implements VisitorAddC
         String phone = etVisitorPhone.getText().toString().trim();
         String idcode = etVisitorIdcode.getText().toString().trim();
         if (CheckUtil.checkEmpty(name, "请输入姓名")
-                && CheckUtil.checkPhoneFormat(phone)) {
-            addVisitor(name,phone,idcode);
+                && CheckUtil.checkPhoneFormat(phone)
+                && CheckUtil.checkIdCard(idcode, "身份证格式有误")) {
+            editVisitor(name,phone,idcode);
         }
 
     }
 
-    private void addVisitor(String name, String phone, String idcode) {
-        visitorAddPresenter.addVisitor(name,phone,idcode);
+    private void editVisitor(String name, String phone, String idcode) {
+        visitorEditPresenter.editVisitor(visitor.getId(),name,phone,idcode);
     }
 
     @Override
     public void initVariable() {
-
+        visitor = (Visitor) getIntent().getSerializableExtra("visitor");
     }
 
     @Override
     protected void initComponent(AppComponent appComponent) {
-        DaggerVisitorAddCompnent.builder()
+        DaggerVisitorPrefectCompnent.builder()
                 .appComponent(appComponent)
                 .build()
                 .inject(this);
@@ -69,22 +76,26 @@ public class VisitorAddActivity extends BaseTitleActivity implements VisitorAddC
 
     @Override
     protected String getContentTitle() {
-        return "新增游客";
+        return "完善游客信息";
     }
 
     @Override
     protected int getContentView() {
-        return R.layout.activity_visitor_add;
+        return R.layout.activity_visitor_prefect;
     }
 
     @Override
     protected void initView() {
-        visitorAddPresenter.attachView(this);
+        visitorEditPresenter.attachView(this);
     }
 
     @Override
     protected void initData() {
-
+         etVisitorName.setText(visitor.getName());
+         etVisitorPhone.setText(visitor.getMobile());
+         etVisitorIdcode.setText(visitor.getIdcode());
+        etVisitorIdcode.requestFocus();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
     @Override
@@ -102,11 +113,18 @@ public class VisitorAddActivity extends BaseTitleActivity implements VisitorAddC
         setProgressShow(false);
     }
 
+
     @Override
-    public void onAddVisitorSuccess(Visitor visitor) {
-        ToastUtil.showText("添加游客信息成功");
+    public void onEditVisitorSuccess(Visitor visitor) {
+        ToastUtil.showText("修改游客信息成功");
         EventBus.getDefault().post(new RefreshVisitorsEvent());
-        EventBus.getDefault().post(new AddVisitorEvent(visitor));
+        EventBus.getDefault().post(new PrfectVisitorEvent(visitor));
         finish();
+    }
+
+    public static void goActivity(Context context, Visitor visitor) {
+        Intent intent = new Intent(context, VisitorPrefectActivity.class);
+        intent.putExtra("visitor",visitor);
+        context.startActivity(intent);
     }
 }

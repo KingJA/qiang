@@ -2,6 +2,7 @@ package com.kingja.qiang.page.visitor.edit;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
+import com.kingja.qiang.page.visitor.Visitor;
 
 /**
  * Description：TODO
@@ -11,7 +12,7 @@ import com.kingja.qiang.base.BaseView;
  */
 public interface VisitorEditContract {
     interface View extends BaseView {
-        void onEditVisitorSuccess();
+        void onEditVisitorSuccess(Visitor visitor);
 
     }
 

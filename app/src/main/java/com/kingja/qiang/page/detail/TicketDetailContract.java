@@ -2,11 +2,10 @@ package com.kingja.qiang.page.detail;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-import com.kingja.qiang.page.visitor.list.Visitor;
+import com.kingja.qiang.model.entiy.OrderResult;
+import com.kingja.qiang.page.visitor.Visitor;
 
 import java.util.List;
-
-import retrofit2.http.Field;
 
 /**
  * Description：TODO
@@ -20,7 +19,7 @@ public interface TicketDetailContract {
 
         void onGetVisitorsSuccess(List<Visitor> visitors);
 
-        void onSumbitOrderSuccess(String orderId);
+        void onSumbitOrderSuccess(OrderResult orderResult);
     }
 
     interface Presenter extends BasePresenter<View> {

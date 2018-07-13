@@ -2,6 +2,7 @@ package com.kingja.qiang.page.visitor.list;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
+import com.kingja.qiang.page.visitor.Visitor;
 
 import java.util.List;
 

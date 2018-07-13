@@ -45,4 +45,9 @@ public class DateUtil {
         long deadlineMillis = getDateFromString(deadline).getTime();
         return deadlineMillis-System.currentTimeMillis()<0;
     }
+
+    public static boolean isBeginSell(String startTime) {
+        long starttimeMillis = getDateFromString(startTime).getTime();
+        return starttimeMillis-System.currentTimeMillis()<=0;
+    }
 }

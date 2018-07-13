@@ -3,6 +3,7 @@ package com.kingja.qiang.page.visitor.edit;
 import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
+import com.kingja.qiang.page.visitor.Visitor;
 import com.kingja.qiang.rx.ResultObserver;
 
 import javax.inject.Inject;
@@ -41,10 +42,10 @@ public class VisitorEditPresenter implements VisitorEditContract.Presenter {
         mApi.getUserService().editVisitor(touristId, name, mobile, idcode).subscribeOn(Schedulers.io()).observeOn
                 (AndroidSchedulers
                 .mainThread()).subscribe
-                (new ResultObserver<Object>(mView) {
+                (new ResultObserver<Visitor>(mView) {
                     @Override
-                    protected void onSuccess(Object obj) {
-                        mView.onEditVisitorSuccess();
+                    protected void onSuccess(Visitor visitor) {
+                        mView.onEditVisitorSuccess(visitor);
                     }
                 });
     }

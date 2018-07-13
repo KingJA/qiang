@@ -31,9 +31,9 @@
         </activity>
         <!--引导页-->
         <activity
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:name="com.kingja.qiang.activity.GuideActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
         <!--主界面-->
         <activity
             android:name="com.kingja.qiang.MainActivity"
@@ -113,9 +113,6 @@
             android:name="com.kingja.qiang.activity.ShopCartActivity"
             android:screenOrientation="portrait"/>
         <!--收银台-->
-        <activity
-            android:name="com.kingja.qiang.activity.PayActivity"
-            android:screenOrientation="portrait"/>
         <!--嬉逛分集详情-->
         <!--找回密码-->
         <activity
@@ -161,6 +158,16 @@
             android:name=".page.introduce.SceneryIntroduceActivity"
             android:screenOrientation="portrait"/>
 
+        <!--完善游客信息-->
+        <activity
+            android:name=".page.visitor.prefect.VisitorPrefectActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--支付页面-->
+        <activity
+            android:name=".page.pay.PayActivity"
+            android:screenOrientation="portrait"/>
+
 
         <!--JPush-->
         <receiver
@@ -180,7 +187,18 @@
 
         <service android:name=".service.initialize.InitializeService"/>
 
-
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
     </application>
     <!--JPush Required -->
     <uses-permission android:name="com.kingja.qiang.permission.JPUSH_MESSAGE"/>
@@ -195,4 +213,5 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
 </manifest>

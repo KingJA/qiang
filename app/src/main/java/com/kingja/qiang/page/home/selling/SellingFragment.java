@@ -53,15 +53,6 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
     @OnItemClick(R.id.lv)
     public void itemClick(AdapterView<?> parent, View view, int position, long id) {
         Ticket ticket = (Ticket) parent.getItemAtPosition(position);
-        if (ticket.isOverDue()) {
-            ToastUtil.showText("该产品已到期");
-            return;
-        }
-        if (ticket.isSellOut()) {
-            ToastUtil.showText("该产品已售罄");
-            return;
-        }
-
         TicketDetailActivity.goActivity(getActivity(),ticket.getId());
     }
 

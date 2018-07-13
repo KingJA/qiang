@@ -112,15 +112,15 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@color/delete_hi"
-        android:gravity="center"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:background="@color/delete_hi">
         <TextView
             android:id="@+id/tv_visitor_delete"
             style="@style/font_f_15"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:text="删除"/>
 
     </LinearLayout>

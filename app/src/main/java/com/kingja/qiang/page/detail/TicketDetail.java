@@ -21,8 +21,36 @@ public class TicketDetail {
     private String visitTime;
     private String remarks;
     private int buyLimit;
+    private int idcodeNeed;
     private String ticketName;
     private String visitMethod;
+    private String startTime;
+    private String endTime;
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+
+
+    public int getIdcodeNeed() {
+        return idcodeNeed;
+    }
+
+    public void setIdcodeNeed(int idcodeNeed) {
+        this.idcodeNeed = idcodeNeed;
+    }
 
     public String getId() {
         return id;

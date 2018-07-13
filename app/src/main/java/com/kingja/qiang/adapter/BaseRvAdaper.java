@@ -2,6 +2,7 @@ package com.kingja.qiang.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,6 @@ public abstract class BaseRvAdaper<T> extends RecyclerView.Adapter<BaseRvAdaper.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-
         bindHolder(holder, list.get(position), position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

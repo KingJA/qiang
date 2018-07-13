@@ -3,7 +3,8 @@ package com.kingja.qiang.page.detail;
 import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
-import com.kingja.qiang.page.visitor.list.Visitor;
+import com.kingja.qiang.model.entiy.OrderResult;
+import com.kingja.qiang.page.visitor.Visitor;
 import com.kingja.qiang.rx.ResultObserver;
 
 import java.util.List;
@@ -65,6 +66,13 @@ public class TicketDetailPresenter implements TicketDetailContract.Presenter {
 
     @Override
     public void sumbitOrder(String productId, String touristIds, int quantity, String from) {
-
+        mApi.getUserService().sumbitOrder(productId,  touristIds,  quantity,  from).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+                .mainThread()).subscribe
+                (new ResultObserver<OrderResult>(mView) {
+                    @Override
+                    protected void onSuccess(OrderResult orderResult) {
+                        mView.onSumbitOrderSuccess(orderResult);
+                    }
+                });
     }
 }

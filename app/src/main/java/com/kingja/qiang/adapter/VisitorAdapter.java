@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
-import com.kingja.qiang.page.visitor.list.Visitor;
+import com.kingja.qiang.page.visitor.Visitor;
 
 import java.util.List;
 

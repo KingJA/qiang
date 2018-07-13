@@ -7,6 +7,7 @@ import com.kingja.qiang.model.entiy.Friend;
 import com.kingja.qiang.model.entiy.HotSearch;
 import com.kingja.qiang.model.entiy.Login;
 import com.kingja.qiang.model.entiy.Message;
+import com.kingja.qiang.model.entiy.OrderResult;
 import com.kingja.qiang.model.entiy.PersonalInfo;
 import com.kingja.qiang.model.entiy.Wallet;
 import com.kingja.qiang.page.detail.TicketDetail;
@@ -14,7 +15,7 @@ import com.kingja.qiang.page.home.Ticket;
 import com.kingja.qiang.page.introduce.SceneryIntroduce;
 import com.kingja.qiang.page.order.Order;
 import com.kingja.qiang.page.order.orderdetail.OrderDetail;
-import com.kingja.qiang.page.visitor.list.Visitor;
+import com.kingja.qiang.page.visitor.Visitor;
 
 import java.util.List;
 
@@ -87,8 +88,8 @@ public interface UserService {
     @Headers("Content-Type:application/x-www-form-urlencoded;charset=utf-8")
     @FormUrlEncoded
     @POST("/app/tourist/add")
-    Observable<HttpResult<Object>> addVisitor(@Field("name") String name, @Field("mobile") String mobile,
-                                              @Field("idcode") String idcode);
+    Observable<HttpResult<Visitor>> addVisitor(@Field("name") String name, @Field("mobile") String mobile,
+                                               @Field("idcode") String idcode);
 
     /*删除游客信息*/
     @FormUrlEncoded
@@ -103,7 +104,7 @@ public interface UserService {
     /*编辑游客信息*/
     @FormUrlEncoded
     @POST("/app/tourist/change")
-    Observable<HttpResult<Object>> editVisitor(@Field("touristId") String touristId, @Field("name") String name, @Field
+    Observable<HttpResult<Visitor>> editVisitor(@Field("touristId") String touristId, @Field("name") String name, @Field
             ("mobile") String mobile, @Field("idcode") String idcode);
 
     /*上传头像*/
@@ -155,8 +156,18 @@ public interface UserService {
     /*订单保存*/
     @FormUrlEncoded
     @POST("/app/order/submit")
-    Observable<HttpResult<String>> sumbitOrder(@Field("productId") String productId, @Field("touristIds")
+    Observable<HttpResult<OrderResult>> sumbitOrder(@Field("productId") String productId, @Field("touristIds")
             String touristIds, @Field("quantity") int quantity, @Field("from") String from);
+
+    /*支付宝支付*/
+    @FormUrlEncoded
+    @POST("/app/pay/alipay")
+    Observable<HttpResult<OrderResult>> alipay(@Field("orderId") String orderId);
+
+    /*微信支付*/
+    @FormUrlEncoded
+    @POST("/app/pay/weixinpay")
+    Observable<HttpResult<OrderResult>> weixinpay(@Field("orderId") String orderId);
 
     //=================================================================================
     /*忘记密码*/

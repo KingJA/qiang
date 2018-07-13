@@ -1,4 +1,4 @@
-package com.kingja.qiang.page.visitor.list;
+package com.kingja.qiang.page.visitor;
 
 import java.io.Serializable;
 
@@ -9,10 +9,15 @@ import java.io.Serializable;
  * Email:kingjavip@gmail.com
  */
 public class Visitor implements Serializable{
-    private String id;
-    private String name;
-    private String mobile;
-    private String idcode;
+    protected String id;
+    protected String name;
+    protected String mobile;
+    protected String idcode="";
+    protected boolean isSelected;
+    /**
+     * 1默认 0非默认
+     */
+    protected int isdefault;
 
     public boolean isSelected() {
         return isSelected;
@@ -22,11 +27,14 @@ public class Visitor implements Serializable{
         isSelected = selected;
     }
 
-    private boolean isSelected;
-    /**
-     * 1默认 0非默认
-     */
-    private int isdefault;
+    public Visitor(String id, String name, String mobile) {
+        this.id = id;
+        this.name = name;
+        this.mobile = mobile;
+    }
+
+    public Visitor() {
+    }
 
     public String getId() {
         return id;

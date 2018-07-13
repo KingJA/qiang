@@ -20,7 +20,7 @@ import com.kingja.qiang.util.GoUtil;
  * Email:kingjavip@gmail.com
  */
 public class SplashActivity extends AppCompatActivity {
-    private int DELAY_MILLIS = 2000;
+    private int DELAY_MILLIS = 500;
     private Handler dispatchHander;
     private DispatcherRunnable dispatcherRunnable;
 
