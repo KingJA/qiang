@@ -1,7 +1,8 @@
-package com.kingja.qiang.page.register;
+package com.kingja.qiang.page.pay;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
+import com.kingja.qiang.model.entiy.AliPayResult;
 
 /**
  * Description：TODO
@@ -9,17 +10,13 @@ import com.kingja.qiang.base.BaseView;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public interface RegisterContract {
+public interface PayContract {
     interface View extends BaseView {
-        void onRegisterSuccess();
-
-        void onGetCodeSuccess(String code);
+        void onAlipaiSuccess(String aliPayResult);
     }
 
     interface Presenter extends BasePresenter<View> {
-        void register(String mobile, String password, String code);
-
-        void getCode(String mobile, int flag);
+        void alipai(String orderId);
 
     }
 }

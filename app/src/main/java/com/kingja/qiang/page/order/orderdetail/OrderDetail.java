@@ -19,8 +19,25 @@ public class OrderDetail {
     private String statusText;
     private String createdTime;
     private String creatorderNoedTime;
+    private String from;
+    private String orderNo;
     private String paidAt;
 
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
     public String getId() {
         return id;
     }

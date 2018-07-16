@@ -12,9 +12,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
+                JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "1c5d6829a9998544c1fa5884", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
     lintOptions {
@@ -39,6 +39,9 @@ android {
         }
         debug {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            buildApkBy()
         }
     }
 
@@ -125,6 +128,8 @@ dependencies {
     /*flowlayout*/
     implementation 'com.hyman:flowlayout-lib:1.1.2'
     implementation files('libs/alipaySdk-20180601.jar')
+    /*weixin*/
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 }
 
 

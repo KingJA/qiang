@@ -1,6 +1,7 @@
 package com.kingja.qiang.model.service;
 
 import com.kingja.qiang.model.HttpResult;
+import com.kingja.qiang.model.entiy.AliPayResult;
 import com.kingja.qiang.model.entiy.Deal;
 import com.kingja.qiang.model.entiy.Discount;
 import com.kingja.qiang.model.entiy.Friend;
@@ -47,7 +48,7 @@ public interface UserService {
     /*发送验证码OK*/
     @FormUrlEncoded
     @POST("/app/user/smsmessage")
-    Observable<HttpResult<String>> sms(@Field("mobile") String mobile, @Field("flag") String flag);
+    Observable<HttpResult<String>> sms(@Field("mobile") String mobile, @Field("flag") int flag);
 
     /*注册OK*/
     @FormUrlEncoded
@@ -162,12 +163,18 @@ public interface UserService {
     /*支付宝支付*/
     @FormUrlEncoded
     @POST("/app/pay/alipay")
-    Observable<HttpResult<OrderResult>> alipay(@Field("orderId") String orderId);
+    Observable<HttpResult<String>> alipay(@Field("orderId") String orderId);
 
     /*微信支付*/
     @FormUrlEncoded
     @POST("/app/pay/weixinpay")
     Observable<HttpResult<OrderResult>> weixinpay(@Field("orderId") String orderId);
+
+    /*忘记密码*/
+    @FormUrlEncoded
+    @POST("/app/user/findpasswd")
+    Observable<HttpResult<Object>> forgetPassword(@Field("mobile") String mobile, @Field("passwd") String passwd,
+                                                  @Field("code") String code);
 
     //=================================================================================
     /*忘记密码*/

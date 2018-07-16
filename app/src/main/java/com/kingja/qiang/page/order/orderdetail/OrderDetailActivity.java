@@ -99,7 +99,7 @@ public class OrderDetailActivity extends BaseTitleActivity implements OrderDetai
        tvOrderVisitor.setText(orderDetail.getTourists());
        tvOrderQuantity.setText(String.valueOf(orderDetail.getQuantity()));
        tvOrderPaydate.setText(orderDetail.getPaidAt());
-       tvOrderOrderId.setText(orderDetail.getId());
+       tvOrderOrderId.setText(orderDetail.getOrderNo());
        tvOrderCode.setText(orderDetail.getTicketcode());
         ImageLoader.getInstance().loadImage(this,orderDetail.getQrcodeurl(),R.mipmap.bg_qcode,ivOrderQcode);
     }

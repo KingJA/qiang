@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
-import com.kingja.qiang.constant.VariableConstant;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.util.CheckUtil;
 import com.kingja.qiang.util.CountTimer;
@@ -30,37 +29,37 @@ import butterknife.OnClick;
  * Email:kingjavip@gmail.com
  */
 public class RegisterActivity extends BaseTitleActivity implements RegisterContract.View {
-    @BindView(R.id.et_register_mobile)
+    @BindView(R.id.et_forgetpwd_mobile)
     EditText etRegisterMobile;
-    @BindView(R.id.et_register_code)
+    @BindView(R.id.et_forgetpwd_code)
     EditText etRegisterCode;
-    @BindView(R.id.stv_register_getCode)
+    @BindView(R.id.stv_forgetpwd_getCode)
     SuperShapeTextView stvRegisterGetCode;
-    @BindView(R.id.et_register_password)
+    @BindView(R.id.et_forgetpwd_password)
     EditText etRegisterPassword;
-    @BindView(R.id.iv_register_showPassword)
+    @BindView(R.id.iv_forgetpwd_showPassword)
     ImageView ivRegisterShowPassword;
-    @BindView(R.id.tv_register_confirm)
+    @BindView(R.id.tv_forgetpwd_confirm)
     TextView tvRegisterConfirm;
     private CountTimer countTimer;
     private boolean isShow;
     @Inject
     RegisterPresenter registerPresenter;
 
-    @OnClick({R.id.stv_register_getCode, R.id.iv_register_showPassword, R.id.tv_register_confirm})
+    @OnClick({R.id.stv_forgetpwd_getCode, R.id.iv_forgetpwd_showPassword, R.id.tv_forgetpwd_confirm})
     public void click(View view) {
         switch (view.getId()) {
-            case R.id.stv_register_getCode:
+            case R.id.stv_forgetpwd_getCode:
                 String mobile = etRegisterMobile.getText().toString().trim();
                 if (CheckUtil.checkPhoneFormat(mobile)) {
                     getCode(mobile);
                 }
                 break;
-            case R.id.iv_register_showPassword:
+            case R.id.iv_forgetpwd_showPassword:
                 switchPasswrodShowd();
 
                 break;
-            case R.id.tv_register_confirm:
+            case R.id.tv_forgetpwd_confirm:
                 register();
                 break;
             default:
@@ -101,7 +100,7 @@ public class RegisterActivity extends BaseTitleActivity implements RegisterContr
         countTimer = new CountTimer(10, stvRegisterGetCode);
         stvRegisterGetCode.setClickable(false);
         countTimer.start();
-        registerPresenter.getCode(mobile, VariableConstant.SmsType.REGISTER);
+        registerPresenter.getCode(mobile, 1);
 
     }
 
@@ -164,7 +163,7 @@ public class RegisterActivity extends BaseTitleActivity implements RegisterContr
     }
 
     @Override
-    public void onGetCodeSuccess() {
+    public void onGetCodeSuccess(String code) {
         ToastUtil.showText("已发送验证码至该手机");
     }
 }

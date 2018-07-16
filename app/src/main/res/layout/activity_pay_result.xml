@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_hi"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_hi"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="40dp"
+            android:background="@mipmap/bg_pay_success"/>
+
+        <TextView
+            style="@style/font_3_17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="支付成功，等待商家出票"/>
+
+        <View
+            style="@style/div_hor_gray"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="24dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
+
+            <com.kingja.supershapeview.view.SuperShapeTextView
+                android:id="@+id/stv_buy_again"
+                style="@style/font_3_17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp"
+                android:text="继续购买"
+                app:super_cornerRadius="4dp"
+                app:super_solidColor="@color/white_hi"
+                app:super_strokeColor="@color/gray_hi"
+                app:super_strokeWidth="1dp"/>
+
+            <com.kingja.supershapeview.view.SuperShapeTextView
+                android:id="@+id/stv_order_detail"
+                style="@style/font_3_17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp"
+                android:text="查看订单详情"
+                app:super_cornerRadius="4dp"
+                app:super_solidColor="@color/white_hi"
+                app:super_strokeColor="@color/gray_hi"
+                app:super_strokeWidth="1dp"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/font_red_18"
+        android:layout_marginTop="48dp"
+        android:text="好东西，一起享!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:layout_marginTop="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_share_weixinfrends"
+            android:layout_marginRight="64dp"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginBottom="10dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@mipmap/bg_share_weixinfrends"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="朋友圈"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_share_weixin"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginBottom="10dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@mipmap/bg_share_weixin"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="微信好友"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

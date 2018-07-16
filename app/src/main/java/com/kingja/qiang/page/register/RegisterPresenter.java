@@ -50,8 +50,8 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     }
 
     @Override
-    public void getCode(String mobile, String type) {
-        mApi.getUserService().sms(mobile, type).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe
+    public void getCode(String mobile, int flag) {
+        mApi.getUserService().sms(mobile, flag).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe
                 (new ResultObserver<String>(mView) {
                     @Override
                     protected void onSuccess(String code) {

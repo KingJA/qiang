@@ -24,4 +24,13 @@ public class Status {
         //未选择
         int NOPAI = 0;
     }
+
+    public interface ResultCode {
+        //成功
+        int SUCCESS = 0;
+        //服务器错误
+        int ERROR_SERVER = 1;
+        //登录失效
+        int ERROR_LOGIN_FAIL = -1;
+    }
 }

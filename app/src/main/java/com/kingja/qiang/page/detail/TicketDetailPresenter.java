@@ -61,6 +61,11 @@ public class TicketDetailPresenter implements TicketDetailContract.Presenter {
                     protected void onSuccess(List<Visitor> visitors) {
                         mView.onGetVisitorsSuccess(visitors);
                     }
+
+                    @Override
+                    protected void onLoginFail() {
+                        mView.onLoginFail();
+                    }
                 });
     }
 
@@ -73,6 +78,7 @@ public class TicketDetailPresenter implements TicketDetailContract.Presenter {
                     protected void onSuccess(OrderResult orderResult) {
                         mView.onSumbitOrderSuccess(orderResult);
                     }
+
                 });
     }
 }

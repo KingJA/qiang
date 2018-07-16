@@ -20,6 +20,8 @@ public interface TicketDetailContract {
         void onGetVisitorsSuccess(List<Visitor> visitors);
 
         void onSumbitOrderSuccess(OrderResult orderResult);
+
+        void onLoginFail();
     }
 
     interface Presenter extends BasePresenter<View> {

@@ -26,10 +26,12 @@ import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.constant.Status;
 import com.kingja.qiang.event.AddVisitorEvent;
 import com.kingja.qiang.event.PrfectVisitorEvent;
+import com.kingja.qiang.event.ResetLoginStatusEvent;
 import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.OrderResult;
 import com.kingja.qiang.page.introduce.SceneryIntroduceActivity;
+import com.kingja.qiang.page.login.LoginActivity;
 import com.kingja.qiang.page.pay.PayActivity;
 import com.kingja.qiang.page.visitor.add.VisitorAddActivity;
 import com.kingja.qiang.page.visitor.Visitor;
@@ -37,6 +39,7 @@ import com.kingja.qiang.page.visitor.prefect.VisitorPrefectActivity;
 import com.kingja.qiang.util.DateUtil;
 import com.kingja.qiang.util.DialogUtil;
 import com.kingja.qiang.util.GoUtil;
+import com.kingja.qiang.util.LoginChecker;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.qiang.view.ChangeNumberView;
 import com.kingja.qiang.view.RvItemDecoration;
@@ -101,7 +104,11 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
                 SceneryIntroduceActivity.goActivity(this, ticketDetail.getScenicid());
                 break;
             case R.id.tv_detail_buy:
-                checkBuyInfo();
+                if (LoginChecker.isLogin()) {
+                    checkBuyInfo();
+                }else{
+                    DialogUtil.showLoginActivity(this);
+                }
                 break;
             default:
                 break;
@@ -234,7 +241,7 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     @Override
     protected void initNet() {
         ticketDetailPresenter.getTicketDetail(productId);
-        ticketDetailPresenter.getVisitors(1, 10);
+        ticketDetailPresenter.getVisitors(Constants.PAGE_FIRST, Constants.PAGE_SIZE_100);
     }
 
     public static void goActivity(Context context, String productId) {
@@ -309,7 +316,13 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
 
     @Override
     public void onSumbitOrderSuccess(OrderResult orderResult) {
-        PayActivity.goActivity(this,orderResult.getOrderId());
+        PayActivity.goActivity(this, orderResult.getOrderId());
+    }
+
+    @Override
+    public void onLoginFail() {
+        mSsllVisitorInfo.setVisibility(View.GONE);
+        visitorTabAdapter.setData(getSelectVisitor(visitors));
     }
 
     private boolean hasDefault(List<Visitor> visitors) {
@@ -341,7 +354,7 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     @Override
     public void onItemClick(Visitor visitor, int position) {
         if (position == visitorTabAdapter.getItemCount() - 1) {
-            GoUtil.goActivity(this, VisitorAddActivity.class);
+            LoginChecker.goActivity(this, VisitorAddActivity.class);
         } else {
             visitorTabAdapter.select(position);
             fillVisitorInfo(visitor);
@@ -389,4 +402,11 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
         fillVisitorInfo(visitorEvent);
         visitorTabAdapter.prfectVisitor(visitorEvent);
     }
+
+    @Subscribe
+    public void resetLoginStatus(ResetLoginStatusEvent resetLoginStatusEvent) {
+        ticketDetailPresenter.getVisitors(Constants.PAGE_FIRST, Constants.PAGE_SIZE_100);
+    }
+
+
 }
