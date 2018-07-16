@@ -7,10 +7,20 @@
     <color android:color="@color/orange_hi_light"/>
   </item>
   <item android:state_selected="true">
-    <color android:color="@color/red_hi"/>
+    <shape android:shape="oval">
+      <solid android:color="@color/red_hi"/>
+      <stroke
+          android:width="4dp"
+          android:color="@color/tran_hi"/>
+    </shape>
   </item>
   <item android:state_pressed="true">
-    <color android:color="@color/red_hi"/>
+    <shape android:shape="oval">
+      <solid android:color="@color/red_hi"/>
+      <stroke
+          android:width="4dp"
+          android:color="@color/tran_hi"/>
+    </shape>
   </item>
   <item app:tsquare_state_current_month="false">
     <color android:color="@color/bg_hi"/>

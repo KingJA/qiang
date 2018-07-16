@@ -1,7 +1,9 @@
 package com.kingja.qiang.ui;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.popwindowsir.BasePop;
@@ -10,10 +12,12 @@ import com.squareup.timessquare.CalendarCellDecorator;
 import com.squareup.timessquare.CalendarPickerView;
 import com.squareup.timessquare.DefaultDayViewAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Description:TODO
@@ -43,17 +47,23 @@ public class DataPop extends BasePop {
         final Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
         CalendarPickerView calendar = contentView.findViewById(R.id.calendar_view);
+        TextView tv_confirm = contentView.findViewById(R.id.tv_confirm);
         calendar.setCustomDayView(new DefaultDayViewAdapter());
-        Calendar today = Calendar.getInstance();
-        ArrayList<Date> dates = new ArrayList<Date>();
-        today.add(Calendar.DATE, 3);
-        dates.add(today.getTime());
-        today.add(Calendar.DATE, 5);
-        dates.add(today.getTime());
         calendar.setDecorators(Collections.<CalendarCellDecorator>emptyList());
         calendar.init(new Date(), nextYear.getTime()) //
-                .inMode(CalendarPickerView.SelectionMode.RANGE) //
-                .withSelectedDates(dates);
+                .inMode(CalendarPickerView.SelectionMode.MULTIPLE);
+        tv_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Date> selectedDates = calendar.getSelectedDates();
+                for (Date selectedDate : selectedDates) {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                    String result = format.format(selectedDate);
+                    Log.e("DataPop", "result: "+result );
+                }
+
+            }
+        });
     }
 
     @Override

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RangeBar"><attr format="dimension" name="normalLineWidth"/><attr format="reference|color" name="normalLineColor"/><attr format="dimension" name="selectedLineWidth"/><attr format="reference|color" name="selectedLineColor"/><attr format="dimension" name="sliderSzie"/><attr format="reference|color" name="sliderColor"/><attr format="reference" name="sliderImg"/><attr format="integer" name="minNum"/><attr format="integer" name="maxNum"/><attr format="integer" name="offsetNum"/></declare-styleable>
+    <string name="app_name">rangebarsir</string>
+</resources>
