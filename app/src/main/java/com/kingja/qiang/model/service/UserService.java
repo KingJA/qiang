@@ -11,6 +11,7 @@ import com.kingja.qiang.model.entiy.Message;
 import com.kingja.qiang.model.entiy.OrderResult;
 import com.kingja.qiang.model.entiy.PersonalInfo;
 import com.kingja.qiang.model.entiy.Wallet;
+import com.kingja.qiang.model.entiy.WeixinPayResult;
 import com.kingja.qiang.page.detail.TicketDetail;
 import com.kingja.qiang.page.home.Ticket;
 import com.kingja.qiang.page.introduce.SceneryIntroduce;
@@ -168,7 +169,7 @@ public interface UserService {
     /*微信支付*/
     @FormUrlEncoded
     @POST("/app/pay/weixinpay")
-    Observable<HttpResult<OrderResult>> weixinpay(@Field("orderId") String orderId);
+    Observable<HttpResult<WeixinPayResult>> weixinpay(@Field("orderId") String orderId);
 
     /*忘记密码*/
     @FormUrlEncoded

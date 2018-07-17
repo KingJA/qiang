@@ -15,11 +15,22 @@ import android.widget.TextView;
 import com.alipay.sdk.app.PayTask;
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
+import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.constant.Status;
+import com.kingja.qiang.event.WeixinPaySuccessEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.PayResult;
+import com.kingja.qiang.model.entiy.WeixinPayResult;
 import com.kingja.qiang.page.share.ShareActivity;
 import com.kingja.qiang.util.ToastUtil;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.modelpay.PayResp;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Map;
 
@@ -51,6 +62,19 @@ public class PayActivity extends BaseTitleActivity implements PayContract.View {
     PayPresenter payPresenter;
 
     private int payType = Status.PayType.NOPAI;
+    private IWXAPI api;
+
+    private void regToWeixin() {
+        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID_WEIXIN, true);
+        api.registerApp(Constants.APP_ID_WEIXIN);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        api.unregisterApp();
+        EventBus.getDefault().unregister(this);
+    }
 
     @OnClick({R.id.rl_weixinpay, R.id.rl_alipay, R.id.tv_pay})
     public void onViewClicked(View view) {
@@ -82,7 +106,7 @@ public class PayActivity extends BaseTitleActivity implements PayContract.View {
                 payPresenter.alipai(orderId);
                 break;
             case Status.PayType.WEIXINPAI:
-                ToastUtil.showText("微信支付");
+                payPresenter.weixinpai(orderId);
                 break;
             default:
                 break;
@@ -91,8 +115,11 @@ public class PayActivity extends BaseTitleActivity implements PayContract.View {
 
     @Override
     public void initVariable() {
+        EventBus.getDefault().register(this);
         orderId = getIntent().getStringExtra("orderId");
+        regToWeixin();
     }
+
 
     @Override
     protected void initComponent(AppComponent appComponent) {
@@ -142,7 +169,9 @@ public class PayActivity extends BaseTitleActivity implements PayContract.View {
     public void hideLoading() {
         setProgressShow(false);
     }
+
     private static final int SDK_PAY_FLAG = 1;
+
     @Override
     public void onAlipaiSuccess(String aliPayResult) {
 
@@ -151,7 +180,6 @@ public class PayActivity extends BaseTitleActivity implements PayContract.View {
             public void run() {
                 PayTask alipay = new PayTask(PayActivity.this);
                 Map<String, String> result = alipay.payV2(aliPayResult, true);
-                Log.i("msp", result.toString());
                 Message msg = new Message();
                 msg.what = SDK_PAY_FLAG;
                 msg.obj = result;
@@ -161,6 +189,20 @@ public class PayActivity extends BaseTitleActivity implements PayContract.View {
 
         Thread payThread = new Thread(payRunnable);
         payThread.start();
+    }
+
+    @Override
+    public void onWeixinpaiSuccess(WeixinPayResult weixinPayResult) {
+        PayReq request = new PayReq();
+        request.appId = weixinPayResult.getAppid();
+        request.partnerId = weixinPayResult.getPartnerid();
+        request.prepayId = weixinPayResult.getPrepayid();
+        request.packageValue = weixinPayResult.getPackageStr();
+        request.nonceStr = weixinPayResult.getNoncestr();
+        request.timeStamp = String.valueOf(weixinPayResult.getTimestamp());
+        request.sign = weixinPayResult.getSign();
+        request.extData = orderId;
+        api.sendReq(request);
     }
 
     @SuppressLint("HandlerLeak")
@@ -180,17 +222,24 @@ public class PayActivity extends BaseTitleActivity implements PayContract.View {
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        ShareActivity.goActivity(PayActivity.this,orderId);
+                        ShareActivity.goActivity(PayActivity.this, orderId);
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         ToastUtil.showText("支付失败");
-                        Log.e(TAG, "支付失败: " );
+                        Log.e(TAG, "支付失败: ");
                     }
                     break;
                 }
                 default:
                     break;
             }
-        };
+        }
+
+        ;
     };
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void goSuccessActivity(WeixinPaySuccessEvent weixinPaySuccessEvent) {
+        ShareActivity.goActivity(PayActivity.this, orderId);
+    }
 }

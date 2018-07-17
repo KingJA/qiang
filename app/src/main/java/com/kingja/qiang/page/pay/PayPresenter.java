@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
 import com.kingja.qiang.model.entiy.AliPayResult;
+import com.kingja.qiang.model.entiy.WeixinPayResult;
 import com.kingja.qiang.rx.ResultObserver;
 
 import javax.inject.Inject;
@@ -45,6 +46,18 @@ public class PayPresenter implements PayContract.Presenter {
                     @Override
                     protected void onSuccess(String aliPayResult) {
                         mView.onAlipaiSuccess(aliPayResult);
+                    }
+                });
+    }
+
+    @Override
+    public void weixinpai(String orderId) {
+        mApi.getUserService().weixinpay(orderId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+                .mainThread()).subscribe
+                (new ResultObserver<WeixinPayResult>(mView) {
+                    @Override
+                    protected void onSuccess(WeixinPayResult weixinPayResult) {
+                        mView.onWeixinpaiSuccess(weixinPayResult);
                     }
                 });
     }

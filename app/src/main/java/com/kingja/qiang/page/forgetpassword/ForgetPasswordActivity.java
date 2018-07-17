@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
-import com.kingja.qiang.constant.VariableConstant;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.util.CheckUtil;
 import com.kingja.qiang.util.CountTimer;
