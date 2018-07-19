@@ -23,6 +23,7 @@ import com.kingja.qiang.ui.DataPop;
 import com.kingja.qiang.ui.PricePop;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.IndicatorUtil;
+import com.kingja.qiang.util.ToastUtil;
 
 import java.util.Arrays;
 
@@ -69,16 +70,19 @@ public class XigouFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.spiner_show_type:
-                typePop.showAsDropDown(llSpinnerRoot);
+//                typePop.showAsDropDown(llSpinnerRoot);
+                ToastUtil.showText("开发中");
                 break;
             case R.id.spiner_place:
-                typePop.showAsDropDown(llSpinnerRoot);
+//                typePop.showAsDropDown(llSpinnerRoot);
+                ToastUtil.showText("开发中");
                 break;
             case R.id.spiner_date:
                 Log.e(TAG, "日期选择: ");
                 datePop.showAsDropDown(llSpinnerRoot);
                 break;
             case R.id.spiner_price:
+                ToastUtil.showText("开发中");
                 break;
             case R.id.ll_home_search:
                 GoUtil.goActivity(getActivity(),SearchDetailActivity.class);
