@@ -6,9 +6,11 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.kingja.qiang.base.App;
+import com.kingja.qiang.event.ScenicType;
+import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.model.entiy.HotSearch;
+import com.kingja.qiang.util.LogUtil;
 import com.kingja.qiang.util.SpSir;
-import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -22,11 +24,14 @@ import javax.inject.Inject;
  */
 public class InitializeService extends IntentService implements InitializeContract.View {
 
+    private static final String TAG = "InitializeService";
     @Inject
     InitializePresenter initializePresenter;
+
     public InitializeService(String name) {
         super(name);
     }
+
     public InitializeService() {
         super("InitializeService");
 
@@ -55,13 +60,14 @@ public class InitializeService extends IntentService implements InitializeContra
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         initializePresenter.getHotSearch(10);
-        Logger.d("onHandleIntent");
+        initializePresenter.getScenicType("3");
+        initializePresenter.getCity();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Logger.d("onDestroy");
+        LogUtil.e(TAG, "【数据初始化结束】");
     }
 
     @Override
@@ -77,5 +83,18 @@ public class InitializeService extends IntentService implements InitializeContra
     @Override
     public void onGetHotSearch(List<HotSearch> hotSearches) {
         SpSir.getInstance().putHotSearch(new Gson().toJson(hotSearches));
+        LogUtil.e(TAG, "【数据初始化成功】:[热搜]:" + hotSearches.size() + "条");
+    }
+
+    @Override
+    public void onGetScenicTypeSuccess(List<ScenicType> scenicTypes) {
+        SpSir.getInstance().putScenicType(new Gson().toJson(scenicTypes));
+        LogUtil.e(TAG, "【数据初始化成功】:[景区类型]:" + scenicTypes.size() + "条");
+    }
+
+    @Override
+    public void onGetCitySuccess(List<City> cities) {
+        SpSir.getInstance().putCity(new Gson().toJson(cities));
+        LogUtil.e(TAG, "【数据初始化成功】:[城市]:" + cities.size() + "条");
     }
 }

@@ -1,4 +1,4 @@
-package com.kingja.qiang.service.initialize;
+package com.kingja.qiang.page.xigou;
 
 import android.support.annotation.NonNull;
 
@@ -7,6 +7,7 @@ import com.kingja.qiang.model.api.UserApi;
 import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.model.entiy.HotSearch;
 import com.kingja.qiang.rx.ResultObserver;
+import com.kingja.qiang.service.initialize.InitializeContract;
 
 import java.util.List;
 
@@ -22,35 +23,23 @@ import io.reactivex.schedulers.Schedulers;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class InitializePresenter implements InitializeContract.Presenter {
+public class XigouPresenter implements XigouContract.Presenter {
     private UserApi mApi;
-    private InitializeContract.View mView;
+    private XigouContract.View mView;
 
     @Inject
-    public InitializePresenter(UserApi mApi) {
+    public XigouPresenter(UserApi mApi) {
         this.mApi = mApi;
     }
 
     @Override
-    public void attachView(@NonNull InitializeContract.View view) {
+    public void attachView(@NonNull XigouContract.View view) {
         this.mView = view;
     }
 
     @Override
     public void detachView() {
 
-    }
-
-    @Override
-    public void getHotSearch(int limit) {
-        mApi.getUserService().getHotSearch(limit).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
-                .mainThread()).subscribe
-                (new ResultObserver<List<HotSearch>>(mView) {
-                    @Override
-                    protected void onSuccess(List<HotSearch> hotSearches) {
-                        mView.onGetHotSearch(hotSearches);
-                    }
-                });
     }
 
     @Override

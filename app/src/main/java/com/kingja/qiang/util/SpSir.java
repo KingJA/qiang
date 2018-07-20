@@ -19,6 +19,8 @@ public class SpSir {
     private static final String MOBILE = "mobile";
     private static final String HOTSEARCH = "HOTSEARCH";
     private static final String HistorySearch = "HistorySearch";
+    private static final String ScenicType = "ScenicType";
+    private static final String City = "City";
     private static final String EMPTY_STRING = "";
     private static SpSir mSpSir;
     private SharedPreferences mSp;
@@ -63,8 +65,17 @@ public class SpSir {
     public String getHotSearch() {
         return getString(HOTSEARCH);
     }
+
     public String getHistorySearch() {
         return getString(HistorySearch);
+    }
+
+    public String getScenicType() {
+        return getString(ScenicType);
+    }
+
+    public String getCity() {
+        return getString(City);
     }
 
     /*================================PUT================================*/
@@ -93,6 +104,15 @@ public class SpSir {
     public void putHotSearch(String hotsearch) {
         putString(HOTSEARCH, hotsearch);
     }
+
+    public void putScenicType(String scenicType) {
+        putString(ScenicType, scenicType);
+    }
+
+    public void putCity(String city) {
+        putString(City, city);
+    }
+
     public void addHistorySearch(String historySearch) {
         if (TextUtils.isEmpty(historySearch)) {
             return;

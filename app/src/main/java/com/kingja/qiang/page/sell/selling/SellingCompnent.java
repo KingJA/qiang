@@ -1,4 +1,4 @@
-package com.kingja.qiang.page.home.selling;
+package com.kingja.qiang.page.sell.selling;
 
 
 import com.kingja.qiang.injector.annotation.PerActivity;

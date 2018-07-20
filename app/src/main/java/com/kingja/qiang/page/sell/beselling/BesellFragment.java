@@ -1,4 +1,4 @@
-package com.kingja.qiang.page.home.selling;
+package com.kingja.qiang.page.sell.beselling;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
@@ -7,17 +7,15 @@ import android.widget.AdapterView;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.kingja.qiang.R;
-import com.kingja.qiang.adapter.SellingAdapter;
+import com.kingja.qiang.adapter.BesellAdapter;
 import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.callback.EmptyMsgCallback;
-import com.kingja.qiang.callback.TicketCallback;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.injector.component.AppComponent;
-import com.kingja.qiang.page.detail.TicketDetail;
 import com.kingja.qiang.page.detail.TicketDetailActivity;
-import com.kingja.qiang.page.home.Ticket;
-import com.kingja.qiang.page.home.TicketContract;
-import com.kingja.qiang.page.home.TicketPresenter;
+import com.kingja.qiang.page.sell.Ticket;
+import com.kingja.qiang.page.sell.TicketContract;
+import com.kingja.qiang.page.sell.TicketPresenter;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.qiang.view.PullToBottomListView;
 import com.kingja.qiang.view.RefreshSwipeRefreshLayout;
@@ -31,12 +29,12 @@ import butterknife.BindView;
 import butterknife.OnItemClick;
 
 /**
- * Description:在售
+ * Description:待售
  * Create Time:2018/1/22 13:24
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class SellingFragment extends BaseFragment implements TicketContract.View, SwipeRefreshLayout
+public class BesellFragment extends BaseFragment implements TicketContract.View, SwipeRefreshLayout
         .OnRefreshListener, PullToBottomListView.OnScrollToBottom {
     @BindView(R.id.lv)
     PullToBottomListView lv;
@@ -46,9 +44,10 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
     @Inject
     TicketPresenter ticketPresenter;
     private List<Ticket> tickets = new ArrayList<>();
-    private SellingAdapter mSellingAdapter;
+    private BesellAdapter mBesellAdapter;
     private int page;
     private boolean hasMore;
+
 
     @OnItemClick(R.id.lv)
     public void itemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -63,7 +62,7 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
 
     @Override
     protected void initComponent(AppComponent appComponent) {
-        DaggerSellingCompnent.builder()
+        DaggerBesellCompnent.builder()
                 .appComponent(appComponent)
                 .build()
                 .inject(this);
@@ -75,20 +74,15 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
         srl.setScrollUpChild(lv);
         srl.setOnRefreshListener(this);
         lv.setOnScrollToBottom(this);
-        mSellingAdapter = new SellingAdapter(getActivity(), tickets);
-        lv.setAdapter(mSellingAdapter);
-        LoadSir loadSir = new LoadSir.Builder()
-                .addCallback(new TicketCallback())
-                .addCallback(new EmptyMsgCallback())
-                .setDefaultCallback(TicketCallback.class)
-                .build();
-                loadService = loadSir.register(lv);
+        mBesellAdapter = new BesellAdapter(getActivity(), tickets);
+        lv.setAdapter(mBesellAdapter);
+        loadService = LoadSir.getDefault().register(lv);
     }
 
     @Override
     protected void initNet() {
         page = Constants.PAGE_FIRST;
-        ticketPresenter.getTickets("", "", "", "", "", page, Constants.PAGE_SIZE, 1);
+        ticketPresenter.getTickets("", "", "", "", "", page, Constants.PAGE_SIZE, 0);
     }
 
     @Override
@@ -114,14 +108,14 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
             loadService.showCallback(EmptyMsgCallback.class);
         } else {
             loadService.showSuccess();
-            mSellingAdapter.setData(tickets);
+            mBesellAdapter.setData(tickets);
         }
     }
 
     @Override
     public void onGetMoreTicketSuccess(List<Ticket> tickets) {
         hasMore = tickets.size() == Constants.PAGE_SIZE;
-        mSellingAdapter.addData(tickets);
+        mBesellAdapter.addData(tickets);
     }
 
     @Override
@@ -136,7 +130,7 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
         }
         if (hasMore) {
             page++;
-            ticketPresenter.getMoreTickets("", "", "", "", "", page, Constants.PAGE_SIZE, 1);
+            ticketPresenter.getMoreTickets("", "", "", "", "", page, Constants.PAGE_SIZE, 0);
         } else {
             ToastUtil.showText("到底啦");
         }

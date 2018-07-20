@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.constant.NavConstant;
-import com.kingja.qiang.fragment.XigouFragment;
+import com.kingja.qiang.page.xigou.XigouFragment;
 import com.kingja.qiang.fragment.OrderFragment;
 import com.kingja.qiang.page.mine.MineFragment;
 

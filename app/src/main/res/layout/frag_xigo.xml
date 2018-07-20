@@ -112,7 +112,7 @@
             app:spinner_textSelColor="@color/red_hi"
             app:spinner_textSize="12sp"/>
         <com.kingja.popwindowsir.PopSpinner
-            android:id="@+id/spiner_place"
+            android:id="@+id/spiner_scenicType"
             android:background="#ffffff"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -120,7 +120,7 @@
             app:spinner_indicatorSelColor="@color/red_hi"
             app:spinner_indicatorNorColor="@color/c_9"
             app:spinner_indicatorSzie="6dp"
-            app:spinner_indicatorText="全部类型"
+            app:spinner_indicatorText="景区类型"
             app:spinner_marginIndicator="24dp"
             app:spinner_textNorColor="@color/c_3"
             app:spinner_textSelColor="@color/red_hi"

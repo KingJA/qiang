@@ -1,31 +1,42 @@
-package com.kingja.qiang.fragment;
+package com.kingja.qiang.page.xigou;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.kingja.popwindowsir.ListPop;
 import com.kingja.popwindowsir.PopConfig;
 import com.kingja.popwindowsir.PopHelper;
 import com.kingja.popwindowsir.PopSpinner;
 import com.kingja.qiang.R;
-import com.kingja.qiang.page.search.SearchDetailActivity;
-import com.kingja.qiang.adapter.SpinerAdapter;
+import com.kingja.qiang.adapter.ScenicTypeAdapter;
 import com.kingja.qiang.adapter.XigoPageAdapter;
+import com.kingja.qiang.base.App;
 import com.kingja.qiang.base.BaseFragment;
+import com.kingja.qiang.event.ScenicType;
 import com.kingja.qiang.injector.component.AppComponent;
-import com.kingja.qiang.page.home.beselling.BesellFragment;
-import com.kingja.qiang.page.home.selling.SellingFragment;
+import com.kingja.qiang.model.entiy.City;
+import com.kingja.qiang.page.search.SearchDetailActivity;
+import com.kingja.qiang.page.sell.beselling.BesellFragment;
+import com.kingja.qiang.page.sell.selling.SellingFragment;
 import com.kingja.qiang.ui.DataPop;
 import com.kingja.qiang.ui.PricePop;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.IndicatorUtil;
+import com.kingja.qiang.util.LogUtil;
+import com.kingja.qiang.util.SpSir;
 import com.kingja.qiang.util.ToastUtil;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -37,7 +48,7 @@ import butterknife.Unbinder;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class XigouFragment extends BaseFragment {
+public class XigouFragment extends BaseFragment implements XigouContract.View {
     @BindView(R.id.tab_xigo)
     TabLayout tabXigo;
     @BindView(R.id.ll_home_search)
@@ -48,8 +59,8 @@ public class XigouFragment extends BaseFragment {
     LinearLayout llSpinnerRoot;
     @BindView(R.id.spiner_show_type)
     PopSpinner spinerShowType;
-    @BindView(R.id.spiner_place)
-    PopSpinner spinerPlace;
+    @BindView(R.id.spiner_scenicType)
+    PopSpinner spinerScenicType;
     @BindView(R.id.spiner_date)
     PopSpinner spinerDate;
     @BindView(R.id.spiner_price)
@@ -64,18 +75,24 @@ public class XigouFragment extends BaseFragment {
     private ListPop typePop;
     private DataPop datePop;
     private PricePop pricePop;
+    private List<ScenicType> scenicTypes = new ArrayList<>();
+    private List<City> cities = new ArrayList<>();
 
+    @Inject
+    XigouPresenter xigouPresenter;
 
-    @OnClick({R.id.spiner_show_type, R.id.spiner_place, R.id.spiner_date, R.id.spiner_price, R.id.ll_home_search})
+    @OnClick({R.id.spiner_show_type, R.id.spiner_scenicType, R.id.spiner_date, R.id.spiner_price, R.id.ll_home_search})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.spiner_show_type:
 //                typePop.showAsDropDown(llSpinnerRoot);
                 ToastUtil.showText("开发中");
+                Log.e(TAG, "spiner_show_type: ");
                 break;
-            case R.id.spiner_place:
+            case R.id.spiner_scenicType:
 //                typePop.showAsDropDown(llSpinnerRoot);
                 ToastUtil.showText("开发中");
+                Log.e(TAG, "spiner_place: ");
                 break;
             case R.id.spiner_date:
                 Log.e(TAG, "日期选择: ");
@@ -85,7 +102,7 @@ public class XigouFragment extends BaseFragment {
                 ToastUtil.showText("开发中");
                 break;
             case R.id.ll_home_search:
-                GoUtil.goActivity(getActivity(),SearchDetailActivity.class);
+                GoUtil.goActivity(getActivity(), SearchDetailActivity.class);
                 break;
             default:
                 break;
@@ -95,17 +112,48 @@ public class XigouFragment extends BaseFragment {
     @Override
     protected void initVariable() {
 
+
+    }
+
+    private void initScenicTypeData() {
+        String scenicTypeGson = SpSir.getInstance().getScenicType();
+        if (!TextUtils.isEmpty(scenicTypeGson)) {
+            LogUtil.e(TAG, "有初始化景区类型缓存");
+            scenicTypes = new Gson().fromJson(scenicTypeGson, new TypeToken<List<ScenicType>>() {
+            }.getType());
+        } else {
+            LogUtil.e(TAG, "没有初始化景区类型缓存");
+            xigouPresenter.getScenicType("3");
+        }
+    }
+
+    private void initCityData() {
+        String cityGson = SpSir.getInstance().getCity();
+        if (!TextUtils.isEmpty(cityGson)) {
+            LogUtil.e(TAG, "有初始化城市缓存");
+            cities = new Gson().fromJson(cityGson, new TypeToken<List<City>>() {
+            }.getType());
+        } else {
+            LogUtil.e(TAG, "没有初始化城市缓存");
+            xigouPresenter.getCity();
+        }
     }
 
     @Override
     protected void initComponent(AppComponent appComponent) {
-
+        DaggerXigouCompnent.builder()
+                .appComponent(App.getContext().getAppComponent())
+                .build()
+                .inject(this);
     }
 
     @Override
     protected void initViewAndListener() {
-        tabXigo.setTabMode(TabLayout.MODE_FIXED);
+        xigouPresenter.attachView(this);
+        initScenicTypeData();
+        initCityData();
 
+        tabXigo.setTabMode(TabLayout.MODE_FIXED);
         tabXigo.addTab(tabXigo.newTab().setText(items[0]));
         tabXigo.addTab(tabXigo.newTab().setText(items[1]));
         tabXigo.post(() -> IndicatorUtil.setIndicator(tabXigo, 60, 60));
@@ -124,22 +172,16 @@ public class XigouFragment extends BaseFragment {
         }
 
 
-        new PopHelper.Builder(getActivity())
-                .setAdapter(new SpinerAdapter(getActivity(), Arrays.asList("温州大剧院", "东南剧院", "鹿城文化中心", "温州体院馆")))
-                .setPopSpinner(spinerPlace)
-                .setOnItemClickListener((PopHelper.OnItemClickListener<String>) (item, position, popSpinner) -> {
-                    popSpinner.setSelectText(item);
-                })
-                .build();
+        initScenicTypePop();
 
-        new PopHelper.Builder(getActivity())
-                .setAdapter(new SpinerAdapter(getActivity(), Arrays.asList("演唱会", "话剧戏剧", "戏曲艺术", "音乐会", "体育赛事",
-                        "亲自演出", "休闲展览")))
-                .setPopSpinner(spinerShowType)
-                .setOnItemClickListener((PopHelper.OnItemClickListener<String>) (item, position, popSpinner) -> {
-                    popSpinner.setSelectText(item);
-                })
-                .build();
+//        new PopHelper.Builder(getActivity())
+//                .setAdapter(new SpinerAdapter(getActivity(), Arrays.asList("演唱会", "话剧戏剧", "戏曲艺术", "音乐会", "体育赛事",
+//                        "亲自演出", "休闲展览")))
+//                .setPopSpinner(spinerShowType)
+//                .setOnItemClickListener((PopHelper.OnItemClickListener<String>) (item, position, popSpinner) -> {
+//                    popSpinner.setSelectText(item);
+//                })
+//                .build();
 
 
         pricePop = new PricePop(getContext());
@@ -169,6 +211,20 @@ public class XigouFragment extends BaseFragment {
         });
     }
 
+
+    private void initScenicTypePop() {
+        if (scenicTypes != null && scenicTypes.size() > 0) {
+            new PopHelper.Builder(getActivity())
+                    .setAdapter(new ScenicTypeAdapter(getActivity(), scenicTypes))
+                    .setPopSpinner(spinerScenicType)
+                    .setOnItemClickListener((PopHelper.OnItemClickListener<ScenicType>) (item, position, popSpinner)
+                            -> {
+                        popSpinner.setSelectText(item.getDesc());
+                    })
+                    .build();
+        }
+    }
+
     @Override
     protected void initNet() {
 
@@ -180,4 +236,24 @@ public class XigouFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onGetScenicTypeSuccess(List<ScenicType> scenicTypes) {
+        this.scenicTypes = scenicTypes;
+        initScenicTypePop();
+    }
+
+    @Override
+    public void onGetCitySuccess(List<City> cities) {
+        LogUtil.e(TAG, "重新加载城市列表:" + cities.size());
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
 }

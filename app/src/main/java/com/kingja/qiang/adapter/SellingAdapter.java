@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.imgaeloader.ImageLoader;
-import com.kingja.qiang.page.home.Ticket;
+import com.kingja.qiang.page.sell.Ticket;
 import com.kingja.qiang.util.DateUtil;
 import com.kingja.supershapeview.view.SuperShapeTextView;
 

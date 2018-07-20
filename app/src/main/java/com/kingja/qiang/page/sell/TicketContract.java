@@ -1,4 +1,4 @@
-package com.kingja.qiang.page.home;
+package com.kingja.qiang.page.sell;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;

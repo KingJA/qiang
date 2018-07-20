@@ -1,7 +1,9 @@
 package com.kingja.qiang.model.service;
 
+import com.kingja.qiang.event.ScenicType;
 import com.kingja.qiang.model.HttpResult;
 import com.kingja.qiang.model.entiy.AliPayResult;
+import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.model.entiy.Deal;
 import com.kingja.qiang.model.entiy.Discount;
 import com.kingja.qiang.model.entiy.Friend;
@@ -13,7 +15,7 @@ import com.kingja.qiang.model.entiy.PersonalInfo;
 import com.kingja.qiang.model.entiy.Wallet;
 import com.kingja.qiang.model.entiy.WeixinPayResult;
 import com.kingja.qiang.page.detail.TicketDetail;
-import com.kingja.qiang.page.home.Ticket;
+import com.kingja.qiang.page.sell.Ticket;
 import com.kingja.qiang.page.introduce.SceneryIntroduce;
 import com.kingja.qiang.page.order.Order;
 import com.kingja.qiang.page.order.orderdetail.OrderDetail;
@@ -139,7 +141,6 @@ public interface UserService {
                                                             ("keyword") String keyword, @Field("page") Integer page,
                                                     @Field("pageSize") Integer pageSize, @Field("status") Integer
                                                             status);
-
     /*获取热搜*/
     @FormUrlEncoded
     @POST("/app/product/hotsearch")
@@ -176,6 +177,14 @@ public interface UserService {
     @POST("/app/user/findpasswd")
     Observable<HttpResult<Object>> forgetPassword(@Field("mobile") String mobile, @Field("passwd") String passwd,
                                                   @Field("code") String code);
+    /*获取景区类型*/
+    @FormUrlEncoded
+    @POST("/app/dict/data")
+    Observable<HttpResult<List<ScenicType>>> getScenicType(@Field("dictCategoryId") String dictCategoryId);
+
+    /*获取地区*/
+    @POST("/app/area/list")
+    Observable<HttpResult<List<City>>> getCity();
 
     //=================================================================================
     /*忘记密码*/
