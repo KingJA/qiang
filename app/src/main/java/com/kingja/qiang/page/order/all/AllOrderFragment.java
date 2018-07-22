@@ -69,6 +69,7 @@ public class AllOrderFragment extends BaseFragment implements OrderContract.View
     @Override
     protected void initViewAndListener() {
         orderPresenter.attachView(this);
+        srl_unused.setScrollUpChild(lv_unused);
         srl_unused.setOnRefreshListener(this);
         mAllOrderAdapter = new AllOrderAdapter(getActivity(), orders);
         lv_unused.setAdapter(mAllOrderAdapter);
