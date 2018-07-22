@@ -15,6 +15,7 @@ import com.kingja.qiang.activity.MsgDetailActivity;
 import com.kingja.qiang.adapter.VisitorAdapter;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.callback.EmptyMsgCallback;
+import com.kingja.qiang.callback.EmptyVisitorCallback;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.event.RefreshVisitorsEvent;
 import com.kingja.qiang.injector.component.AppComponent;
@@ -130,7 +131,7 @@ public class VisitorListActivity extends BaseTitleActivity implements VisitorCon
     public void onDeleteVisitorSuccess(int position) {
         mVisitorAdapter.removeItem(position);
         if (mVisitorAdapter.getCount() == 0) {
-            loadService.showCallback(EmptyMsgCallback.class);
+            loadService.showCallback(EmptyVisitorCallback.class);
         }
 
     }

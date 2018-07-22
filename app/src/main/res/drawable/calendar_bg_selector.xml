@@ -14,16 +14,16 @@
           android:color="@color/tran_hi"/>
     </shape>
   </item>
-  <item android:state_pressed="true">
+<!--  <item android:state_pressed="true">
     <shape android:shape="oval">
       <solid android:color="@color/red_hi"/>
       <stroke
           android:width="4dp"
           android:color="@color/tran_hi"/>
     </shape>
-  </item>
+  </item>-->
   <item app:tsquare_state_current_month="false">
-    <color android:color="@color/bg_hi"/>
+    <color android:color="@color/white_hi"/>
   </item>
   <item app:tsquare_state_highlighted="true">
     <color android:color="@color/calendar_highlighted_day_bg"/>
@@ -31,9 +31,9 @@
   <item app:tsquare_state_today="true">
     <shape android:shape="oval">
       <solid android:color="@color/red_hi"/>
-      <stroke
-          android:width="4dp"
-          android:color="@color/tran_hi"/>
+     <!-- <stroke
+          android:width="2dp"
+          android:color="@color/red_hi"/>-->
     </shape>
   </item>
   <item>

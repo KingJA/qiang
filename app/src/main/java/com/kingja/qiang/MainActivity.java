@@ -46,17 +46,18 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void initVariable() {
         MainActivityPermissionsDispatcher.checkPermissionsWithPermissionCheck(this);
         checkPermissions();
     }
 
-    @NeedsPermission({Manifest.permission.READ_CONTACTS, Manifest.permission.CAMERA, Manifest.permission
-            .READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_PHONE_STATE})
+    @Override
+    public void initVariable() {
+
+    }
+
+    @NeedsPermission({android.Manifest.permission.CAMERA,Manifest.permission.READ_PHONE_STATE,  android.Manifest
+            .permission.READ_CONTACTS, android.Manifest.permission
+            .READ_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_FINE_LOCATION})
     public void checkPermissions() {
 
     }

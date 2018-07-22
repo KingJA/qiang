@@ -8,7 +8,9 @@ import com.kingja.loadsir.core.LoadSir;
 import com.kingja.qiang.R;
 import com.kingja.qiang.adapter.UnusedOrderAdapter;
 import com.kingja.qiang.base.BaseFragment;
+import com.kingja.qiang.callback.EmptyCallback;
 import com.kingja.qiang.callback.EmptyMsgCallback;
+import com.kingja.qiang.callback.EmptyOrderCallback;
 import com.kingja.qiang.callback.UnLoginCallback;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.event.ResetLoginStatusEvent;
@@ -103,7 +105,7 @@ public class UnusedOrderFragment extends BaseFragment implements OrderContract.V
     @Override
     public void onGetOrdersSuccess(List<Order> orders) {
         if (orders.size() == 0) {
-            loadService.showCallback(EmptyMsgCallback.class);
+            loadService.showCallback(EmptyOrderCallback.class);
         } else {
             loadService.showSuccess();
             mUnusedOrderAdapter.setData(orders);

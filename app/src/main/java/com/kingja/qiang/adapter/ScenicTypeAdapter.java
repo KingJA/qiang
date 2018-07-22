@@ -34,6 +34,8 @@ public class ScenicTypeAdapter extends BaseLvAdapter<ScenicType> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.tv_spiner.setText(list.get(position).getDesc());
+        viewHolder.iv_spiner_arrow.setVisibility(position==selectPosition?View.VISIBLE:View.GONE);
+
         return convertView;
     }
 

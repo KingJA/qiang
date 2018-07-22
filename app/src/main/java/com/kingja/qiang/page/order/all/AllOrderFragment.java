@@ -9,6 +9,7 @@ import com.kingja.qiang.R;
 import com.kingja.qiang.adapter.AllOrderAdapter;
 import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.callback.EmptyMsgCallback;
+import com.kingja.qiang.callback.EmptyOrderCallback;
 import com.kingja.qiang.callback.UnLoginCallback;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.event.ResetLoginStatusEvent;
@@ -17,6 +18,7 @@ import com.kingja.qiang.page.order.Order;
 import com.kingja.qiang.page.order.OrderContract;
 import com.kingja.qiang.page.order.OrderPresenter;
 import com.kingja.qiang.util.LoginChecker;
+import com.kingja.qiang.view.RefreshSwipeRefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -39,7 +41,7 @@ public class AllOrderFragment extends BaseFragment implements OrderContract.View
     @BindView(R.id.lv_unused)
     ListView lv_unused;
     @BindView(R.id.srl_unused)
-    SwipeRefreshLayout srl_unused;
+    RefreshSwipeRefreshLayout srl_unused;
     private LoadService loadService;
 
     private List<Order> orders = new ArrayList<>();
@@ -101,7 +103,7 @@ public class AllOrderFragment extends BaseFragment implements OrderContract.View
     @Override
     public void onGetOrdersSuccess(List<Order> orders) {
         if (orders.size() == 0) {
-            loadService.showCallback(EmptyMsgCallback.class);
+            loadService.showCallback(EmptyOrderCallback.class);
         } else {
             loadService.showSuccess();
             mAllOrderAdapter.setData(orders);

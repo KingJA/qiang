@@ -98,7 +98,7 @@
         android:layout_height="wrap_content">
 
         <com.kingja.popwindowsir.PopSpinner
-            android:id="@+id/spiner_show_type"
+            android:id="@+id/spiner_city"
             android:background="#ffffff"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -155,12 +155,6 @@
             app:spinner_textSize="12sp"/>
 
     </LinearLayout>
-    <!--<FrameLayout-->
-    <!--android:id="@+id/fl_content_higo"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_weight="1"/>-->
-    <View style="@style/div_hor_gray"/>
 
     <View style="@style/div_hor_gray"/>
 

@@ -7,7 +7,8 @@ import android.support.multidex.MultiDexApplication;
 
 import com.kingja.qiang.callback.EmptyCallback;
 import com.kingja.qiang.callback.EmptyCartCallback;
-import com.kingja.qiang.callback.EmptyDealCallback;
+import com.kingja.qiang.callback.EmptyTicketCallback;
+import com.kingja.qiang.callback.EmptyVisitorCallback;
 import com.kingja.qiang.callback.EmptyMsgCallback;
 import com.kingja.qiang.callback.EmptyOrderCallback;
 import com.kingja.qiang.callback.ErrorNetworkCallback;
@@ -56,6 +57,7 @@ public class App extends MultiDexApplication {
         mSharedPreferences = getSharedPreferences(Constants.APPLICATION_NAME, MODE_PRIVATE);
         setupComponent();
         Logger.d("token:"+ SpSir.getInstance().getToken());
+        Logger.d("RegistrationID:"+ JPushInterface.getRegistrationID(this));
     }
 
     private void initJPush() {
@@ -77,7 +79,8 @@ public class App extends MultiDexApplication {
                 .addCallback(new EmptyCartCallback())
                 .addCallback(new EmptyOrderCallback())
                 .addCallback(new EmptyMsgCallback())
-                .addCallback(new EmptyDealCallback())
+                .addCallback(new EmptyVisitorCallback())
+                .addCallback(new EmptyTicketCallback())
                 .addCallback(new UnLoginCallback())
                 .commit();
     }

@@ -154,6 +154,8 @@
         </com.kingja.supershapeview.view.SuperShapeLinearLayout>
 
     <com.kingja.supershapeview.view.SuperShapeLinearLayout
+        android:id="@+id/ssll_qcode"
+        android:visibility="gone"
         android:layout_width="230dp"
         android:layout_height="230dp"
         android:gravity="center"

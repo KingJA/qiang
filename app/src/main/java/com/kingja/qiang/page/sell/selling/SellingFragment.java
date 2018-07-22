@@ -1,6 +1,7 @@
 package com.kingja.qiang.page.sell.selling;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -10,8 +11,10 @@ import com.kingja.qiang.R;
 import com.kingja.qiang.adapter.SellingAdapter;
 import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.callback.EmptyMsgCallback;
+import com.kingja.qiang.callback.EmptyTicketCallback;
 import com.kingja.qiang.callback.TicketCallback;
 import com.kingja.qiang.constant.Constants;
+import com.kingja.qiang.event.TicketFilterEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.detail.TicketDetail;
 import com.kingja.qiang.page.detail.TicketDetailActivity;
@@ -21,6 +24,10 @@ import com.kingja.qiang.page.sell.TicketPresenter;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.qiang.view.PullToBottomListView;
 import com.kingja.qiang.view.RefreshSwipeRefreshLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +54,7 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
     TicketPresenter ticketPresenter;
     private List<Ticket> tickets = new ArrayList<>();
     private SellingAdapter mSellingAdapter;
-    private int page;
+    private int page=1;
     private boolean hasMore;
 
     @OnItemClick(R.id.lv)
@@ -58,7 +65,14 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
 
     @Override
     protected void initVariable() {
+        EventBus.getDefault().register(this);
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -88,7 +102,7 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
     @Override
     protected void initNet() {
         page = Constants.PAGE_FIRST;
-        ticketPresenter.getTickets("", "", "", "", "", page, Constants.PAGE_SIZE, 1);
+        ticketPresenter.getTickets(areaId, productTypeId, useDates, discountRate, "", page, Constants.PAGE_SIZE, 1);
     }
 
     @Override
@@ -111,7 +125,7 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
     public void onGetTicketSuccess(List<Ticket> tickets) {
         hasMore = tickets.size() == Constants.PAGE_SIZE;
         if (tickets.size() == 0) {
-            loadService.showCallback(EmptyMsgCallback.class);
+            loadService.showCallback(EmptyTicketCallback.class);
         } else {
             loadService.showSuccess();
             mSellingAdapter.setData(tickets);
@@ -136,9 +150,22 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
         }
         if (hasMore) {
             page++;
-            ticketPresenter.getMoreTickets("", "", "", "", "", page, Constants.PAGE_SIZE, 1);
+            ticketPresenter.getMoreTickets(areaId, productTypeId, useDates, discountRate, "", page, Constants.PAGE_SIZE, 1);
         } else {
             ToastUtil.showText("到底啦");
         }
+    }
+    private String areaId;
+    private String productTypeId;
+    private String useDates;
+    private String discountRate;
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void filterTicket(TicketFilterEvent filterEvent) {
+        this.areaId=filterEvent.getAreaId();
+        this.productTypeId=filterEvent.getProductTypeId();
+        this.useDates=filterEvent.getUseDates();
+        this.discountRate=filterEvent.getDiscountRate();
+        Log.e(TAG, "areaId: "+areaId+" productTypeId: "+productTypeId +" useDates: "+useDates +" discountRate: "+discountRate );
+        ticketPresenter.getTickets(areaId, productTypeId, useDates, discountRate, "", 1, Constants.PAGE_SIZE, 1);
     }
 }

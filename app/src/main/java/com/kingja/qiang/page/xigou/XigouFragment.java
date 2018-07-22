@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.kingja.popwindowsir.ListPop;
 import com.kingja.popwindowsir.PopConfig;
 import com.kingja.popwindowsir.PopHelper;
 import com.kingja.popwindowsir.PopSpinner;
@@ -20,18 +19,22 @@ import com.kingja.qiang.adapter.XigoPageAdapter;
 import com.kingja.qiang.base.App;
 import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.event.ScenicType;
+import com.kingja.qiang.event.TicketFilterEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.page.search.SearchDetailActivity;
 import com.kingja.qiang.page.sell.beselling.BesellFragment;
 import com.kingja.qiang.page.sell.selling.SellingFragment;
+import com.kingja.qiang.ui.CityPop;
 import com.kingja.qiang.ui.DataPop;
 import com.kingja.qiang.ui.PricePop;
+import com.kingja.qiang.util.AppUtil;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.IndicatorUtil;
 import com.kingja.qiang.util.LogUtil;
 import com.kingja.qiang.util.SpSir;
-import com.kingja.qiang.util.ToastUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +43,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Description:TODO
@@ -57,22 +59,17 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
     ViewPager vpContentXigo;
     @BindView(R.id.ll_spinner_root)
     LinearLayout llSpinnerRoot;
-    @BindView(R.id.spiner_show_type)
-    PopSpinner spinerShowType;
+    @BindView(R.id.spiner_city)
+    PopSpinner spinerCity;
     @BindView(R.id.spiner_scenicType)
     PopSpinner spinerScenicType;
     @BindView(R.id.spiner_date)
     PopSpinner spinerDate;
     @BindView(R.id.spiner_price)
     PopSpinner spinerPrice;
-    Unbinder unbinder;
     private String[] items = {"在售", "待售"};
     private Fragment mFragmentArr[] = new Fragment[2];
     private int[] icons = {R.mipmap.ic_selling, R.mipmap.ic_beselling};
-    private String[] showTypes = {"演唱会", "话剧戏剧", "戏曲艺术", "音乐会", "体育赛事", "亲自演出", "休闲展览"};
-    private String[] showPlaces = {"温州大剧院", "东南剧院", "鹿城文化中心", "温州体院馆"};
-    private ListPop placePop;
-    private ListPop typePop;
     private DataPop datePop;
     private PricePop pricePop;
     private List<ScenicType> scenicTypes = new ArrayList<>();
@@ -80,27 +77,17 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
 
     @Inject
     XigouPresenter xigouPresenter;
+    private PopConfig popConfig;
+    private CityPop cityPop;
 
-    @OnClick({R.id.spiner_show_type, R.id.spiner_scenicType, R.id.spiner_date, R.id.spiner_price, R.id.ll_home_search})
+    private String areaId="";
+    private String productTypeId="";
+    private String useDates="";
+    private String discountRate="";
+
+    @OnClick({R.id.spiner_city, R.id.spiner_scenicType, R.id.spiner_date, R.id.spiner_price, R.id.ll_home_search})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.spiner_show_type:
-//                typePop.showAsDropDown(llSpinnerRoot);
-                ToastUtil.showText("开发中");
-                Log.e(TAG, "spiner_show_type: ");
-                break;
-            case R.id.spiner_scenicType:
-//                typePop.showAsDropDown(llSpinnerRoot);
-                ToastUtil.showText("开发中");
-                Log.e(TAG, "spiner_place: ");
-                break;
-            case R.id.spiner_date:
-                Log.e(TAG, "日期选择: ");
-                datePop.showAsDropDown(llSpinnerRoot);
-                break;
-            case R.id.spiner_price:
-                ToastUtil.showText("开发中");
-                break;
             case R.id.ll_home_search:
                 GoUtil.goActivity(getActivity(), SearchDetailActivity.class);
                 break;
@@ -130,7 +117,7 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
     private void initCityData() {
         String cityGson = SpSir.getInstance().getCity();
         if (!TextUtils.isEmpty(cityGson)) {
-            LogUtil.e(TAG, "有初始化城市缓存");
+            LogUtil.e(TAG, "有初始化城市缓存:" + cityGson);
             cities = new Gson().fromJson(cityGson, new TypeToken<List<City>>() {
             }.getType());
         } else {
@@ -150,43 +137,32 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
     @Override
     protected void initViewAndListener() {
         xigouPresenter.attachView(this);
+        popConfig = new PopConfig.Builder()
+                .setPopHeight((int) (AppUtil.getScreenHeight() * 0.5f))
+                .build();
+        initTablayout();
         initScenicTypeData();
-        initCityData();
-
-        tabXigo.setTabMode(TabLayout.MODE_FIXED);
-        tabXigo.addTab(tabXigo.newTab().setText(items[0]));
-        tabXigo.addTab(tabXigo.newTab().setText(items[1]));
-        tabXigo.post(() -> IndicatorUtil.setIndicator(tabXigo, 60, 60));
-
-        mFragmentArr[0] = new SellingFragment();
-        mFragmentArr[1] = new BesellFragment();
-        XigoPageAdapter mHigoPageAdapter = new XigoPageAdapter(getActivity(), getChildFragmentManager(), mFragmentArr,
-                items, icons);
-        vpContentXigo.setAdapter(mHigoPageAdapter);
-        vpContentXigo.setOffscreenPageLimit(2);
-        tabXigo.setupWithViewPager(vpContentXigo);
-
-        for (int i = 0; i < tabXigo.getTabCount(); i++) {
-            TabLayout.Tab tab = tabXigo.getTabAt(i);
-            tab.setCustomView(mHigoPageAdapter.getTabView(i));
-        }
-
-
         initScenicTypePop();
-
-//        new PopHelper.Builder(getActivity())
-//                .setAdapter(new SpinerAdapter(getActivity(), Arrays.asList("演唱会", "话剧戏剧", "戏曲艺术", "音乐会", "体育赛事",
-//                        "亲自演出", "休闲展览")))
-//                .setPopSpinner(spinerShowType)
-//                .setOnItemClickListener((PopHelper.OnItemClickListener<String>) (item, position, popSpinner) -> {
-//                    popSpinner.setSelectText(item);
-//                })
-//                .build();
+        initCityData();
+        initCityPop();
+        initDatePop();
+        initPricePop();
 
 
+    }
+
+    private void initPricePop() {
         pricePop = new PricePop(getContext());
         pricePop.setOnDismissListener(() -> {
             spinerPrice.close();
+        });
+        pricePop.setOnDiscountRateSelectedLintener(new PricePop.OnDiscountRateSelectedLintener() {
+            @Override
+            public void onDiscountRateSelected(String discount) {
+                Log.e(TAG, "折扣: "+discount );
+                discountRate=discount;
+                EventBus.getDefault().post(new TicketFilterEvent(areaId,productTypeId,useDates,discountRate));
+            }
         });
         spinerPrice.setOnSpinnerStatusChangedListener(opened -> {
             if (opened) {
@@ -195,12 +171,18 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
                 pricePop.dismiss();
             }
         });
-        PopConfig dataPopConfig = new PopConfig.Builder()
-                .setPopHeight(1000)
-                .build();
-        datePop = new DataPop(getActivity(), dataPopConfig);
+    }
+
+    private void initDatePop() {
+        datePop = new DataPop(getActivity(), popConfig);
         datePop.setOnDismissListener(() -> {
             spinerDate.close();
+        });
+        datePop.setOnDateSelectedListener(dates -> {
+            Log.e(TAG, "选择日期: " + dates);
+            useDates = dates;
+            datePop.dismiss();
+            EventBus.getDefault().post(new TicketFilterEvent(areaId,productTypeId,useDates,discountRate));
         });
         spinerDate.setOnSpinnerStatusChangedListener(opened -> {
             if (opened) {
@@ -211,18 +193,70 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
         });
     }
 
+    private void initTablayout() {
+        tabXigo.setTabMode(TabLayout.MODE_FIXED);
+        tabXigo.addTab(tabXigo.newTab().setText(items[0]));
+        tabXigo.addTab(tabXigo.newTab().setText(items[1]));
+        tabXigo.post(() -> IndicatorUtil.setIndicator(tabXigo, 60, 60));
+        mFragmentArr[0] = new SellingFragment();
+        mFragmentArr[1] = new BesellFragment();
+        XigoPageAdapter mHigoPageAdapter = new XigoPageAdapter(getActivity(), getChildFragmentManager(), mFragmentArr,
+                items, icons);
+        vpContentXigo.setAdapter(mHigoPageAdapter);
+        vpContentXigo.setOffscreenPageLimit(2);
+        tabXigo.setupWithViewPager(vpContentXigo);
+        for (int i = 0; i < tabXigo.getTabCount(); i++) {
+            TabLayout.Tab tab = tabXigo.getTabAt(i);
+            tab.setCustomView(mHigoPageAdapter.getTabView(i));
+        }
+    }
+
 
     private void initScenicTypePop() {
         if (scenicTypes != null && scenicTypes.size() > 0) {
+            ScenicType scenicType = new ScenicType();
+            scenicType.setCode("");
+            scenicType.setDesc("不限");
+            scenicTypes.add(0,scenicType);
+            ScenicTypeAdapter scenicTypeAdapter = new ScenicTypeAdapter(getActivity(), scenicTypes);
             new PopHelper.Builder(getActivity())
-                    .setAdapter(new ScenicTypeAdapter(getActivity(), scenicTypes))
+                    .setAdapter(scenicTypeAdapter)
                     .setPopSpinner(spinerScenicType)
                     .setOnItemClickListener((PopHelper.OnItemClickListener<ScenicType>) (item, position, popSpinner)
                             -> {
                         popSpinner.setSelectText(item.getDesc());
+                        Log.e(TAG, "景区ID: " + item.getCode() + " 景区名称: " + item.getDesc());
+                        productTypeId = item.getCode();
+                        scenicTypeAdapter.selectItem(position);
+                        EventBus.getDefault().post(new TicketFilterEvent(areaId,productTypeId,useDates,discountRate));
                     })
                     .build();
         }
+    }
+
+    private void initCityPop() {
+        if (cities != null && cities.size() > 0) {
+            cityPop = new CityPop(getActivity(), popConfig);
+            cityPop.setCities(cities);
+            cityPop.setOnAreaSelectListener((areaId, areaName) -> {
+                Log.e(TAG, "区域ID: " + areaId + " 区域名称: " + areaName);
+                this.areaId = areaId;
+                spinerCity.setSelectText(areaName);
+                EventBus.getDefault().post(new TicketFilterEvent(areaId,productTypeId,useDates,discountRate));
+                cityPop.dismiss();
+            });
+            cityPop.setOnDismissListener(() -> {
+                spinerCity.close();
+            });
+            spinerCity.setOnSpinnerStatusChangedListener(opened -> {
+                if (opened) {
+                    cityPop.showAsDropDown(llSpinnerRoot);
+                } else {
+                    cityPop.dismiss();
+                }
+            });
+        }
+
     }
 
     @Override
@@ -244,8 +278,11 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
 
     @Override
     public void onGetCitySuccess(List<City> cities) {
-        LogUtil.e(TAG, "重新加载城市列表:" + cities.size());
+        this.cities = cities;
+        Log.e(TAG, "chongxin jiazai: " + cities);
+        initCityPop();
     }
+
 
     @Override
     public void showLoading() {

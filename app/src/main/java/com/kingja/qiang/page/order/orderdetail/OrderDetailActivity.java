@@ -2,6 +2,8 @@ package com.kingja.qiang.page.order.orderdetail;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -9,10 +11,12 @@ import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.injector.component.AppComponent;
+import com.kingja.supershapeview.view.SuperShapeLinearLayout;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Description:TODO
@@ -36,9 +40,12 @@ public class OrderDetailActivity extends BaseTitleActivity implements OrderDetai
     TextView tvOrderCode;
     @BindView(R.id.iv_order_qcode)
     ImageView ivOrderQcode;
+    @BindView(R.id.ssll_qcode)
+    SuperShapeLinearLayout ssllQcode;
     private String orderId;
     @Inject
     OrderDetailPresenter orderDetailPresenter;
+
     @Override
     public void initVariable() {
         orderId = getIntent().getStringExtra("orderId");
@@ -95,12 +102,13 @@ public class OrderDetailActivity extends BaseTitleActivity implements OrderDetai
 
     @Override
     public void onGetOrderDetailSuccess(OrderDetail orderDetail) {
-       tvOrderTitle.setText(orderDetail.getSubject());
-       tvOrderVisitor.setText(orderDetail.getTourists());
-       tvOrderQuantity.setText(String.valueOf(orderDetail.getQuantity()));
-       tvOrderPaydate.setText(orderDetail.getPaidAt());
-       tvOrderOrderId.setText(orderDetail.getOrderNo());
-       tvOrderCode.setText(orderDetail.getTicketcode());
-        ImageLoader.getInstance().loadImage(this,orderDetail.getQrcodeurl(),R.mipmap.bg_qcode,ivOrderQcode);
+        tvOrderTitle.setText(orderDetail.getSubject());
+        tvOrderVisitor.setText(orderDetail.getTourists());
+        tvOrderQuantity.setText(String.valueOf(orderDetail.getQuantity()));
+        tvOrderPaydate.setText(orderDetail.getPaidAt());
+        tvOrderOrderId.setText(orderDetail.getOrderNo());
+        tvOrderCode.setText(orderDetail.getTicketcode());
+        ssllQcode.setVisibility(orderDetail.getQrcodeurl()==null? View.GONE:View.VISIBLE);
+        ImageLoader.getInstance().loadImage(this, orderDetail.getQrcodeurl(), R.mipmap.bg_qcode, ivOrderQcode);
     }
 }

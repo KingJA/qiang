@@ -130,6 +130,7 @@ dependencies {
     implementation files('libs/alipaySdk-20180601.jar')
     /*weixin*/
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation 'com.github.Jay-Goo:RangeSeekBar:v2.0.4'
 }
 
 

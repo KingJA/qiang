@@ -8,14 +8,15 @@
 
     <ImageView
         android:layout_marginBottom="18dp"
-        android:background="@mipmap/ic_callback_empty_deal"
+        android:background="@mipmap/ic_callback_empty_msg"
         android:layout_width="160dp"
         android:layout_height="110dp"/>
 
     <TextView
+        android:id="@+id/tv_tip"
         android:layout_marginBottom="36dp"
         style="@style/font_red_13"
-        android:text="目前还没交易明细"
+        android:text="敬请期待"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

@@ -219,4 +219,9 @@
         <item name="android:textSize">23sp</item>
         <item name="android:textColor">@color/orange_hi</item>
     </style>
+
+    <style name="date_font">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/c_3</item>
+    </style>
 </resources>

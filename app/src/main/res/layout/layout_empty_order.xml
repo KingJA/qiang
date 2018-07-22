@@ -20,19 +20,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <com.kingja.supershapeview.view.SuperShapeTextView
-        android:id="@+id/stv_go_home"
-        style="@style/font_f_18"
-        android:layout_marginLeft="56dp"
-        android:layout_marginRight="56dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:gravity="center"
-        android:text="去首页看看"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:super_cornerRadius="100dp"
-        app:super_solidColor="@color/red_hi"/>
 
 
 </LinearLayout>

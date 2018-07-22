@@ -17,7 +17,7 @@ import java.util.List;
 public abstract class BaseLvAdapter<T> extends BaseAdapter {
     protected Context context;
     protected List<T> list;
-    private int selectPosition = -1;
+    protected int selectPosition = -1;
 
     public BaseLvAdapter(Context context, List<T> list) {
         this.context = context;

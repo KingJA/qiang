@@ -1,8 +1,8 @@
 package com.kingja.qiang.callback;
 
 
-import com.kingja.qiang.R;
 import com.kingja.loadsir.callback.Callback;
+import com.kingja.qiang.R;
 
 
 /**
@@ -12,9 +12,9 @@ import com.kingja.loadsir.callback.Callback;
  * Email:kingjavip@gmail.com
  */
 
-public class EmptyDealCallback extends Callback {
+public class EmptyTicketCallback extends Callback {
     @Override
     protected int onCreateView() {
-        return R.layout.layout_empty_deal;
+        return R.layout.layout_empty_ticket;
     }
 }
