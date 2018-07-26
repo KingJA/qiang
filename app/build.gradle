@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion BUILD_TOOLS_VERSION
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.kingja.qiang"
         minSdkVersion MIN_SDK_VERSION as int
