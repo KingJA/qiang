@@ -15,7 +15,7 @@ public interface ModifyPasswordContract {
     }
 
     interface Presenter extends BasePresenter<View> {
-        void modifyPassword(String newPassword);
+        void modifyPassword(String oldPassword,String newPassword);
 
     }
 }

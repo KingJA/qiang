@@ -13,6 +13,7 @@ import com.kingja.qiang.callback.EmptyMsgCallback;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.Message;
+import com.kingja.qiang.util.SpSir;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.qiang.view.PullToBottomListView;
 import com.kingja.qiang.view.RefreshSwipeRefreshLayout;
@@ -81,6 +82,7 @@ public class MsgActivity extends BaseTitleActivity implements MessageContract.Vi
 
     @Override
     protected void initData() {
+        SpSir.getInstance().clearMsgCount();
         mMsgAdapter.setOnVistorOperListener(this);
         srl.setOnRefreshListener(this);
         lv.setOnScrollToBottom(this);

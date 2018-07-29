@@ -1,14 +1,21 @@
 package com.kingja.qiang.page.mine;
 
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kingja.qiang.R;
 import com.kingja.qiang.activity.ContactUsActivity;
 import com.kingja.qiang.base.BaseFragment;
+import com.kingja.qiang.constant.Constants;
+import com.kingja.qiang.event.MsgCountEvent;
 import com.kingja.qiang.event.RefreshHeadImgEvent;
 import com.kingja.qiang.event.RefreshNicknameEvent;
 import com.kingja.qiang.event.ResetLoginStatusEvent;
@@ -32,7 +39,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Description:TODO
@@ -40,7 +49,7 @@ import butterknife.OnClick;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class MineFragment extends BaseFragment implements MineContract.View{
+public class MineFragment extends BaseFragment implements MineContract.View {
 
     @BindView(R.id.iv_mine_head)
     SuperShapeImageView ivMineHead;
@@ -51,6 +60,17 @@ public class MineFragment extends BaseFragment implements MineContract.View{
 
     @Inject
     MinePresenter minePresenter;
+    @BindView(R.id.tv_msgCount)
+    TextView tvMsgCount;
+    @BindView(R.id.rl_mine_visitor)
+    RelativeLayout rlMineVisitor;
+    @BindView(R.id.rl_mine_password)
+    RelativeLayout rlMinePassword;
+    @BindView(R.id.rl_mine_contract)
+    RelativeLayout rlMineContract;
+    Unbinder unbinder;
+    @BindView(R.id.ll_mine_personal)
+    LinearLayout llMinePersonal;
 
     @Override
     protected void initVariable() {
@@ -87,7 +107,7 @@ public class MineFragment extends BaseFragment implements MineContract.View{
             ImageLoader.getInstance().loadImage(getActivity(), headImg, ivMineHead);
             tvNickname.setText(nickname);
             tvQuit.setVisibility(View.VISIBLE);
-            tvNickname.setOnClickListener(v -> {
+            llMinePersonal.setOnClickListener(v -> {
                 GoUtil.goActivity(getActivity(), PersonalActivity.class);
             });
         } else {
@@ -95,7 +115,7 @@ public class MineFragment extends BaseFragment implements MineContract.View{
             tvQuit.setVisibility(View.GONE);
             tvNickname.setText("注册/登录");
             ivMineHead.setImageResource(R.mipmap.ic_logo);
-            tvNickname.setOnClickListener(v -> {
+            llMinePersonal.setOnClickListener(v -> {
                 GoUtil.goActivity(getActivity(), LoginActivity.class);
             });
         }
@@ -160,7 +180,7 @@ public class MineFragment extends BaseFragment implements MineContract.View{
     private void quit() {
         SpSir.getInstance().clearData();
         EventBus.getDefault().post(new ResetLoginStatusEvent());
-        minePresenter.logout();
+        minePresenter.logout(SpSir.getInstance().getUserId(), Constants.OSNAME);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -192,5 +212,26 @@ public class MineFragment extends BaseFragment implements MineContract.View{
     @Override
     public void onLogoutSuccess() {
         Logger.d("成功退出");
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void refreshMsgCount(MsgCountEvent msgCountEvent) {
+        resetMsgCount();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        resetMsgCount();
+    }
+
+    private void resetMsgCount() {
+        int msgCount = SpSir.getInstance().getMsgCount();
+        if (msgCount != 0) {
+            tvMsgCount.setVisibility(View.VISIBLE);
+            tvMsgCount.setText(String.valueOf(msgCount));
+        } else {
+            tvMsgCount.setVisibility(View.GONE);
+        }
     }
 }

@@ -49,7 +49,7 @@
                 android:background="@null"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:hint="搜景点、门票..."
+                android:hint="景区/目的地"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
                 android:textColorHint="@color/white_hi"/>

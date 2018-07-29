@@ -79,10 +79,7 @@ public abstract class BaseFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-    }
+
 
 
 

@@ -6,7 +6,9 @@ import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,10 +20,12 @@ import com.kingja.qiang.adapter.ScenicTypeAdapter;
 import com.kingja.qiang.adapter.XigoPageAdapter;
 import com.kingja.qiang.base.App;
 import com.kingja.qiang.base.BaseFragment;
+import com.kingja.qiang.event.MsgCountEvent;
 import com.kingja.qiang.event.ScenicType;
 import com.kingja.qiang.event.TicketFilterEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.City;
+import com.kingja.qiang.page.message.MsgActivity;
 import com.kingja.qiang.page.search.SearchDetailActivity;
 import com.kingja.qiang.page.sell.beselling.BesellFragment;
 import com.kingja.qiang.page.sell.selling.SellingFragment;
@@ -35,6 +39,8 @@ import com.kingja.qiang.util.LogUtil;
 import com.kingja.qiang.util.SpSir;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +49,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Description:TODO
@@ -67,6 +74,14 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
     PopSpinner spinerDate;
     @BindView(R.id.spiner_price)
     PopSpinner spinerPrice;
+    @BindView(R.id.tv_xigou_search)
+    TextView tvXigouSearch;
+    Unbinder unbinder;
+    @BindView(R.id.iv_msg)
+    ImageView ivMsg;
+    Unbinder unbinder1;
+    @BindView(R.id.tv_msgCount)
+    TextView tvMsgCount;
     private String[] items = {"在售", "待售"};
     private Fragment mFragmentArr[] = new Fragment[2];
     private int[] icons = {R.mipmap.ic_selling, R.mipmap.ic_beselling};
@@ -80,16 +95,20 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
     private PopConfig popConfig;
     private CityPop cityPop;
 
-    private String areaId="";
-    private String productTypeId="";
-    private String useDates="";
-    private String discountRate="";
+    private String areaId = "";
+    private String productTypeId = "";
+    private String useDates = "";
+    private String discountRate = "";
 
-    @OnClick({R.id.spiner_city, R.id.spiner_scenicType, R.id.spiner_date, R.id.spiner_price, R.id.ll_home_search})
+    @OnClick({R.id.spiner_city, R.id.spiner_scenicType, R.id.spiner_date, R.id.spiner_price, R.id.ll_home_search, R
+            .id.iv_msg})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_home_search:
                 GoUtil.goActivity(getActivity(), SearchDetailActivity.class);
+                break;
+            case R.id.iv_msg:
+                GoUtil.goActivity(getActivity(), MsgActivity.class);
                 break;
             default:
                 break;
@@ -98,8 +117,14 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
 
     @Override
     protected void initVariable() {
+        EventBus.getDefault().register(this);
 
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private void initScenicTypeData() {
@@ -137,6 +162,7 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
     @Override
     protected void initViewAndListener() {
         xigouPresenter.attachView(this);
+        initHint();
         popConfig = new PopConfig.Builder()
                 .setPopHeight((int) (AppUtil.getScreenHeight() * 0.5f))
                 .build();
@@ -151,6 +177,14 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
 
     }
 
+    private void initHint() {
+        String historyKeyword = SpSir.getInstance().getHistoryKeyword();
+        Log.e(TAG, "historyKeyword: " + historyKeyword);
+        if (!TextUtils.isEmpty(historyKeyword)) {
+            tvXigouSearch.setHint(historyKeyword);
+        }
+    }
+
     private void initPricePop() {
         pricePop = new PricePop(getContext());
         pricePop.setOnDismissListener(() -> {
@@ -159,9 +193,9 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
         pricePop.setOnDiscountRateSelectedLintener(new PricePop.OnDiscountRateSelectedLintener() {
             @Override
             public void onDiscountRateSelected(String discount) {
-                Log.e(TAG, "折扣: "+discount );
-                discountRate=discount;
-                EventBus.getDefault().post(new TicketFilterEvent(areaId,productTypeId,useDates,discountRate));
+                Log.e(TAG, "折扣: " + discount);
+                discountRate = discount;
+                EventBus.getDefault().post(new TicketFilterEvent(areaId, productTypeId, useDates, discountRate));
             }
         });
         spinerPrice.setOnSpinnerStatusChangedListener(opened -> {
@@ -182,7 +216,7 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
             Log.e(TAG, "选择日期: " + dates);
             useDates = dates;
             datePop.dismiss();
-            EventBus.getDefault().post(new TicketFilterEvent(areaId,productTypeId,useDates,discountRate));
+            EventBus.getDefault().post(new TicketFilterEvent(areaId, productTypeId, useDates, discountRate));
         });
         spinerDate.setOnSpinnerStatusChangedListener(opened -> {
             if (opened) {
@@ -217,18 +251,18 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
             ScenicType scenicType = new ScenicType();
             scenicType.setCode("");
             scenicType.setDesc("不限");
-            scenicTypes.add(0,scenicType);
+            scenicTypes.add(0, scenicType);
             ScenicTypeAdapter scenicTypeAdapter = new ScenicTypeAdapter(getActivity(), scenicTypes);
             new PopHelper.Builder(getActivity())
                     .setAdapter(scenicTypeAdapter)
                     .setPopSpinner(spinerScenicType)
                     .setOnItemClickListener((PopHelper.OnItemClickListener<ScenicType>) (item, position, popSpinner)
                             -> {
-                        popSpinner.setSelectText(item.getDesc());
                         Log.e(TAG, "景区ID: " + item.getCode() + " 景区名称: " + item.getDesc());
                         productTypeId = item.getCode();
                         scenicTypeAdapter.selectItem(position);
-                        EventBus.getDefault().post(new TicketFilterEvent(areaId,productTypeId,useDates,discountRate));
+                        EventBus.getDefault().post(new TicketFilterEvent(areaId, productTypeId, useDates,
+                                discountRate));
                     })
                     .build();
         }
@@ -241,8 +275,7 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
             cityPop.setOnAreaSelectListener((areaId, areaName) -> {
                 Log.e(TAG, "区域ID: " + areaId + " 区域名称: " + areaName);
                 this.areaId = areaId;
-                spinerCity.setSelectText(areaName);
-                EventBus.getDefault().post(new TicketFilterEvent(areaId,productTypeId,useDates,discountRate));
+                EventBus.getDefault().post(new TicketFilterEvent(areaId, productTypeId, useDates, discountRate));
                 cityPop.dismiss();
             });
             cityPop.setOnDismissListener(() -> {
@@ -293,4 +326,27 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
     public void hideLoading() {
 
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        initHint();
+        resetMsgCount();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void refreshMsgCount(MsgCountEvent msgCountEvent) {
+        resetMsgCount();
+    }
+
+    private void resetMsgCount() {
+        int msgCount = SpSir.getInstance().getMsgCount();
+        if (msgCount != 0) {
+            tvMsgCount.setVisibility(View.VISIBLE);
+            tvMsgCount.setText(String.valueOf(msgCount));
+        } else {
+            tvMsgCount.setVisibility(View.GONE);
+        }
+    }
+
 }

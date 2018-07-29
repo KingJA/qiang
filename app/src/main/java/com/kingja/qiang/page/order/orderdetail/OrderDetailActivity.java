@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
+import com.kingja.qiang.constant.Status;
 import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.supershapeview.view.SuperShapeLinearLayout;
@@ -107,8 +108,9 @@ public class OrderDetailActivity extends BaseTitleActivity implements OrderDetai
         tvOrderQuantity.setText(String.valueOf(orderDetail.getQuantity()));
         tvOrderPaydate.setText(orderDetail.getPaidAt());
         tvOrderOrderId.setText(orderDetail.getOrderNo());
-        tvOrderCode.setText(orderDetail.getTicketcode());
-        ssllQcode.setVisibility(orderDetail.getQrcodeurl()==null? View.GONE:View.VISIBLE);
+        tvOrderCode.setText(orderDetail.getStatus() == Status.OrderStatus.WAIT_USE.getCode() ? "出票中" : orderDetail
+                .getTicketcode());
+        ssllQcode.setVisibility(orderDetail.getQrcodeurl() == null ? View.GONE : View.VISIBLE);
         ImageLoader.getInstance().loadImage(this, orderDetail.getQrcodeurl(), R.mipmap.bg_qcode, ivOrderQcode);
     }
 }

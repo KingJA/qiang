@@ -1,6 +1,7 @@
 package com.kingja.qiang.util;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
@@ -21,9 +22,18 @@ public class LoginChecker {
             DialogUtil.showConfirmDialog(context, "亲，您还未登录，是否马上登录", (dialog, which) -> {
                 GoUtil.goActivity(context, LoginActivity.class);
             });
-
         }else{
             GoUtil.goActivity(context,targetActivity);
+        }
+    }
+
+    public static void goActivity(Activity context, Intent intent) {
+        if (TextUtils.isEmpty(SpSir.getInstance().getToken())) {
+            DialogUtil.showConfirmDialog(context, "亲，您还未登录，是否马上登录", (dialog, which) -> {
+                GoUtil.goActivity(context, LoginActivity.class);
+            });
+        }else{
+            context.startActivity(intent);
         }
     }
 

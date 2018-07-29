@@ -37,8 +37,8 @@ public class ModifyPasswordPresenter implements ModifyPasswordContract.Presenter
     }
 
     @Override
-    public void modifyPassword(String newPassword) {
-        mApi.getUserService().modifyPassword(newPassword).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
+    public void modifyPassword(String oldPassword,String newPassword) {
+        mApi.getUserService().modifyPassword(oldPassword,newPassword).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
                 .mainThread()).subscribe
                 (new ResultObserver<Object>(mView) {
                     @Override

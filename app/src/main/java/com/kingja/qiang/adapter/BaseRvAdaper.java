@@ -108,4 +108,5 @@ public abstract class BaseRvAdaper<T> extends RecyclerView.Adapter<BaseRvAdaper.
 
         this.onItemLongClickListener = onItemLongClickListener;
     }
+
 }

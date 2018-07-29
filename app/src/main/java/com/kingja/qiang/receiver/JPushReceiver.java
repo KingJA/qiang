@@ -8,8 +8,14 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.kingja.qiang.event.MsgCountEvent;
+import com.kingja.qiang.event.Notification;
+import com.kingja.qiang.page.detail.TicketDetailActivity;
+import com.kingja.qiang.util.SpSir;
 import com.orhanobut.logger.Logger;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,7 +41,7 @@ public class JPushReceiver extends BroadcastReceiver {
         }
 
         Bundle bundle = intent.getExtras();
-        Log.e(TAG, "接收到推送: "+intent.getAction() + ", extras: " + printBundle(bundle));
+        Log.e(TAG, "接收到推送: " + intent.getAction() + ", extras: " + printBundle(bundle));
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             Logger.d(TAG, "JPush用户注册成功");
             Log.e(TAG, "JPush用户注册成功");
@@ -44,32 +50,48 @@ public class JPushReceiver extends BroadcastReceiver {
 
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             Log.e(TAG, "接受到推送下来的通知");
-            receivingNotification(context,bundle);
+            receivingNotification(context, bundle);
+            SpSir.getInstance().addMsgCount();
+            EventBus.getDefault().post(new MsgCountEvent());
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.e(TAG, "用户点击打开了通知");
-//            openNotification(context,bundle);
+            goTicketDetail(context, bundle);
 
         } else {
-            Log.e(TAG, "其他通知"+ intent.getAction());
+            Log.e(TAG, "其他通知" + intent.getAction());
         }
     }
 
-    private void receivingNotification(Context context, Bundle bundle){
+    private void goTicketDetail(Context context, Bundle bundle) {
+        String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
+        Log.e(TAG, "extras : " + extras);
+        Notification notification = new Gson().fromJson(extras, Notification.class);
+        Log.e(TAG, "productId : " + notification.getProductId());
+        Intent intent = new Intent(context, TicketDetailActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("productId", notification.getProductId());
+        context.startActivity(intent);
+    }
+
+    private void receivingNotification(Context context, Bundle bundle) {
         String title = bundle.getString(JPushInterface.EXTRA_NOTIFICATION_TITLE);
         Log.e(TAG, " title : " + title);
         String message = bundle.getString(JPushInterface.EXTRA_ALERT);
         Log.e(TAG, "message : " + message);
         String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
         Log.e(TAG, "extras : " + extras);
+        Notification notification = new Gson().fromJson(extras, Notification.class);
+        Log.e(TAG, "productId : " + notification.getProductId());
     }
+
     // 打印所有的 intent extra 数据
     private static String printBundle(Bundle bundle) {
         StringBuilder sb = new StringBuilder();
         for (String key : bundle.keySet()) {
             if (key.equals(JPushInterface.EXTRA_NOTIFICATION_ID)) {
                 sb.append("\nkey:" + key + ", value:" + bundle.getInt(key));
-            }else if(key.equals(JPushInterface.EXTRA_CONNECTION_CHANGE)){
+            } else if (key.equals(JPushInterface.EXTRA_CONNECTION_CHANGE)) {
                 sb.append("\nkey:" + key + ", value:" + bundle.getBoolean(key));
             } else if (key.equals(JPushInterface.EXTRA_EXTRA)) {
                 if (TextUtils.isEmpty(bundle.getString(JPushInterface.EXTRA_EXTRA))) {
@@ -79,12 +101,12 @@ public class JPushReceiver extends BroadcastReceiver {
 
                 try {
                     JSONObject json = new JSONObject(bundle.getString(JPushInterface.EXTRA_EXTRA));
-                    Iterator<String> it =  json.keys();
+                    Iterator<String> it = json.keys();
 
                     while (it.hasNext()) {
                         String myKey = it.next();
                         sb.append("\nkey:" + key + ", value: [" +
-                                myKey + " - " +json.optString(myKey) + "]");
+                                myKey + " - " + json.optString(myKey) + "]");
                     }
                 } catch (JSONException e) {
                     Logger.e(TAG, "Get message extra JSON error!");

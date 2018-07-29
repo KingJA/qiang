@@ -7,9 +7,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
+import com.kingja.qiang.constant.Status;
 import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.page.order.Order;
 import com.kingja.qiang.page.order.orderdetail.OrderDetailActivity;
+import com.kingja.qiang.util.EnumUtil;
 import com.kingja.supershapeview.view.SuperShapeTextView;
 
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.List;
  * Email:kingjavip@gmail.com
  */
 public class AllOrderAdapter extends BaseLvAdapter<Order> {
+    //    0待支付 3待出票 1待使用 2已使用 8已取消
     public AllOrderAdapter(Context context, List<Order> list) {
         super(context, list);
     }
@@ -41,13 +44,20 @@ public class AllOrderAdapter extends BaseLvAdapter<Order> {
         viewHolder.tv_order_area.setText(list.get(position).getAreaText());
         viewHolder.tv_order_payamount.setText(String.valueOf(list.get(position).getPayamount()));
         viewHolder.tv_order_date.setText(list.get(position).getVisitDate());
-        ImageLoader.getInstance().loadImage(context, list.get(position).getHeadimg(),R.mipmap.ic_placeholder, viewHolder.iv_order_img);
+        ImageLoader.getInstance().loadImage(context, list.get(position).getHeadimg(), R.mipmap.ic_placeholder,
+                viewHolder.iv_order_img);
 
-        viewHolder.iv_order_stamp.setVisibility(list.get(position).getStatus() == 1 ? View.GONE : View.VISIBLE);
-        viewHolder.stv_order_detail.setVisibility(list.get(position).getStatus()  == 1 ? View.VISIBLE : View.GONE);
-        viewHolder.tv_order_status.setVisibility(list.get(position).getStatus()  == 1 ? View.VISIBLE : View.GONE);
+        viewHolder.iv_order_stamp.setVisibility(list.get(position).getStatus() == Status.OrderStatus.USED.getCode() ?
+                View.VISIBLE : View.GONE);
+        viewHolder.stv_order_detail.setVisibility(list.get(position).getStatus() == Status.OrderStatus.USED.getCode()
+                || list.get(position).getStatus() == Status.OrderStatus.OVER_TIME.getCode()
+                ? View.GONE : View.VISIBLE);
+        viewHolder.tv_order_status.setVisibility(list.get(position).getStatus() == Status.OrderStatus.USED.getCode()
+                ? View.GONE : View.VISIBLE);
+        viewHolder.tv_order_status.setText(EnumUtil.getByCode(list.get(position).getStatus(), Status.OrderStatus
+                .class).getMsg());
         viewHolder.stv_order_detail.setOnClickListener(v -> {
-            OrderDetailActivity.goActivity(context,list.get(position).getId());
+            OrderDetailActivity.goActivity(context, list.get(position).getId());
 
         });
         return convertView;

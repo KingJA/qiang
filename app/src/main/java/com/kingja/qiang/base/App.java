@@ -46,18 +46,19 @@ public class App extends MultiDexApplication {
         super.onCreate();
         initJPush();
         initLoadSir();
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            // This process is dedicated to LeakCanary for heap analysis.
+//            // You should not init your app in this process.
+//            return;
+//        }
+//        LeakCanary.install(this);
         Logger.addLogAdapter(new AndroidLogAdapter());
-        LeakCanary.install(this);
         sInstance = this;
         mSharedPreferences = getSharedPreferences(Constants.APPLICATION_NAME, MODE_PRIVATE);
         setupComponent();
         Logger.d("token:"+ SpSir.getInstance().getToken());
         Logger.d("RegistrationID:"+ JPushInterface.getRegistrationID(this));
+        SpSir.getInstance().clearMsgCount();
     }
 
     private void initJPush() {

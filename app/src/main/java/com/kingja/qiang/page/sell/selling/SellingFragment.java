@@ -93,7 +93,7 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
         lv.setAdapter(mSellingAdapter);
         LoadSir loadSir = new LoadSir.Builder()
                 .addCallback(new TicketCallback())
-                .addCallback(new EmptyMsgCallback())
+                .addCallback(new EmptyTicketCallback())
                 .setDefaultCallback(TicketCallback.class)
                 .build();
                 loadService = loadSir.register(lv);

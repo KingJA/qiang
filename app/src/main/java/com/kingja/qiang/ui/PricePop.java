@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,8 +13,6 @@ import com.jaygoo.widget.RangeSeekBar;
 import com.kingja.popwindowsir.BasePop;
 import com.kingja.popwindowsir.PopConfig;
 import com.kingja.qiang.R;
-
-import org.w3c.dom.Text;
 
 /**
  * Description:TODO
@@ -26,6 +25,9 @@ public class PricePop extends BasePop {
     private OnDiscountRateSelectedLintener onDiscountRateSelectedLintener;
     private RangeSeekBar rsb_discountRate;
     private String discountRate = "0.1,0.9";
+    private ImageView iv_one_yuan;
+    private TextView tv_leftValue;
+    private TextView tv_rightValue;
 
     public PricePop(Context context) {
         super(context);
@@ -43,11 +45,12 @@ public class PricePop extends BasePop {
     @Override
     protected void initView(View contentView) {
         rsb_discountRate = contentView.findViewById(R.id.rsb_discountRate);
-        TextView tv_leftValue = contentView.findViewById(R.id.tv_leftValue);
-        TextView tv_rightValue = contentView.findViewById(R.id.tv_rightValue);
+        tv_leftValue = contentView.findViewById(R.id.tv_leftValue);
+        tv_rightValue = contentView.findViewById(R.id.tv_rightValue);
         TextView tv_confirm = contentView.findViewById(R.id.tv_confirm);
         TextView tv_cancel = contentView.findViewById(R.id.tv_cancel);
         LinearLayout ll_one_yuan = contentView.findViewById(R.id.ll_one_yuan);
+        iv_one_yuan = contentView.findViewById(R.id.iv_one_yuan);
         rsb_discountRate.setValue(1, 9);
         rsb_discountRate.setOnRangeChangedListener(new OnRangeChangedListener() {
             @Override
@@ -69,6 +72,8 @@ public class PricePop extends BasePop {
         });
         ll_one_yuan.setOnClickListener(v -> {
             if (onDiscountRateSelectedLintener != null) {
+                iv_one_yuan.setBackgroundResource(R.mipmap.ic_oneyuan_sel);
+                resetDiscountDate();
                 onDiscountRateSelectedLintener.onDiscountRateSelected("0.01");
             }
             dismiss();
@@ -78,6 +83,7 @@ public class PricePop extends BasePop {
             @Override
             public void onClick(View v) {
                 if (onDiscountRateSelectedLintener != null) {
+                    iv_one_yuan.setBackgroundResource(R.mipmap.ic_oneyuan_nor);
                     onDiscountRateSelectedLintener.onDiscountRateSelected(discountRate);
                 }
                 dismiss();
@@ -86,7 +92,8 @@ public class PricePop extends BasePop {
         tv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetDate(tv_leftValue, tv_rightValue);
+                iv_one_yuan.setBackgroundResource(R.mipmap.ic_oneyuan_nor);
+                resetDiscountDate();
                 if (onDiscountRateSelectedLintener != null) {
                     onDiscountRateSelectedLintener.onDiscountRateSelected("");
                 }
@@ -95,7 +102,7 @@ public class PricePop extends BasePop {
         });
     }
 
-    private void resetDate(TextView tv_leftValue, TextView tv_rightValue) {
+    private void resetDiscountDate() {
         rsb_discountRate.setValue(1, 9);
         discountRate = "0.1,0.9";
         tv_leftValue.setText("1");

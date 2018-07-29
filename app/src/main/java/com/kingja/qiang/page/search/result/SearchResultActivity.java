@@ -253,7 +253,6 @@ public class SearchResultActivity extends BaseActivity implements TicketContract
             cityPop.setOnAreaSelectListener((areaId, areaName) -> {
                 Log.e(TAG, "区域ID: " + areaId + " 区域名称: " + areaName);
                 this.areaId = areaId;
-                spiner_city.setSelectText(areaName);
                 ticketPresenter.getTickets(areaId, productTypeId, useDates, discountRate, keyword, 1,
                         Constants.PAGE_SIZE, 2);
                 cityPop.dismiss();
@@ -294,7 +293,6 @@ public class SearchResultActivity extends BaseActivity implements TicketContract
                     .setPopSpinner(spiner_scenicType)
                     .setOnItemClickListener((PopHelper.OnItemClickListener<ScenicType>) (item, position, popSpinner)
                             -> {
-                        popSpinner.setSelectText(item.getDesc());
                         Log.e(TAG, "景区ID: " + item.getCode() + " 景区名称: " + item.getDesc());
                         productTypeId = item.getCode();
                         scenicTypeAdapter.selectItem(position);

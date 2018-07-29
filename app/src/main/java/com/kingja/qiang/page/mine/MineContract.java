@@ -3,6 +3,8 @@ package com.kingja.qiang.page.mine;
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
 
+import retrofit2.http.Field;
+
 /**
  * Description：TODO
  * Create Time：2016/10/10 14:38
@@ -15,7 +17,7 @@ public interface MineContract {
     }
 
     interface Presenter extends BasePresenter<View> {
-        void logout();
+        void logout(String userId, String osName);
 
     }
 }

@@ -106,7 +106,6 @@ public class VisitorAddActivity extends BaseTitleActivity implements VisitorAddC
     public void onAddVisitorSuccess(Visitor visitor) {
         ToastUtil.showText("添加游客信息成功");
         EventBus.getDefault().post(new RefreshVisitorsEvent());
-        EventBus.getDefault().post(new AddVisitorEvent(visitor));
         finish();
     }
 }

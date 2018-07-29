@@ -64,6 +64,15 @@ public class VisitorTabAdapter extends BaseRvAdaper<Visitor> {
         notifyDataSetChanged();
     }
 
+    public boolean has(AddVisitorEvent visitorEvent) {
+        for (int i = 0; i < list.size(); i++) {
+            if (visitorEvent.getId().equals(list.get(i).getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     class VisitorTabViewHolder extends ViewHolder {
         TextView tv_visitor_tab;
         ImageView iv_tab_sel;
@@ -85,5 +94,4 @@ public class VisitorTabAdapter extends BaseRvAdaper<Visitor> {
         }
         notifyDataSetChanged();
     }
-
 }

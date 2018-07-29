@@ -7,22 +7,17 @@
               android:orientation="vertical">
     <LinearLayout
         android:id="@+id/ll_one_yuan"
-        android:padding="12dp"
+        android:padding="24dp"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/iv_one_yuan"
             android:layout_marginRight="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/ic_one_yuan"/>
-
-        <TextView
-            style="@style/font_red_15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="一元抢购"/>
+            android:layout_width="96dp"
+            android:layout_height="17dp"
+            android:background="@mipmap/ic_oneyuan_nor"/>
 
 
     </LinearLayout>
@@ -76,6 +71,23 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/font_3_13"
+                android:text="1折"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_alignParentRight="true"
+                style="@style/font_3_13"
+                android:text="9折"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
         <com.jaygoo.widget.RangeSeekBar
             android:id="@+id/rsb_discountRate"
             android:layout_width="match_parent"
@@ -91,7 +103,7 @@
             app:rsb_thumb_size="36dp"
             app:rsb_thumb_drawable="@mipmap/ic_seekbar"
             app:rsb_indicator_radius="8dp"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="16dp"/>
 
 
 

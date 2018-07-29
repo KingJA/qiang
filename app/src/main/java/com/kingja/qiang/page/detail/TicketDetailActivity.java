@@ -35,6 +35,7 @@ import com.kingja.qiang.page.login.LoginActivity;
 import com.kingja.qiang.page.pay.PayActivity;
 import com.kingja.qiang.page.visitor.add.VisitorAddActivity;
 import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.page.visitor.list.VisitorListActivity;
 import com.kingja.qiang.page.visitor.prefect.VisitorPrefectActivity;
 import com.kingja.qiang.util.DateUtil;
 import com.kingja.qiang.util.DialogUtil;
@@ -106,7 +107,7 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
             case R.id.tv_detail_buy:
                 if (LoginChecker.isLogin()) {
                     checkBuyInfo();
-                }else{
+                } else {
                     DialogUtil.showLoginActivity(this);
                 }
                 break;
@@ -335,8 +336,11 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     }
 
     private List<Visitor> getSelectVisitor(List<Visitor> visitors) {
+        if (visitors.size() > 3) {
+            visitors = visitors.subList(0, 3);
+        }
         Visitor addVisitor = new Visitor();
-        addVisitor.setName("新增游客 >");
+        addVisitor.setName("新增/更换 >");
         visitors.add(addVisitor);
         for (Visitor visitor : visitors) {
             if (visitor.getIsdefault() == 1) {
@@ -354,12 +358,13 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     @Override
     public void onItemClick(Visitor visitor, int position) {
         if (position == visitorTabAdapter.getItemCount() - 1) {
-            LoginChecker.goActivity(this, VisitorAddActivity.class);
+            Intent intent = new Intent(this, VisitorListActivity.class);
+            intent.putExtra("fromTitketDetail", true);
+            LoginChecker.goActivity(this, intent);
         } else {
             visitorTabAdapter.select(position);
             fillVisitorInfo(visitor);
         }
-
     }
 
     public void setTicketStatus() {
@@ -392,6 +397,10 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
 
     @Subscribe
     public void addVisitor(AddVisitorEvent visitorEvent) {
+        if (visitorTabAdapter.has(visitorEvent)) {
+            ToastUtil.showText("已经存在该游客信息");
+            return;
+        }
         visitorTabAdapter.addFirst(visitorEvent);
         fillVisitorInfo(visitorEvent);
         mRvTicketDetail.scrollToPosition(0);

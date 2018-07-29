@@ -39,11 +39,11 @@ public class SettingPresenter implements SettingContract.Presenter {
 
     @Override
     public void logout() {
-        mApi.getUserService().logout().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe
-                (new ResultObserver<Object>(mView) {
-                    @Override
-                    protected void onSuccess(Object object) {
-                    }
-                });
+//        mApi.getUserService().logout().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe
+//                (new ResultObserver<Object>(mView) {
+//                    @Override
+//                    protected void onSuccess(Object object) {
+//                    }
+//                });
     }
 }

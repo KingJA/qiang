@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
+import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.event.ResetLoginStatusEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.Login;
@@ -95,7 +96,7 @@ public class LoginActivity extends BaseTitleActivity implements LoginContract.Vi
                 String username = etLoginName.getText().toString().trim();
                 String password = etLoginPassword.getText().toString().trim();
                 if (CheckUtil.checkPhoneFormat(username) && CheckUtil.checkEmpty(password, "请输入密码")) {
-                    mLoginPresenter.login(username, EncryptUtil.getMd5(password), JPushInterface.getRegistrationID(this), "", "");
+                    mLoginPresenter.login(username, EncryptUtil.getMd5(password), JPushInterface.getRegistrationID(this), "", Constants.OSNAME);
                 }
                 break;
             default:

@@ -8,8 +8,8 @@ package com.kingja.qiang.page.order.orderdetail;
  */
 public class OrderDetail {
     private String id;
-    private Integer quantity;
-    private Integer status;
+    private int quantity;
+    private int status;
     private Double payamount;
     private String subject;
     private String qrcodeurl;
@@ -46,19 +46,19 @@ public class OrderDetail {
         this.id = id;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

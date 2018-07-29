@@ -80,6 +80,7 @@
         </LinearLayout>
 
         <TextView
+            style="@style/font_6_13"
             android:id="@+id/tv_ticket_area"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,8 +92,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center_vertical">
+        android:layout_marginTop="12dp">
 
 
         <ImageView
@@ -114,6 +114,8 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/font_3_15"
+                    android:lines="2"
                     android:id="@+id/tv_ticket_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -145,6 +147,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -152,13 +155,17 @@
 
                     <ProgressBar
                         android:id="@+id/pb_ticket_sell"
-                        style="?android:attr/progressBarStyleHorizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/KProgressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
                         android:layout_marginRight="12dp"
                         android:layout_weight="1"
                         android:progress="60"/>
-
+                    <TextView
+                        style="@style/font_red_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="已售"/>
 
                     <TextView
                         android:id="@+id/tv_ticket_selledCount"
@@ -179,20 +186,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="80"/>
+                    <TextView
+                        style="@style/font_red_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="张"/>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp">
+                    android:layout_marginTop="6dp">
 
                     <TextView
+                        style="@style/font_6_13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="使用日期："/>
 
                     <TextView
+                        style="@style/font_6_13"
                         android:id="@+id/tv_ticket_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -200,53 +214,70 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="6dp"
-                        android:text="门市价"/>
-
-                    <com.kingja.qiang.view.DeleteTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="¥"/>
-
-                    <com.kingja.qiang.view.DeleteTextView
-                        android:id="@+id/dtv_ticket_marketPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="86"/>
-                </LinearLayout>
-
-                <LinearLayout
+                <RelativeLayout
+                    android:layout_marginTop="2dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        style="@style/font_orange_13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="6dp"
-                        android:text="抢购价"/>
+                    <LinearLayout
+                        android:gravity="bottom"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        style="@style/font_orange_13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="¥"/>
+                        <TextView
+                            style="@style/font_9_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="6dp"
+                            android:text="门市价"/>
 
-                    <TextView
-                        android:id="@+id/dtv_ticket_buyPrice"
-                        style="@style/font_orange_23"
+                        <com.kingja.qiang.view.DeleteTextView
+                            style="@style/font_9_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="¥"/>
+
+                        <com.kingja.qiang.view.DeleteTextView
+                            style="@style/font_9_13"
+                            android:id="@+id/dtv_ticket_marketPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="86"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="86"/>
-                </LinearLayout>
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/font_orange_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="6dp"
+                            android:text="抢购价"/>
+
+                        <TextView
+                            style="@style/font_orange_13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="¥"/>
+
+                        <TextView
+                            android:id="@+id/dtv_ticket_buyPrice"
+                            style="@style/font_orange_23"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="86"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+
+
             </LinearLayout>
 
             <ImageView

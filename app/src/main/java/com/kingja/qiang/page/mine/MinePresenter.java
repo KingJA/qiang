@@ -39,8 +39,8 @@ public class MinePresenter implements MineContract.Presenter {
     }
 
     @Override
-    public void logout() {
-        mApi.getUserService().logout().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe
+    public void logout(String userId, String osName) {
+        mApi.getUserService().logout( userId,  osName).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe
                 (new ResultObserver<Object>(mView) {
                     @Override
                     protected void onSuccess(Object object) {

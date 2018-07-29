@@ -2,22 +2,26 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/red_hi">
+        android:background="@color/red_hi"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/ll_home_search"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="28dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="28dp"
             android:layout_marginRight="28dp"
             android:layout_marginTop="8dp"
+            android:layout_weight="1"
             android:background="@drawable/shape_circle_gray"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -30,13 +34,14 @@
                 android:background="@mipmap/ic_search"/>
 
             <TextView
+                android:id="@+id/tv_xigou_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
                 android:layout_weight="1"
                 android:background="@null"
-                android:hint="搜景点、门票..."
+                android:hint="景区/目的地"
                 android:textColorHint="#f2f2f2"
                 android:textSize="12sp"/>
 
@@ -47,6 +52,34 @@
                 android:background="@mipmap/ic_scan"
                 android:visibility="gone"/>
         </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_marginRight="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:layout_marginTop="4dp"
+                android:id="@+id/iv_msg"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/ic_msg"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_msgCount"
+                android:layout_marginLeft="12dp"
+                style="@style/font_red_10"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:background="@drawable/shape_circle_white"
+                android:gravity="center"
+                android:text="99"/>
+        </RelativeLayout>
+
+
     </LinearLayout>
 
     <RelativeLayout
@@ -73,9 +106,9 @@
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:layout_centerInParent="true"
+            android:layout_marginBottom="12dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:layout_marginBottom="12dp"
             app:cardCornerRadius="4dp"
             app:cardElevation="4dp">
 
@@ -99,54 +132,57 @@
 
         <com.kingja.popwindowsir.PopSpinner
             android:id="@+id/spiner_city"
-            android:background="#ffffff"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:spinner_indicatorSelColor="@color/red_hi"
+            android:layout_weight="1"
+            android:background="#ffffff"
             app:spinner_indicatorNorColor="@color/c_9"
+            app:spinner_indicatorSelColor="@color/red_hi"
             app:spinner_indicatorSzie="6dp"
-            app:spinner_indicatorText="全部区域"
+            app:spinner_indicatorText="选择区域"
             app:spinner_marginIndicator="24dp"
             app:spinner_textNorColor="@color/c_3"
             app:spinner_textSelColor="@color/red_hi"
             app:spinner_textSize="12sp"/>
+
         <com.kingja.popwindowsir.PopSpinner
             android:id="@+id/spiner_scenicType"
-            android:background="#ffffff"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:spinner_indicatorSelColor="@color/red_hi"
+            android:layout_weight="1"
+            android:background="#ffffff"
             app:spinner_indicatorNorColor="@color/c_9"
+            app:spinner_indicatorSelColor="@color/red_hi"
             app:spinner_indicatorSzie="6dp"
-            app:spinner_indicatorText="景区类型"
+            app:spinner_indicatorText="选择类型"
             app:spinner_marginIndicator="24dp"
             app:spinner_textNorColor="@color/c_3"
             app:spinner_textSelColor="@color/red_hi"
             app:spinner_textSize="12sp"/>
+
         <com.kingja.popwindowsir.PopSpinner
             android:id="@+id/spiner_date"
-            android:background="#ffffff"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:spinner_indicatorSelColor="@color/red_hi"
+            android:layout_weight="1"
+            android:background="#ffffff"
             app:spinner_indicatorNorColor="@color/c_9"
+            app:spinner_indicatorSelColor="@color/red_hi"
             app:spinner_indicatorSzie="6dp"
-            app:spinner_indicatorText="日期选择"
+            app:spinner_indicatorText="选择日期"
             app:spinner_marginIndicator="24dp"
             app:spinner_textNorColor="@color/c_3"
             app:spinner_textSelColor="@color/red_hi"
             app:spinner_textSize="12sp"/>
+
         <com.kingja.popwindowsir.PopSpinner
             android:id="@+id/spiner_price"
-            android:background="#ffffff"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:spinner_indicatorSelColor="@color/red_hi"
+            android:layout_weight="1"
+            android:background="#ffffff"
             app:spinner_indicatorNorColor="@color/c_9"
+            app:spinner_indicatorSelColor="@color/red_hi"
             app:spinner_indicatorSzie="6dp"
             app:spinner_indicatorText="折扣率"
             app:spinner_marginIndicator="24dp"

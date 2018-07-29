@@ -62,7 +62,7 @@ public interface UserService {
     /*修改密码*/
     @FormUrlEncoded
     @POST("/app/user/changepasswd")
-    Observable<HttpResult<Object>> modifyPassword(@Field("passwd") String password);
+    Observable<HttpResult<Object>> modifyPassword(@Field("oldpasswd") String oldpasswd,@Field("passwd") String password);
 
 
     /*修改昵称*/
@@ -75,7 +75,7 @@ public interface UserService {
 
     /*退出登录OK*/
     @POST("/app/user/logout")
-    Observable<HttpResult<Object>> logout();
+    Observable<HttpResult<Object>> logout(@Field("userId") String userId, @Field("osName") String osName);
 
     /*我的消息*/
     @FormUrlEncoded

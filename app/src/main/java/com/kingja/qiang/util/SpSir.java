@@ -20,7 +20,9 @@ public class SpSir {
     private static final String HOTSEARCH = "HOTSEARCH";
     private static final String HistorySearch = "HistorySearch";
     private static final String ScenicType = "ScenicType";
+    private static final String MsgCount = "MsgCount";
     private static final String City = "City";
+    private static final String History_Keyword = "History_Keyword";
     private static final String EMPTY_STRING = "";
     private static SpSir mSpSir;
     private SharedPreferences mSp;
@@ -78,6 +80,14 @@ public class SpSir {
         return getString(City);
     }
 
+    public String getHistoryKeyword() {
+        return getString(History_Keyword);
+    }
+
+    public int getMsgCount() {
+        return getInt(MsgCount, 0);
+    }
+
     /*================================PUT================================*/
 
 
@@ -113,6 +123,19 @@ public class SpSir {
         putString(City, city);
     }
 
+    public void addMsgCount() {
+        int msgCount = getMsgCount();
+        putInt(MsgCount, ++msgCount);
+    }
+
+    public void clearMsgCount() {
+        putInt(MsgCount, 0);
+    }
+
+    public void putHistoryKeyword(String historyKeyword) {
+        putString(History_Keyword, historyKeyword);
+    }
+
     public void addHistorySearch(String historySearch) {
         if (TextUtils.isEmpty(historySearch)) {
             return;
@@ -139,6 +162,14 @@ public class SpSir {
 
     private String getString(String key, String defaultValue) {
         return mSp.getString(key, defaultValue);
+    }
+
+    private void putInt(String key, int value) {
+        mSp.edit().putInt(key, value).apply();
+    }
+
+    private int getInt(String key, int defaultValue) {
+        return mSp.getInt(key, defaultValue);
     }
 
     private String getString(String key) {

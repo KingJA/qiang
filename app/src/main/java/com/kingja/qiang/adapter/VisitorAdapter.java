@@ -5,10 +5,12 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.view.DrawHelperLayout;
 
 import java.util.List;
 
@@ -49,12 +51,16 @@ public class VisitorAdapter extends BaseLvAdapter<Visitor> {
                 onVistorOperListener.onDeleteVisitor(list.get(position).getId(), position);
             }
         });
-        viewHolder.iv_visitor_default.setOnClickListener(v -> {
+        viewHolder.ll_visitor_default.setOnClickListener(v -> {
             if (onVistorOperListener != null) {
                 onVistorOperListener.onDefaultVisitor(list.get(position).getId(), position);
             }
         });
-
+        viewHolder.drawHelperLayout.setOnRootClickListener(() -> {
+            if (onVistorOperListener != null) {
+                onVistorOperListener.onSelectVisitor(list.get(position));
+            }
+        });
         if (list.get(position).getIsdefault() == 1) {
             viewHolder.iv_visitor_default.setBackgroundResource(R.mipmap.ic_default_sel);
             viewHolder.tv_visitor_default.setText("默认游客");
@@ -81,6 +87,8 @@ public class VisitorAdapter extends BaseLvAdapter<Visitor> {
         TextView tv_visitor_delete;
         ImageView iv_visitor_default;
         ImageView iv_visitor_edit;
+        LinearLayout ll_visitor_default;
+        DrawHelperLayout drawHelperLayout;
 
         public ViewHolder(View root) {
             this.root = root;
@@ -91,6 +99,8 @@ public class VisitorAdapter extends BaseLvAdapter<Visitor> {
             iv_visitor_default = root.findViewById(R.id.iv_visitor_default);
             iv_visitor_edit = root.findViewById(R.id.iv_visitor_edit);
             tv_visitor_delete = root.findViewById(R.id.tv_visitor_delete);
+            ll_visitor_default = root.findViewById(R.id.ll_visitor_default);
+            drawHelperLayout = root.findViewById(R.id.drawHelperLayout);
         }
     }
 
@@ -98,6 +108,7 @@ public class VisitorAdapter extends BaseLvAdapter<Visitor> {
         void onDeleteVisitor(String touristId, int position);
         void onDefaultVisitor(String touristId, int position);
         void onEditVisitor(Visitor visitor);
+        void onSelectVisitor(Visitor visitor);
     }
 
     public void setOnVistorOperListener(OnVistorOperListener onVistorOperListener) {

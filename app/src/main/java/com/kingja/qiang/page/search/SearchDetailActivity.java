@@ -84,6 +84,7 @@ public class SearchDetailActivity extends BaseActivity implements TextView.OnEdi
 
     @Override
     protected void initData() {
+        initHint();
         initLocalhostData();
         mEtSearchKeyword.setOnEditorActionListener(this);
         mEtSearchKeyword.addTextChangedListener(this);
@@ -92,7 +93,12 @@ public class SearchDetailActivity extends BaseActivity implements TextView.OnEdi
         mIvClearInput.setOnClickListener(this);
         mLlTitleBack.setOnClickListener(this);
     }
-
+    private void initHint() {
+        String historyKeyword = SpSir.getInstance().getHistoryKeyword();
+        if (!TextUtils.isEmpty(historyKeyword)) {
+            mEtSearchKeyword.setHint(historyKeyword);
+        }
+    }
     private void initLocalhostData() {
         String hotSearch = SpSir.getInstance().getHotSearch();
         if (!TextUtils.isEmpty(hotSearch)) {
@@ -172,6 +178,7 @@ public class SearchDetailActivity extends BaseActivity implements TextView.OnEdi
     }
 
     private void doSaveSearch(String keyword) {
+        SpSir.getInstance().putHistoryKeyword(keyword);
         SpSir.getInstance().addHistorySearch(keyword);
         initHistorySearchStatus();
         doSearch(keyword);

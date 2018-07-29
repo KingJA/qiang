@@ -12,6 +12,7 @@ import com.kingja.qiang.base.BaseActivity;
 import com.kingja.qiang.constant.NavConstant;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.util.FragmentUtil;
+import com.kingja.qiang.util.SpSir;
 import com.kingja.qiang.util.ToastUtil;
 
 import butterknife.BindView;
@@ -159,5 +160,11 @@ public class MainActivity extends BaseActivity {
                 .getFragment(position));
         nCurrentPosition = position;
         setStatus(position);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SpSir.getInstance().clearMsgCount();
     }
 }

@@ -57,7 +57,7 @@ public class SellingAdapter extends BaseLvAdapter<Ticket> {
     }
 
     private int getProgressValue(int sellCount, int totalCount) {
-        float percent = sellCount * 0.1f / totalCount;
+        float percent = sellCount * 1.0f / totalCount;
         return (int) (percent * 100f);
     }
 
