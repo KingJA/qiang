@@ -231,7 +231,7 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
         tabXigo.setTabMode(TabLayout.MODE_FIXED);
         tabXigo.addTab(tabXigo.newTab().setText(items[0]));
         tabXigo.addTab(tabXigo.newTab().setText(items[1]));
-        tabXigo.post(() -> IndicatorUtil.setIndicator(tabXigo, 60, 60));
+        tabXigo.post(() -> IndicatorUtil.setIndicator(tabXigo, 50, 50));
         mFragmentArr[0] = new SellingFragment();
         mFragmentArr[1] = new BesellFragment();
         XigoPageAdapter mHigoPageAdapter = new XigoPageAdapter(getActivity(), getChildFragmentManager(), mFragmentArr,

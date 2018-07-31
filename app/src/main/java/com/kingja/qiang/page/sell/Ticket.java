@@ -14,8 +14,8 @@ public class Ticket {
     private int discount;
     private int isoneyuan;
     private int status;
-    private Double marketPrice;
-    private Double buyPrice;
+    private double marketPrice;
+    private double buyPrice;
     private int totalCount;
     private int sellCount;
     private String areaText;
@@ -58,19 +58,19 @@ public class Ticket {
         this.status = status;
     }
 
-    public Double getMarketPrice() {
+    public double getMarketPrice() {
         return marketPrice;
     }
 
-    public void setMarketPrice(Double marketPrice) {
+    public void setMarketPrice(double marketPrice) {
         this.marketPrice = marketPrice;
     }
 
-    public Double getBuyPrice() {
+    public double getBuyPrice() {
         return buyPrice;
     }
 
-    public void setBuyPrice(Double buyPrice) {
+    public void setBuyPrice(double buyPrice) {
         this.buyPrice = buyPrice;
     }
 

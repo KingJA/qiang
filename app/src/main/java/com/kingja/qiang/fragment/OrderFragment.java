@@ -44,7 +44,7 @@ public class OrderFragment extends BaseFragment {
         tabOrder.setTabMode(TabLayout.MODE_FIXED);
         tabOrder.addTab(tabOrder.newTab().setText(items[0]));
         tabOrder.addTab(tabOrder.newTab().setText(items[1]));
-        tabOrder.post(() -> IndicatorUtil.setIndicator(tabOrder, 60, 60));
+        tabOrder.post(() -> IndicatorUtil.setIndicator(tabOrder, 50, 50));
         mFragmentArr[0] = new UnusedOrderFragment();
         mFragmentArr[1] = new AllOrderFragment();
         OrderPageAdapter mOrderPageAdapter = new OrderPageAdapter(getChildFragmentManager(), mFragmentArr,

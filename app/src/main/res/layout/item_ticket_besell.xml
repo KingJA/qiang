@@ -5,7 +5,7 @@
               android:layout_height="wrap_content"
               android:background="@color/white_hi"
               android:orientation="vertical"
-              android:padding="12dp">
+              android:padding="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:gravity="center_vertical">
 
             <TextView
-                style="@style/font_3_13"
+                style="@style/font_3_12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
@@ -25,7 +25,7 @@
 
             <com.kingja.supershapeview.view.SuperShapeTextView
                 android:id="@+id/stv_date_day"
-                style="@style/font_f_13"
+                style="@style/font_f_12"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:gravity="center"
@@ -34,7 +34,7 @@
                 app:super_solidColor="@color/red_hi"/>
 
             <TextView
-                style="@style/font_3_12"
+                style="@style/font_3_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
@@ -43,7 +43,7 @@
 
             <com.kingja.supershapeview.view.SuperShapeTextView
                 android:id="@+id/stv_date_hour"
-                style="@style/font_f_13"
+                style="@style/font_f_12"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:gravity="center"
@@ -52,7 +52,7 @@
                 app:super_solidColor="@color/red_hi"/>
 
             <TextView
-                style="@style/font_3_12"
+                style="@style/font_3_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
@@ -61,7 +61,7 @@
 
             <com.kingja.supershapeview.view.SuperShapeTextView
                 android:id="@+id/stv_date_min"
-                style="@style/font_f_13"
+                style="@style/font_f_12"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:gravity="center"
@@ -70,7 +70,7 @@
                 app:super_solidColor="@color/red_hi"/>
 
             <TextView
-                style="@style/font_3_12"
+                style="@style/font_3_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
@@ -176,20 +176,20 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        style="@style/font_9_13"
+                        style="@style/font_9_12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="6dp"
                         android:text="门市价"/>
 
                     <com.kingja.qiang.view.DeleteTextView
-                        style="@style/font_9_13"
+                        style="@style/font_9_12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="¥"/>
 
                     <com.kingja.qiang.view.DeleteTextView
-                        style="@style/font_9_13"
+                        style="@style/font_9_12"
                         android:id="@+id/dtv_ticket_marketPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -202,21 +202,20 @@
                     android:layout_alignParentRight="true">
 
                     <TextView
-                        style="@style/font_orange_13"
+                        style="@style/font_orange_12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="6dp"
                         android:text="抢购价"/>
 
                     <TextView
-                        style="@style/font_orange_13"
+                        style="@style/font_orange_12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="¥"/>
 
                     <TextView
                         android:id="@+id/dtv_ticket_buyPrice"
-                        style="@style/font_orange_23"
+                        style="@style/font_orange_22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="86"/>

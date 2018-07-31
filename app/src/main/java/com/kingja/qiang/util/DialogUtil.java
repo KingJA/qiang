@@ -30,7 +30,8 @@ public class DialogUtil {
                 .content(message)
                 .positiveText("确认")
                 .negativeText("取消")
-                .positiveColor(ContextCompat.getColor(context, R.color.gray_hi))
+                .positiveColor(ContextCompat.getColor(context, R.color.red_hi))
+                .negativeColor(ContextCompat.getColor(context, R.color.gray_hi))
                 .onPositive(callback)
                 .show();
     }

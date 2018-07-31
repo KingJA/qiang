@@ -60,7 +60,7 @@ public abstract class ResultObserver<T> extends DefaultObserver<HttpResult<T>> {
     }
 
     protected void onLoginFail() {
-        ToastUtil.showText("登录失效");
+        ToastUtil.showText("登录失效，请重新登录");
     }
 
 

@@ -47,12 +47,16 @@ public class AllOrderAdapter extends BaseLvAdapter<Order> {
         ImageLoader.getInstance().loadImage(context, list.get(position).getHeadimg(), R.mipmap.ic_placeholder,
                 viewHolder.iv_order_img);
 
-        viewHolder.iv_order_stamp.setVisibility(list.get(position).getStatus() == Status.OrderStatus.USED.getCode() ?
+        viewHolder.iv_order_stamp.setVisibility(list.get(position).getStatus() == Status.OrderStatus.USED.getCode()
+                || list.get(position).getStatus() == Status.OrderStatus.OVER_TIME.getCode() ?
                 View.VISIBLE : View.GONE);
+        viewHolder.iv_order_stamp.setBackgroundResource(list.get(position).getStatus() == Status.OrderStatus.OVER_TIME
+                .getCode() ? R.mipmap.ic_order_overtime : R.mipmap.ic_order_used);
         viewHolder.stv_order_detail.setVisibility(list.get(position).getStatus() == Status.OrderStatus.USED.getCode()
                 || list.get(position).getStatus() == Status.OrderStatus.OVER_TIME.getCode()
                 ? View.GONE : View.VISIBLE);
         viewHolder.tv_order_status.setVisibility(list.get(position).getStatus() == Status.OrderStatus.USED.getCode()
+                || list.get(position).getStatus() == Status.OrderStatus.OVER_TIME.getCode()
                 ? View.GONE : View.VISIBLE);
         viewHolder.tv_order_status.setText(EnumUtil.getByCode(list.get(position).getStatus(), Status.OrderStatus
                 .class).getMsg());

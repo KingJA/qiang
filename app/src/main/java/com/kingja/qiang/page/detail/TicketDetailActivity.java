@@ -270,11 +270,11 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
         mTvDetailDate.setText(String.valueOf(ticketDetail.getVisitDate()));
         mTvDetailTime.setText(String.valueOf(ticketDetail.getVisitTime()));
         mTvDetailMethod.setText(String.valueOf(ticketDetail.getVisitMethod()));
-        mTvDetailMarketPrice.setText(String.valueOf(ticketDetail.getMarketPrice()));
-        mTvDetailBuyPrice.setText(String.valueOf(ticketDetail.getBuyPrice()));
+        mTvDetailMarketPrice.setText(String.valueOf((int)ticketDetail.getMarketPrice()));
+        mTvDetailBuyPrice.setText(String.valueOf((int)ticketDetail.getBuyPrice()));
         mTvDetailLimitCount.setText(String.valueOf(ticketDetail.getBuyLimit()));
         mCcvTicketDetail.setMaxNumber(ticketDetail.getBuyLimit());
-        mTvDetailTotalPrice.setText(String.valueOf(ticketDetail.getBuyPrice()));
+        mTvDetailTotalPrice.setText(String.valueOf((int)ticketDetail.getBuyPrice()));
         idcodeNeed = ticketDetail.getIdcodeNeed();
         status = ticketDetail.getStatus();
         startTime = ticketDetail.getStartTime();
@@ -352,7 +352,7 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
 
     @Override
     public void onChangeNumber(int number) {
-        mTvDetailTotalPrice.setText(String.valueOf(number * ticketDetail.getBuyPrice()));
+        mTvDetailTotalPrice.setText(String.valueOf(number * (int)ticketDetail.getBuyPrice()));
     }
 
     @Override

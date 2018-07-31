@@ -44,8 +44,8 @@ public class BesellAdapter extends BaseLvAdapter<Ticket> {
         viewHolder.tv_ticket_area.setText(list.get(position).getAreaText());
         viewHolder.tv_ticket_title.setText(list.get(position).getTicketName());
         viewHolder.tv_ticket_totalCount.setText(String.valueOf(list.get(position).getTotalCount()));
-        viewHolder.dtv_ticket_marketPrice.setText(String.valueOf(list.get(position).getMarketPrice()));
-        viewHolder.dtv_ticket_buyPrice.setText(String.valueOf(list.get(position).getBuyPrice()));
+        viewHolder.dtv_ticket_marketPrice.setText(String.valueOf((int)list.get(position).getMarketPrice()));
+        viewHolder.dtv_ticket_buyPrice.setText(String.valueOf((int)list.get(position).getBuyPrice()));
         viewHolder.tv_ticket_date.setText(list.get(position).getUseDate());
         ImageLoader.getInstance().loadImage(context, list.get(position).getHeadImg(), R.mipmap.ic_placeholder,
                 viewHolder.iv_ticket_img);

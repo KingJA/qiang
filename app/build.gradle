@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion COMPILE_SDK_VERSION as int
-    buildToolsVersion BUILD_TOOLS_VERSION
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.kingja.qiang"
         minSdkVersion MIN_SDK_VERSION as int
@@ -128,6 +128,7 @@ dependencies {
     /*flowlayout*/
     implementation 'com.hyman:flowlayout-lib:1.1.2'
     implementation files('libs/alipaySdk-20180601.jar')
+
     /*weixin*/
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation 'com.github.Jay-Goo:RangeSeekBar:v2.0.4'
