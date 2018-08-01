@@ -30,7 +30,7 @@
   </item>
   <item app:tsquare_state_today="true">
     <shape android:shape="oval">
-      <solid android:color="@color/red_hi"/>
+      <solid android:color="@color/blue_hi"/>
      <!-- <stroke
           android:width="2dp"
           android:color="@color/red_hi"/>-->

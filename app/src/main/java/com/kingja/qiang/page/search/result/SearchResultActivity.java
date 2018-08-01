@@ -22,24 +22,19 @@ import com.kingja.popwindowsir.PopSpinner;
 import com.kingja.qiang.R;
 import com.kingja.qiang.adapter.AllTicketAdapter;
 import com.kingja.qiang.adapter.ScenicTypeAdapter;
-import com.kingja.qiang.adapter.SellingAdapter;
 import com.kingja.qiang.base.BaseActivity;
-import com.kingja.qiang.callback.EmptyMsgCallback;
 import com.kingja.qiang.callback.EmptyTicketCallback;
 import com.kingja.qiang.callback.TicketCallback;
 import com.kingja.qiang.constant.Constants;
-import com.kingja.qiang.constant.NavConstant;
 import com.kingja.qiang.event.ScenicType;
-import com.kingja.qiang.event.TicketFilterEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.page.detail.TicketDetailActivity;
 import com.kingja.qiang.page.sell.Ticket;
 import com.kingja.qiang.page.sell.TicketContract;
 import com.kingja.qiang.page.sell.TicketPresenter;
-import com.kingja.qiang.page.sell.selling.DaggerSellingCompnent;
 import com.kingja.qiang.ui.CityPop;
-import com.kingja.qiang.ui.DataPop;
+import com.kingja.qiang.ui.DatePop;
 import com.kingja.qiang.ui.PricePop;
 import com.kingja.qiang.util.AppUtil;
 import com.kingja.qiang.util.LogUtil;
@@ -47,8 +42,6 @@ import com.kingja.qiang.util.SpSir;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.qiang.view.PullToBottomListView;
 import com.kingja.qiang.view.RefreshSwipeRefreshLayout;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -304,7 +297,7 @@ public class SearchResultActivity extends BaseActivity implements TicketContract
     }
 
     private void initDatePop() {
-        DataPop   datePop = new DataPop(this, popConfig);
+        DatePop datePop = new DatePop(this, popConfig);
         datePop.setOnDismissListener(() -> {
             spiner_date.close();
         });

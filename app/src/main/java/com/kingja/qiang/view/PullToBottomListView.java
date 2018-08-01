@@ -39,7 +39,7 @@ public class PullToBottomListView extends ListView {
         });
     }
 
-    public interface OnScrollToBottom{
+    public interface OnScrollToBottom {
         void onScrollToBottom();
     }
 

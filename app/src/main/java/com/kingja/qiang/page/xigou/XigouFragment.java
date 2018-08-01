@@ -30,7 +30,7 @@ import com.kingja.qiang.page.search.SearchDetailActivity;
 import com.kingja.qiang.page.sell.beselling.BesellFragment;
 import com.kingja.qiang.page.sell.selling.SellingFragment;
 import com.kingja.qiang.ui.CityPop;
-import com.kingja.qiang.ui.DataPop;
+import com.kingja.qiang.ui.DatePop;
 import com.kingja.qiang.ui.PricePop;
 import com.kingja.qiang.util.AppUtil;
 import com.kingja.qiang.util.GoUtil;
@@ -85,7 +85,7 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
     private String[] items = {"在售", "待售"};
     private Fragment mFragmentArr[] = new Fragment[2];
     private int[] icons = {R.mipmap.ic_selling, R.mipmap.ic_beselling};
-    private DataPop datePop;
+    private DatePop datePop;
     private PricePop pricePop;
     private List<ScenicType> scenicTypes = new ArrayList<>();
     private List<City> cities = new ArrayList<>();
@@ -164,7 +164,7 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
         xigouPresenter.attachView(this);
         initHint();
         popConfig = new PopConfig.Builder()
-                .setPopHeight((int) (AppUtil.getScreenHeight() * 0.5f))
+                .setPopHeight((int) (AppUtil.getScreenHeight() * 0.55f))
                 .build();
         initTablayout();
         initScenicTypeData();
@@ -208,7 +208,7 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
     }
 
     private void initDatePop() {
-        datePop = new DataPop(getActivity(), popConfig);
+        datePop = new DatePop(getActivity(), popConfig);
         datePop.setOnDismissListener(() -> {
             spinerDate.close();
         });

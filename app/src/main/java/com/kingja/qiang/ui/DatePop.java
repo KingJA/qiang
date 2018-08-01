@@ -2,25 +2,18 @@ package com.kingja.qiang.ui;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.kingja.qiang.R;
 import com.kingja.popwindowsir.BasePop;
 import com.kingja.popwindowsir.PopConfig;
+import com.kingja.qiang.R;
 import com.squareup.timessquare.CalendarCellDecorator;
-import com.squareup.timessquare.CalendarCellView;
 import com.squareup.timessquare.CalendarPickerView;
-import com.squareup.timessquare.DayViewAdapter;
 import com.squareup.timessquare.DefaultDayViewAdapter;
 
 import java.text.SimpleDateFormat;
-import java.time.Year;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -32,16 +25,16 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class DataPop extends BasePop {
+public class DatePop extends BasePop {
 
     private OnDateSelectedListener onDateSelectedListener;
     private CalendarPickerView calendar;
 
-    public DataPop(Context context) {
+    public DatePop(Context context) {
         super(context);
     }
 
-    public DataPop(Context context, PopConfig popConfig) {
+    public DatePop(Context context, PopConfig popConfig) {
         super(context, popConfig);
     }
 
@@ -57,7 +50,6 @@ public class DataPop extends BasePop {
         calendar = contentView.findViewById(R.id.calendar_view);
         TextView tv_confirm = contentView.findViewById(R.id.tv_confirm);
         TextView tv_cancel = contentView.findViewById(R.id.tv_cancel);
-//        calendar.setCustomDayView(new DefaultDayViewAdapter());
         calendar.setCustomDayView(new DefaultDayViewAdapter());
         calendar.setDecorators(Collections.<CalendarCellDecorator>emptyList());
         calendar.setOnInvalidDateSelectedListener(null);
