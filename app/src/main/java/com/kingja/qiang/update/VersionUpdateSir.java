@@ -1,14 +1,19 @@
 package com.kingja.qiang.update;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.model.HttpResult;
 import com.kingja.qiang.model.service.UserService;
 import com.kingja.qiang.page.order.Order;
 import com.kingja.qiang.rx.ResultObserver;
+import com.kingja.qiang.util.DialogUtil;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.qiang.util.TokenHeadInterceptor;
 import com.kingja.qiang.util.VersionUtil;
@@ -75,9 +80,10 @@ public class VersionUpdateSir {
     }
 
     public void checkUpdate() {
-        ToastUtil.showText("当前版本编号："+VersionUtil.getVersionCode(context) );
-        Disposable disposable = userService.checkUpdate(VersionUtil.getVersionCode(context) + "", 1).subscribeOn(Schedulers
-                .io()).observeOn
+        ToastUtil.showText("当前版本编号：" + VersionUtil.getVersionCode(context));
+        Disposable disposable = userService.checkUpdate(VersionUtil.getVersionCode(context) + "", 1).subscribeOn
+                (Schedulers
+                        .io()).observeOn
                 (AndroidSchedulers.mainThread()).subscribe
                 (new Consumer<HttpResult<VersionInfo>>() {
                     @Override
@@ -91,10 +97,26 @@ public class VersionUpdateSir {
                                 int isLatest = versionInfo.getIsLatest();
                                 if (isLatest == 0) {
                                     //需要更新
+                                    String latestContent = versionInfo.getLatestContent();
+                                    DialogUtil.showDoubleDialog(context, "有新版本更新", latestContent, new MaterialDialog
+                                            .SingleButtonCallback() {
+                                        @Override
+                                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction
+                                                which) {
+                                            ToastUtil.showText("确定更新");
+                                        }
+                                    }, new MaterialDialog.SingleButtonCallback() {
+                                        @Override
+                                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction
+                                                which) {
+                                            ToastUtil.showText("取消更新");
+                                        }
+                                    });
 
                                 }
                             }
                         }
+                        //不做任何提示
 
                     }
                 });

@@ -15,9 +15,10 @@ import com.kingja.qiang.page.login.LoginActivity;
  * Email:kingjavip@gmail.com
  */
 public class DialogUtil {
-    private static String CONFIRM="确定";
+    private static String CONFIRM = "确定";
 
-    public static void showConfirmDialog(Context context,String message, MaterialDialog.SingleButtonCallback callback) {
+    public static void showConfirmDialog(Context context, String message, MaterialDialog.SingleButtonCallback
+            callback) {
         new MaterialDialog.Builder(context)
                 .content(message)
                 .positiveText(CONFIRM)
@@ -25,7 +26,7 @@ public class DialogUtil {
                 .show();
     }
 
-    public static void showDoubleDialog(Context context,String message, MaterialDialog.SingleButtonCallback callback) {
+    public static void showDoubleDialog(Context context, String message, MaterialDialog.SingleButtonCallback callback) {
         new MaterialDialog.Builder(context)
                 .content(message)
                 .positiveText("确认")
@@ -33,6 +34,20 @@ public class DialogUtil {
                 .positiveColor(ContextCompat.getColor(context, R.color.red_hi))
                 .negativeColor(ContextCompat.getColor(context, R.color.gray_hi))
                 .onPositive(callback)
+                .show();
+    }
+
+    public static void showDoubleDialog(Context context, String title, String message, MaterialDialog
+            .SingleButtonCallback positiveCallback, MaterialDialog.SingleButtonCallback negativeCallback) {
+        new MaterialDialog.Builder(context)
+                .title(title)
+                .content(message)
+                .positiveText("确认")
+                .negativeText("取消")
+                .positiveColor(ContextCompat.getColor(context, R.color.red_hi))
+                .negativeColor(ContextCompat.getColor(context, R.color.gray_hi))
+                .onPositive(positiveCallback)
+                .onNegative(negativeCallback)
                 .show();
     }
 
