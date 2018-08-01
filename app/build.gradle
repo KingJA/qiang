@@ -146,14 +146,14 @@ def buildApkBy() {
                 buildType = BUILD_TYPE
                 variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apk")
             }
-            apkData.outputFileName = APP_NAME + "_" +
-                    versionName + "_" + buildDate + "_" + buildType + ".apk"
+            apkData.outputFileName = APP_NAME + "_V" +
+                    versionName + "_" + VERSION_CODE + "_" + buildType + ".apk"
         }
     }
 }
 
 def releaseTime() {
-    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
 //configurations.all {
 //

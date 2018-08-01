@@ -2,7 +2,6 @@ package com.kingja.qiang.model.service;
 
 import com.kingja.qiang.event.ScenicType;
 import com.kingja.qiang.model.HttpResult;
-import com.kingja.qiang.model.entiy.AliPayResult;
 import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.model.entiy.Deal;
 import com.kingja.qiang.model.entiy.Discount;
@@ -13,6 +12,7 @@ import com.kingja.qiang.model.entiy.Message;
 import com.kingja.qiang.model.entiy.OrderResult;
 import com.kingja.qiang.model.entiy.PersonalInfo;
 import com.kingja.qiang.model.entiy.Wallet;
+import com.kingja.qiang.update.VersionInfo;
 import com.kingja.qiang.model.entiy.WeixinPayResult;
 import com.kingja.qiang.page.detail.TicketDetail;
 import com.kingja.qiang.page.sell.Ticket;
@@ -62,7 +62,8 @@ public interface UserService {
     /*修改密码*/
     @FormUrlEncoded
     @POST("/app/user/changepasswd")
-    Observable<HttpResult<Object>> modifyPassword(@Field("oldpasswd") String oldpasswd,@Field("passwd") String password);
+    Observable<HttpResult<Object>> modifyPassword(@Field("oldpasswd") String oldpasswd, @Field("passwd") String
+            password);
 
 
     /*修改昵称*/
@@ -141,6 +142,7 @@ public interface UserService {
                                                             ("keyword") String keyword, @Field("page") Integer page,
                                                     @Field("pageSize") Integer pageSize, @Field("status") Integer
                                                             status);
+
     /*获取热搜*/
     @FormUrlEncoded
     @POST("/app/product/hotsearch")
@@ -177,6 +179,7 @@ public interface UserService {
     @POST("/app/user/findpasswd")
     Observable<HttpResult<Object>> forgetPassword(@Field("mobile") String mobile, @Field("passwd") String passwd,
                                                   @Field("code") String code);
+
     /*获取景区类型*/
     @FormUrlEncoded
     @POST("/app/dict/data")
@@ -185,6 +188,13 @@ public interface UserService {
     /*获取地区*/
     @POST("/app/area/list")
     Observable<HttpResult<List<City>>> getCity();
+
+
+    /*版本检测*/
+    @FormUrlEncoded
+    @POST("/app/version/detail")
+    Observable<HttpResult<VersionInfo>> checkUpdate(@Field("version") String version, @Field("flag") int flag);
+
 
     //=================================================================================
     /*忘记密码*/
@@ -213,6 +223,4 @@ public interface UserService {
     /*我的好友*/
     @GET("me/friends")
     Observable<HttpResult<List<Friend>>> getMineFriends();
-
-
 }

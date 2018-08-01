@@ -3,6 +3,7 @@ package com.kingja.qiang;
 import android.Manifest;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.kingja.qiang.base.BaseActivity;
 import com.kingja.qiang.constant.NavConstant;
 import com.kingja.qiang.injector.component.AppComponent;
+import com.kingja.qiang.update.VersionUpdateSir;
 import com.kingja.qiang.util.FragmentUtil;
 import com.kingja.qiang.util.SpSir;
 import com.kingja.qiang.util.ToastUtil;
@@ -82,6 +84,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initNet() {
+        VersionUpdateSir.getInstance(this).checkUpdate();
 
     }
 
@@ -105,6 +108,7 @@ public class MainActivity extends BaseActivity {
     //防止Fragment重生重叠
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        Log.e(TAG, "onSaveInstanceState: " );
     }
 
     private long mLastTime;
