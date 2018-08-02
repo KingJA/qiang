@@ -124,7 +124,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
 
     @Override
     protected void initNet() {
-        VersionUpdateSir.getInstance(getActivity()).checkUpdate();
+//        VersionUpdateSir.getInstance(getActivity()).checkUpdate();
     }
 
     @Override

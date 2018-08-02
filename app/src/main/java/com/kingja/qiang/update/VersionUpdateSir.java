@@ -81,7 +81,6 @@ public class VersionUpdateSir {
     }
 
     public void checkUpdate() {
-        ToastUtil.showText("当前版本编号：" + VersionUtil.getVersionCode(context));
         Disposable disposable = userService.checkUpdate(VersionUtil.getVersionCode(context) + "", 1).subscribeOn
                 (Schedulers
                         .io()).observeOn

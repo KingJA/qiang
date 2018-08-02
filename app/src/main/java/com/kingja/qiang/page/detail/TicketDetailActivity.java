@@ -94,6 +94,7 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     private String endTime;
     private Timer timer;
     private TimerTask timerTask;
+    private TextView mTvDetailRemark;
 
     @OnClick({R.id.rl_ticket_introduce, R.id.tv_detail_buy})
     public void onclick(View view) {
@@ -203,6 +204,7 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     protected void initView() {
         ticketDetailPresenter.attachView(this);
         mTvVisitorName = findViewById(R.id.tv_visitor_name);
+        mTvDetailRemark = findViewById(R.id.tv_detail_remark);
         mTvVisitorPhone = findViewById(R.id.tv_visitor_phone);
         mTvisitorIdcode = findViewById(R.id.tv_visitor_idcode);
         mIvDetailImg = findViewById(R.id.iv_detail_img);
@@ -272,6 +274,7 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
         mTvDetailLimitCount.setText(String.valueOf(ticketDetail.getBuyLimit()));
         mCcvTicketDetail.setMaxNumber(ticketDetail.getBuyLimit());
         mTvDetailTotalPrice.setText(String.valueOf((int) ticketDetail.getBuyPrice()));
+        mTvDetailRemark.setText(ticketDetail.getRemarks());
         idcodeNeed = ticketDetail.getIdcodeNeed();
         status = ticketDetail.getStatus();
         startTime = ticketDetail.getStartTime();
