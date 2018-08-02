@@ -14,6 +14,8 @@ public class Status {
         int UNSELLING = 0;
         //售完
         int SELLOUT = 2;
+        //结束
+        int OVER = 3;
     }
 
     public interface PayType {

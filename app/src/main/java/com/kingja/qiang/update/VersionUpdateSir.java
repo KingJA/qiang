@@ -1,5 +1,6 @@
 package com.kingja.qiang.update;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -42,10 +43,10 @@ import retrofit2.http.Field;
 public class VersionUpdateSir {
 
     private static VersionUpdateSir mInstance;
-    private Context context;
+    private Activity context;
     private UserService userService;
 
-    private VersionUpdateSir(Context context) {
+    private VersionUpdateSir(Activity context) {
         this.context = context;
         initService();
     }
@@ -68,7 +69,7 @@ public class VersionUpdateSir {
         userService = retrofit.create(UserService.class);
     }
 
-    public static VersionUpdateSir getInstance(Context context) {
+    public static VersionUpdateSir getInstance(Activity context) {
         if (mInstance == null) {
             synchronized (VersionUpdateSir.class) {
                 if (mInstance == null) {
@@ -98,12 +99,13 @@ public class VersionUpdateSir {
                                 if (isLatest == 0) {
                                     //需要更新
                                     String latestContent = versionInfo.getLatestContent();
+                                    String downloadUrl = versionInfo.getLatestDownload();
                                     DialogUtil.showDoubleDialog(context, "有新版本更新", latestContent, new MaterialDialog
                                             .SingleButtonCallback() {
                                         @Override
                                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction
                                                 which) {
-                                            ToastUtil.showText("确定更新");
+                                            new DownloadTask(context, true).execute(downloadUrl);
                                         }
                                     }, new MaterialDialog.SingleButtonCallback() {
                                         @Override

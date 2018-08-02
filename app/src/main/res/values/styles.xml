@@ -84,5 +84,9 @@
         <item name="android:minHeight">8dp</item>
         <item name="android:maxHeight">8dp</item>
     </style>
+    <style name="CustomAlertDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/shape_lnull_bwhite_r8</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>
 

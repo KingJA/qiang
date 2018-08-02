@@ -26,6 +26,7 @@ import com.kingja.qiang.page.message.MsgActivity;
 import com.kingja.qiang.page.mine.headimg.PersonalActivity;
 import com.kingja.qiang.page.modifypassword.ModifyPasswordActivity;
 import com.kingja.qiang.page.visitor.list.VisitorListActivity;
+import com.kingja.qiang.update.VersionUpdateSir;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.LoginChecker;
 import com.kingja.qiang.util.SpSir;
@@ -123,7 +124,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
 
     @Override
     protected void initNet() {
-
+        VersionUpdateSir.getInstance(getActivity()).checkUpdate();
     }
 
     @Override

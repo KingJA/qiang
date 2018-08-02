@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.alipay.sdk.app.PayTask;
 import com.kingja.qiang.R;
 import com.kingja.qiang.adapter.BaseRvAdaper;
 import com.kingja.qiang.adapter.VisitorTabAdapter;
@@ -31,15 +30,12 @@ import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.OrderResult;
 import com.kingja.qiang.page.introduce.SceneryIntroduceActivity;
-import com.kingja.qiang.page.login.LoginActivity;
 import com.kingja.qiang.page.pay.PayActivity;
-import com.kingja.qiang.page.visitor.add.VisitorAddActivity;
 import com.kingja.qiang.page.visitor.Visitor;
 import com.kingja.qiang.page.visitor.list.VisitorListActivity;
 import com.kingja.qiang.page.visitor.prefect.VisitorPrefectActivity;
 import com.kingja.qiang.util.DateUtil;
 import com.kingja.qiang.util.DialogUtil;
-import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.LoginChecker;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.qiang.view.ChangeNumberView;
@@ -95,6 +91,7 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     private int idcodeNeed;
     private int status;
     private String startTime;
+    private String endTime;
     private Timer timer;
     private TimerTask timerTask;
 
@@ -270,35 +267,58 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
         mTvDetailDate.setText(String.valueOf(ticketDetail.getVisitDate()));
         mTvDetailTime.setText(String.valueOf(ticketDetail.getVisitTime()));
         mTvDetailMethod.setText(String.valueOf(ticketDetail.getVisitMethod()));
-        mTvDetailMarketPrice.setText(String.valueOf((int)ticketDetail.getMarketPrice()));
-        mTvDetailBuyPrice.setText(String.valueOf((int)ticketDetail.getBuyPrice()));
+        mTvDetailMarketPrice.setText(String.valueOf((int) ticketDetail.getMarketPrice()));
+        mTvDetailBuyPrice.setText(String.valueOf((int) ticketDetail.getBuyPrice()));
         mTvDetailLimitCount.setText(String.valueOf(ticketDetail.getBuyLimit()));
         mCcvTicketDetail.setMaxNumber(ticketDetail.getBuyLimit());
-        mTvDetailTotalPrice.setText(String.valueOf((int)ticketDetail.getBuyPrice()));
+        mTvDetailTotalPrice.setText(String.valueOf((int) ticketDetail.getBuyPrice()));
         idcodeNeed = ticketDetail.getIdcodeNeed();
         status = ticketDetail.getStatus();
         startTime = ticketDetail.getStartTime();
+        endTime = ticketDetail.getEndTime();
         setTicketStatus();
         initTimer();
     }
 
     private void initTimer() {
         if (status == Status.SellStatus.UNSELLING) {
-            timer = new Timer();
-            timerTask = new TimerTask() {
+            //待售
+            startTimer(new TimerTask() {
                 @Override
                 public void run() {
-                    Log.e(TAG, "run: ");
+                    Log.e(TAG, "判断是否开始: ");
                     if (DateUtil.isBeginSell(startTime)) {
                         mTvDetailBuy.setBackgroundColor(ContextCompat.getColor(TicketDetailActivity.this, R.color
                                 .red_hi));
                         mTvDetailBuy.setText("立即抢购");
+                        mTvDetailBuy.setEnabled(true);
+                        timer.cancel();
                     }
 
                 }
-            };
-            timer.schedule(timerTask, 0, 1000);
+            });
+        } else if (status == Status.SellStatus.SELLING) {
+            //在售
+            startTimer(new TimerTask() {
+                @Override
+                public void run() {
+                    Log.e(TAG, "判断是否结束: ");
+                    if (DateUtil.isOverDue(endTime)) {
+                        mTvDetailBuy.setBackgroundColor(ContextCompat.getColor(TicketDetailActivity.this, R.color
+                                .gray_hi));
+                        mTvDetailBuy.setText("抢购结束");
+                        mTvDetailBuy.setEnabled(false);
+                        timer.cancel();
+                    }
+
+                }
+            });
         }
+    }
+
+    private void startTimer(TimerTask timerTask) {
+        timer = new Timer();
+        timer.schedule(timerTask, 0, 1000);
     }
 
 
@@ -352,7 +372,7 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
 
     @Override
     public void onChangeNumber(int number) {
-        mTvDetailTotalPrice.setText(String.valueOf(number * (int)ticketDetail.getBuyPrice()));
+        mTvDetailTotalPrice.setText(String.valueOf(number * (int) ticketDetail.getBuyPrice()));
     }
 
     @Override
@@ -372,16 +392,17 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
             case Status.SellStatus.UNSELLING:
                 mTvDetailBuy.setBackgroundColor(ContextCompat.getColor(this, R.color.gray_hi));
                 mTvDetailBuy.setText("暂未开售");
-                break;
-            case Status.SellStatus.SELLOUT:
-                mTvDetailBuy.setBackgroundColor(ContextCompat.getColor(this, R.color.gray_hi));
-                mTvDetailBuy.setText("抢购结束");
+                mTvDetailBuy.setEnabled(false);
                 break;
             case Status.SellStatus.SELLING:
                 mTvDetailBuy.setBackgroundColor(ContextCompat.getColor(this, R.color.red_hi));
                 mTvDetailBuy.setText("立即抢购");
+                mTvDetailBuy.setEnabled(true);
                 break;
             default:
+                mTvDetailBuy.setBackgroundColor(ContextCompat.getColor(this, R.color.gray_hi));
+                mTvDetailBuy.setText("抢购结束");
+                mTvDetailBuy.setEnabled(false);
                 break;
         }
     }

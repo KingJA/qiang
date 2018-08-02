@@ -8,6 +8,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
+import com.kingja.qiang.constant.Constants;
+import com.kingja.qiang.constant.Status;
 import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.page.sell.Ticket;
 import com.kingja.qiang.util.DateUtil;
@@ -45,14 +47,14 @@ public class SellingAdapter extends BaseLvAdapter<Ticket> {
         viewHolder.tv_ticket_title.setText(list.get(position).getTicketName());
         viewHolder.tv_ticket_selledCount.setText(String.valueOf(list.get(position).getSellCount()));
         viewHolder.tv_ticket_totalCount.setText(String.valueOf(list.get(position).getTotalCount()));
-        viewHolder.dtv_ticket_marketPrice.setText(String.valueOf((int)list.get(position).getMarketPrice()));
-        viewHolder.dtv_ticket_buyPrice.setText(String.valueOf((int)list.get(position).getBuyPrice()));
+        viewHolder.dtv_ticket_marketPrice.setText(String.valueOf((int) list.get(position).getMarketPrice()));
+        viewHolder.dtv_ticket_buyPrice.setText(String.valueOf((int) list.get(position).getBuyPrice()));
         viewHolder.tv_ticket_date.setText(list.get(position).getUseDate());
         viewHolder.pb_ticket_sell.setProgress(getProgressValue(list.get(position).getSellCount(), list.get(position)
                 .getTotalCount()));
         ImageLoader.getInstance().loadImage(context, list.get(position).getHeadImg(), R.mipmap.ic_placeholder,
                 viewHolder.iv_ticket_img);
-        viewHolder.iv_isSellout.setVisibility(list.get(position).isSellOut()?View.VISIBLE:View.GONE);
+        viewHolder.iv_isSellout.setVisibility(list.get(position).getStatus()== Status.SellStatus.SELLOUT ? View.VISIBLE : View.GONE);
         return convertView;
     }
 

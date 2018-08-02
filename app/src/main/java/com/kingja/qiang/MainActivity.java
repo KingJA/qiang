@@ -58,9 +58,9 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @NeedsPermission({android.Manifest.permission.CAMERA,Manifest.permission.READ_PHONE_STATE,  android.Manifest
-            .permission.READ_CONTACTS, android.Manifest.permission
-            .READ_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_FINE_LOCATION})
+    @NeedsPermission({android.Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE, android.Manifest
+            .permission.READ_CONTACTS, android.Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission
+            .WRITE_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_FINE_LOCATION})
     public void checkPermissions() {
 
     }
@@ -84,7 +84,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initNet() {
-        VersionUpdateSir.getInstance(this).checkUpdate();
 
     }
 
@@ -108,7 +107,7 @@ public class MainActivity extends BaseActivity {
     //防止Fragment重生重叠
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.e(TAG, "onSaveInstanceState: " );
+        Log.e(TAG, "onSaveInstanceState: ");
     }
 
     private long mLastTime;
