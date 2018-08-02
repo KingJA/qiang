@@ -15,8 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@color/bg_hi"
-            android:dividerHeight="6dp"
-            tools:listitem="@layout/item_direct"/>
+            android:dividerHeight="6dp"/>
     </com.kingja.qiang.view.RefreshSwipeRefreshLayout>
 
 

@@ -110,7 +110,6 @@ public class SellingFragment extends BaseFragment implements TicketContract.View
         return R.layout.frag_xigo_direct;
     }
 
-
     @Override
     public void showLoading() {
         srl.setRefreshing(true);

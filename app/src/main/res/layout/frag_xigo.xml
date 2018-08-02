@@ -45,12 +45,6 @@
                 android:textColorHint="#f2f2f2"
                 android:textSize="12sp"/>
 
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginRight="14dp"
-                android:background="@mipmap/ic_scan"
-                android:visibility="gone"/>
         </LinearLayout>
 
 

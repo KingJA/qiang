@@ -3,15 +3,10 @@ package com.kingja.qiang.model.service;
 import com.kingja.qiang.event.ScenicType;
 import com.kingja.qiang.model.HttpResult;
 import com.kingja.qiang.model.entiy.City;
-import com.kingja.qiang.model.entiy.Deal;
-import com.kingja.qiang.model.entiy.Discount;
-import com.kingja.qiang.model.entiy.Friend;
 import com.kingja.qiang.model.entiy.HotSearch;
 import com.kingja.qiang.model.entiy.Login;
 import com.kingja.qiang.model.entiy.Message;
 import com.kingja.qiang.model.entiy.OrderResult;
-import com.kingja.qiang.model.entiy.PersonalInfo;
-import com.kingja.qiang.model.entiy.Wallet;
 import com.kingja.qiang.update.VersionInfo;
 import com.kingja.qiang.model.entiy.WeixinPayResult;
 import com.kingja.qiang.page.detail.TicketDetail;
@@ -197,30 +192,4 @@ public interface UserService {
 
 
     //=================================================================================
-    /*忘记密码*/
-    @FormUrlEncoded
-    @POST("forgetPw")
-    Observable<HttpResult<Object>> setNewPassword(@Field("mobile") String mobile, @Field("password") String password,
-                                                  @Field("code") String code);
-
-    /*交易明细*/
-    @GET("me/deal_list")
-    Observable<HttpResult<List<Deal>>> getDealList();
-
-    /*我的优惠券*/
-    @GET("me/voucher")
-    Observable<HttpResult<List<Discount>>> voucher();
-
-    /*我的钱包*/
-    @GET("me/wallet")
-    Observable<HttpResult<Wallet>> wallet();
-
-
-    /*个人信息*/
-    @GET("u/{id}")
-    Observable<HttpResult<PersonalInfo>> getPersonalInfo(@Path("id") String id);
-
-    /*我的好友*/
-    @GET("me/friends")
-    Observable<HttpResult<List<Friend>>> getMineFriends();
 }

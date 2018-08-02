@@ -4,7 +4,6 @@ import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
 import com.kingja.qiang.event.ScenicType;
 import com.kingja.qiang.model.entiy.City;
-import com.kingja.qiang.model.entiy.Wallet;
 
 import java.util.List;
 

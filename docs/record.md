@@ -5,3 +5,5 @@
 
 * 自动安装7.0适配内容提供者
 * 自动安装8.0适配安装位置来源设置https://www.jb51.net/article/144454.htm
+
+* 更换权限框架permissionsdispatcher为rxpermissions
