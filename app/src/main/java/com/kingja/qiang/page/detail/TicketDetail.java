@@ -22,6 +22,8 @@ public class TicketDetail {
     private String remarks;
     private int buyLimit;
     private int idcodeNeed;
+    private int totalCount;
+    private int sellCount;
     private String ticketName;
     private String visitMethod;
     private String startTime;
@@ -42,7 +44,21 @@ public class TicketDetail {
         this.endTime = endTime;
     }
 
+    public int getTotalCount() {
+        return totalCount;
+    }
 
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    public int getSellCount() {
+        return sellCount;
+    }
+
+    public void setSellCount(int sellCount) {
+        this.sellCount = sellCount;
+    }
 
     public int getIdcodeNeed() {
         return idcodeNeed;

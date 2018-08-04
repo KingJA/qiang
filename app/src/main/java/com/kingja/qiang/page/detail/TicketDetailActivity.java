@@ -95,6 +95,8 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     private Timer timer;
     private TimerTask timerTask;
     private TextView mTvDetailRemark;
+    private TextView mTvSellCount;
+    private TextView mTvTotalCount;
 
     @OnClick({R.id.rl_ticket_introduce, R.id.tv_detail_buy})
     public void onclick(View view) {
@@ -204,6 +206,8 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     protected void initView() {
         ticketDetailPresenter.attachView(this);
         mTvVisitorName = findViewById(R.id.tv_visitor_name);
+        mTvSellCount = findViewById(R.id.tv_sellCount);
+        mTvTotalCount = findViewById(R.id.tv_totalCount);
         mTvDetailRemark = findViewById(R.id.tv_detail_remark);
         mTvVisitorPhone = findViewById(R.id.tv_visitor_phone);
         mTvisitorIdcode = findViewById(R.id.tv_visitor_idcode);
@@ -264,6 +268,8 @@ public class TicketDetailActivity extends BaseTitleActivity implements TicketDet
     public void onGetTicketDetailSuccess(TicketDetail ticketDetail) {
         this.ticketDetail = ticketDetail;
         ImageLoader.getInstance().loadImage(this, ticketDetail.getHeadImg(), R.mipmap.ic_placeholder, mIvDetailImg);
+        mTvSellCount.setText(String.valueOf(ticketDetail.getSellCount()));
+        mTvTotalCount.setText(String.valueOf(ticketDetail.getTotalCount()));
         mTvDetailTitle.setText(String.valueOf(ticketDetail.getTicketName()));
         mTvDetailArea.setText(String.valueOf(ticketDetail.getAreaText()));
         mTvDetailDate.setText(String.valueOf(ticketDetail.getVisitDate()));
