@@ -24,8 +24,10 @@ public class Util {
         File appCacheDir = null;
         if (MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) && hasExternalStoragePermission(context)) {
             appCacheDir = getExternalCacheDir(context);
+            Log.e("StorageUtils", "保存在SD卡: "+appCacheDir.getAbsolutePath() );
         }
         if (appCacheDir == null) {
+            Log.e("StorageUtils", "保存在闪存: "+appCacheDir.getAbsolutePath());
             appCacheDir = context.getCacheDir();
         }
         if (appCacheDir == null) {

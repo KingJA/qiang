@@ -36,6 +36,7 @@ import com.kingja.qiang.util.AppUtil;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.IndicatorUtil;
 import com.kingja.qiang.util.LogUtil;
+import com.kingja.qiang.util.LoginChecker;
 import com.kingja.qiang.util.SpSir;
 
 import org.greenrobot.eventbus.EventBus;
@@ -108,7 +109,7 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
                 GoUtil.goActivity(getActivity(), SearchDetailActivity.class);
                 break;
             case R.id.iv_msg:
-                GoUtil.goActivity(getActivity(), MsgActivity.class);
+                LoginChecker.goActivity(getActivity(), MsgActivity.class);
                 break;
             default:
                 break;
@@ -168,7 +169,7 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
                 .build();
         initTablayout();
         initScenicTypeData();
-        initScenicTypePop();
+//        initScenicTypePop();
         initCityData();
         initCityPop();
         initDatePop();

@@ -179,9 +179,9 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     }
 
     private void quit() {
+        minePresenter.logout(SpSir.getInstance().getUserId(), Constants.OSNAME);
         SpSir.getInstance().clearData();
         EventBus.getDefault().post(new ResetLoginStatusEvent());
-        minePresenter.logout(SpSir.getInstance().getUserId(), Constants.OSNAME);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

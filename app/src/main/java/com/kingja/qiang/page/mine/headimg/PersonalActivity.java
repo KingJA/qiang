@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.webkit.PermissionRequest;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.event.RefreshHeadImgEvent;
@@ -19,6 +22,7 @@ import com.kingja.qiang.event.RefreshNicknameEvent;
 import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.modify_nickname.ModifyNicknameActivity;
+import com.kingja.qiang.util.DialogUtil;
 import com.kingja.qiang.util.FileUtil;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.SpSir;
@@ -84,24 +88,38 @@ public class PersonalActivity extends BaseTitleActivity implements PersonalContr
 
     public void checkPhotoPermission() {
         RxPermissions rxPermissions = new RxPermissions(this);
-        Disposable disposable = rxPermissions.requestEach(Manifest.permission.CAMERA, Manifest.permission
-                .READ_EXTERNAL_STORAGE)
+        Disposable disposable = rxPermissions.requestEach(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe(new Consumer<Permission>() {
                     @Override
                     public void accept(Permission permission) throws Exception {
                         if (permission.granted) {
-                            // 用户已经同意该权限
-                            Log.d(TAG, permission.name + " is granted.");
+                            openCamera();
                         } else if (permission.shouldShowRequestPermissionRationale) {
                             // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
-                            Log.d(TAG, permission.name + " is denied. More info should be provided.");
+                            DialogUtil.showConfirmDialog(PersonalActivity.this, "请允许该权限以您能浏览相册", new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                                }
+                            });
                         } else {
                             // 用户拒绝了该权限，并且选中『不再询问』
-                            Log.d(TAG, permission.name + " is denied.");
+                            DialogUtil.showConfirmDialog(PersonalActivity.this, "您没有授权该权限，请在设置中打开授权", new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    startAppSettings();
+                                }
+                            });
+
                         }
                     }
                 });
-        openCamera();
+
+    }
+    private void startAppSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.setData(Uri.fromParts("package", getPackageName(), null));
+        startActivity(intent);
     }
 
     private void openCamera() {

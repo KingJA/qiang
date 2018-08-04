@@ -1,13 +1,19 @@
 package com.kingja.qiang.rx;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.kingja.qiang.base.App;
 import com.kingja.qiang.base.BaseView;
 import com.kingja.qiang.constant.Status;
+import com.kingja.qiang.event.ResetLoginStatusEvent;
 import com.kingja.qiang.model.HttpResult;
+import com.kingja.qiang.util.SpSir;
 import com.kingja.qiang.util.ToastUtil;
 import com.orhanobut.logger.Logger;
+
+import org.greenrobot.eventbus.EventBus;
 
 import io.reactivex.observers.DefaultObserver;
 
@@ -60,7 +66,9 @@ public abstract class ResultObserver<T> extends DefaultObserver<HttpResult<T>> {
     }
 
     protected void onLoginFail() {
-        ToastUtil.showText("登录失效，请重新登录");
+        ToastUtil.showText("用户未登录或登录已过期，请重新登录");
+        SpSir.getInstance().clearData();
+        EventBus.getDefault().post(new ResetLoginStatusEvent());
     }
 
 

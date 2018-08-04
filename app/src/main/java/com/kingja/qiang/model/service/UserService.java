@@ -70,6 +70,7 @@ public interface UserService {
 
 
     /*退出登录OK*/
+    @FormUrlEncoded
     @POST("/app/user/logout")
     Observable<HttpResult<Object>> logout(@Field("userId") String userId, @Field("osName") String osName);
 

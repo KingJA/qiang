@@ -5,28 +5,20 @@
 
     <!--网络访问-->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!--读取联系人-->
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <!--本地SD卡读写-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!--相机-->
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <!--拨打电话-->
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <!--JPush Required -->
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="com.kingja.qiang.permission.JPUSH_MESSAGE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <!--8.0安装权限-->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
 
@@ -52,23 +44,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <!--嘻购详情-->
-        <!--设置界面-->
-        <activity
-            android:name="com.kingja.qiang.page.setting.SettingActivity"
-            android:screenOrientation="portrait"/>
-        <!--我的钱包-->
-        <activity
-            android:name="com.kingja.qiang.page.wallet.WalletActivity"
-            android:screenOrientation="portrait"/>
-        <!--我的优惠券-->
-        <activity
-            android:name="com.kingja.qiang.page.discount.DiscountActivity"
-            android:screenOrientation="portrait"/>
-        <!--我的好友-->
-        <activity
-            android:name="com.kingja.qiang.page.mine_friends.MineFriendsActivity"
-            android:screenOrientation="portrait"/>
-        <!--我的订单-->
         <!--我的消息-->
         <activity
             android:name=".page.message.MsgActivity"
@@ -100,16 +75,6 @@
         <activity
             android:name="com.kingja.qiang.activity.MsgDetailActivity"
             android:screenOrientation="portrait"/>
-        <!--交易明细-->
-        <activity
-            android:name="com.kingja.qiang.page.deallist.DealListActivity"
-            android:screenOrientation="portrait"/>
-        <!--通讯录-->
-        <!--领券中心-->
-        <!--购物车-->
-        <!--收银台-->
-        <!--嬉逛分集详情-->
-        <!--找回密码-->
         <activity
             android:name="com.kingja.qiang.page.forgetpassword.ForgetPasswordActivity"
             android:screenOrientation="portrait"/>
