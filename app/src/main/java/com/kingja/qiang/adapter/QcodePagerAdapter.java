@@ -65,6 +65,7 @@ public class QcodePagerAdapter extends PagerAdapter {
         });
         WebSettings webSettings = wb.getSettings();
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
         wb.loadUrl(qcodes[position]);
         container.addView(rootView);
