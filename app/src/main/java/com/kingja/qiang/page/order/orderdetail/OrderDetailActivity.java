@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,8 +42,8 @@ public class OrderDetailActivity extends BaseTitleActivity implements OrderDetai
     TextView tvOrderOrderId;
     @BindView(R.id.tv_order_code)
     TextView tvOrderCode;
-    @BindView(R.id.iv_order_qcode)
-    ImageView ivOrderQcode;
+    @BindView(R.id.wb_order_qcode)
+    WebView wbOrderQcode;
     @BindView(R.id.ssll_qcode)
     SuperShapeLinearLayout ssllQcode;
     private String orderId;
@@ -77,7 +80,15 @@ public class OrderDetailActivity extends BaseTitleActivity implements OrderDetai
 
     @Override
     protected void initData() {
-
+        wbOrderQcode.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
+        WebSettings webSettings = wbOrderQcode.getSettings();
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        webSettings.setUseWideViewPort(true);
     }
 
     @Override
@@ -111,6 +122,6 @@ public class OrderDetailActivity extends BaseTitleActivity implements OrderDetai
         tvOrderCode.setText(orderDetail.getStatus() == Status.OrderStatus.WAIT_USE.getCode() ? "出票中" : orderDetail
                 .getTicketcode());
         ssllQcode.setVisibility(orderDetail.getQrcodeurl() == null ? View.GONE : View.VISIBLE);
-        ImageLoader.getInstance().loadImage(this, orderDetail.getQrcodeurl(), R.mipmap.bg_qcode, ivOrderQcode);
+        wbOrderQcode.loadUrl(orderDetail.getQrcodeurl());
     }
 }
