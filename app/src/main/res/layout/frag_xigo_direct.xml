@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <com.kingja.qiang.view.RefreshSwipeRefreshLayout
         android:id="@+id/srl"
@@ -18,5 +17,16 @@
             android:dividerHeight="6dp"/>
     </com.kingja.qiang.view.RefreshSwipeRefreshLayout>
 
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/iv_go_top"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="12dp"
+        android:background="@mipmap/ic_go_top"/>
 
-</LinearLayout>
+
+</RelativeLayout>

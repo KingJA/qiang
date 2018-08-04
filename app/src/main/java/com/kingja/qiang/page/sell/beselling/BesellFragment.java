@@ -4,6 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
@@ -47,6 +48,8 @@ public class BesellFragment extends BaseFragment implements TicketContract.View,
     PullToBottomListView lv;
     @BindView(R.id.srl)
     RefreshSwipeRefreshLayout srl;
+    @BindView(R.id.iv_go_top)
+    ImageView iv_go_top;
     private LoadService loadService;
     @Inject
     TicketPresenter ticketPresenter;
@@ -91,6 +94,7 @@ public class BesellFragment extends BaseFragment implements TicketContract.View,
         lv.setOnScrollToBottom(this);
         mBesellAdapter = new BesellAdapter(getActivity(), tickets);
         lv.setAdapter(mBesellAdapter);
+        lv.setGoTop(iv_go_top);
         loadService = LoadSir.getDefault().register(lv);
     }
 

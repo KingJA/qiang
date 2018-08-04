@@ -87,6 +87,7 @@ public class SearchResultActivity extends BaseActivity implements TicketContract
     private List<ScenicType> scenicTypes;
     private List<City> cities;
     private PopConfig popConfig;
+    private ImageView ivGoTop;
 
     @OnClick({R.id.tv_search, R.id.ll_title_back})
     public void onViewClicked(View view) {
@@ -137,6 +138,7 @@ public class SearchResultActivity extends BaseActivity implements TicketContract
         mTvSearch = rootView.findViewById(R.id.tv_search);
         srl = rootView.findViewById(R.id.srl);
         lv = rootView.findViewById(R.id.lv);
+        ivGoTop = rootView.findViewById(R.id.iv_go_top);
 
         ll_spinner_root = rootView.findViewById(R.id.ll_spinner_root);
         spiner_city = rootView.findViewById(R.id.spiner_city);
@@ -144,10 +146,12 @@ public class SearchResultActivity extends BaseActivity implements TicketContract
         spiner_date = rootView.findViewById(R.id.spiner_date);
         spiner_price = rootView.findViewById(R.id.spiner_price);
 
+        srl.setScrollUpChild(lv);
         srl.setOnRefreshListener(this);
         lv.setOnScrollToBottom(this);
         allTicketAdapter = new AllTicketAdapter(this, tickets);
         lv.setAdapter(allTicketAdapter);
+        lv.setGoTop(ivGoTop);
         LoadSir loadSir = new LoadSir.Builder()
                 .addCallback(new TicketCallback())
                 .addCallback(new EmptyTicketCallback())

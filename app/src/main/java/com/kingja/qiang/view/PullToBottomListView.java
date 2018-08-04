@@ -2,6 +2,7 @@ package com.kingja.qiang.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
@@ -13,6 +14,7 @@ import android.widget.ListView;
  */
 public class PullToBottomListView extends ListView {
     private OnScrollToBottom onScrollToBottom;
+    private View topView;
 
     public PullToBottomListView(Context context) {
         super(context);
@@ -34,7 +36,21 @@ public class PullToBottomListView extends ListView {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (topView != null) {
+                    topView.setVisibility(firstVisibleItem == 0 ? View.GONE : View.VISIBLE);
+                }
 
+            }
+        });
+    }
+
+    public void setGoTop(View topView) {
+        this.topView = topView;
+        topView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setSelection(0);
+                topView.setVisibility(View.GONE);
             }
         });
     }
