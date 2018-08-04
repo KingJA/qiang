@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_hi">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_hi"
         android:orientation="vertical"
         android:padding="12dp">
 
@@ -164,23 +164,34 @@
 
             </com.kingja.supershapeview.view.SuperShapeLinearLayout>
 
-            <com.kingja.supershapeview.view.SuperShapeLinearLayout
-                android:id="@+id/ssll_qcode"
-                android:layout_width="230dp"
-                android:layout_height="230dp"
+            <com.kingja.supershapeview.view.SuperShapeRelativeLayout
+                android:id="@+id/ssrl_qcode"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:gravity="center"
                 android:orientation="vertical"
                 app:super_cornerRadius="4dp"
                 app:super_solidColor="@color/white_hi"
                 app:super_strokeColor="@color/gray_hi"
                 app:super_strokeWidth="1px">
 
-                <WebView
-                    android:id="@+id/wb_order_qcode"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"/>
-            </com.kingja.supershapeview.view.SuperShapeLinearLayout>
+                <android.support.v4.view.ViewPager
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/vp_order"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="220dp"
+                    android:layout_height="210dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/vp_order"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal"
+                    android:id="@+id/ll_pointContainer"/>
+            </com.kingja.supershapeview.view.SuperShapeRelativeLayout>
         </com.kingja.supershapeview.view.SuperShapeLinearLayout>
 
 
