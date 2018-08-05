@@ -72,6 +72,8 @@ public class PersonalActivity extends BaseTitleActivity implements PersonalContr
     PersonalPresenter personalPresenter;
 
     List<Uri> mSelected;
+    private RxPermissions rxPermissions;
+
     @OnClick({R.id.rl_personal_head, R.id.rl_personal_nickanme})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -87,7 +89,7 @@ public class PersonalActivity extends BaseTitleActivity implements PersonalContr
     }
 
     public void checkPhotoPermission() {
-        RxPermissions rxPermissions = new RxPermissions(this);
+
         Disposable disposable = rxPermissions.requestEach(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe(new Consumer<Permission>() {
                     @Override
@@ -96,15 +98,15 @@ public class PersonalActivity extends BaseTitleActivity implements PersonalContr
                             openCamera();
                         } else if (permission.shouldShowRequestPermissionRationale) {
                             // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
-                            DialogUtil.showConfirmDialog(PersonalActivity.this, "请允许该权限以您能浏览相册", new MaterialDialog.SingleButtonCallback() {
+                            DialogUtil.showDoubleDialog(PersonalActivity.this, "为保证您正常浏览图片，需要获取读写手机存储权限，请允许", new MaterialDialog.SingleButtonCallback() {
                                 @Override
                                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-
+                                    checkPhotoPermission();
                                 }
                             });
                         } else {
                             // 用户拒绝了该权限，并且选中『不再询问』
-                            DialogUtil.showConfirmDialog(PersonalActivity.this, "您没有授权该权限，请在设置中打开授权", new MaterialDialog.SingleButtonCallback() {
+                            DialogUtil.showDoubleDialog(PersonalActivity.this, "未取得读写手机存储权限，将无法为部分图片提供预览。请前往应用权限设置打开权限。", new MaterialDialog.SingleButtonCallback() {
                                 @Override
                                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                                     startAppSettings();
@@ -186,6 +188,7 @@ public class PersonalActivity extends BaseTitleActivity implements PersonalContr
     @Override
     protected void initView() {
         personalPresenter.attachView(this);
+        rxPermissions = new RxPermissions(this);
     }
 
     @Override

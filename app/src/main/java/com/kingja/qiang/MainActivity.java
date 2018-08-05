@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity {
     public void checkPermissions() {
         RxPermissions rxPermission = new RxPermissions(this);
         Disposable disposable = rxPermission
-                .requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
+                .requestEach(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_PHONE_STATE)
                 .subscribe(new Consumer<Permission>() {
                     @Override
                     public void accept(Permission permission) throws Exception {

@@ -32,6 +32,8 @@ import com.kingja.qiang.util.LoginChecker;
 import com.kingja.qiang.util.SpSir;
 import com.kingja.supershapeview.view.SuperShapeImageView;
 import com.orhanobut.logger.Logger;
+import com.tencent.bugly.beta.Beta;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -125,6 +127,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     @Override
     protected void initNet() {
 //        VersionUpdateSir.getInstance(getActivity()).checkUpdate();
+
     }
 
     @Override
@@ -224,6 +227,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     public void onStart() {
         super.onStart();
         resetMsgCount();
+//        CrashReport.testJavaCrash();
+//        Beta.checkUpgrade(true,false);
     }
 
     private void resetMsgCount() {

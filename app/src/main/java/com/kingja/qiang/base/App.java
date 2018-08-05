@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
+import com.kingja.qiang.R;
 import com.kingja.qiang.callback.EmptyCallback;
 import com.kingja.qiang.callback.EmptyCartCallback;
 import com.kingja.qiang.callback.EmptyTicketCallback;
@@ -25,6 +26,9 @@ import com.kingja.qiang.util.SpSir;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -56,9 +60,15 @@ public class App extends MultiDexApplication {
         sInstance = this;
         mSharedPreferences = getSharedPreferences(Constants.APPLICATION_NAME, MODE_PRIVATE);
         setupComponent();
+        initBugly();
         Logger.d("token:"+ SpSir.getInstance().getToken());
         Logger.d("RegistrationID:"+ JPushInterface.getRegistrationID(this));
         SpSir.getInstance().clearMsgCount();
+    }
+
+    private void initBugly() {
+        Beta.enableNotification = true;
+        Bugly.init(getApplicationContext(), Constants.APP_ID_BUDLY, false);
     }
 
     private void initJPush() {

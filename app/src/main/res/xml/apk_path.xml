@@ -3,4 +3,6 @@
     <!--Android/data/包名/-->
     <external-path path="Android/data/com.kingja.qiang/" name="files_root" />
     <external-path path="." name="apkPath" />
+    <external-path name="beta_external_path" path="Download/"/>
+    <external-path name="beta_external_files_path" path="Android/data/"/>
 </paths>

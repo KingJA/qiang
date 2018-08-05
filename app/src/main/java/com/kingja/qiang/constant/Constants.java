@@ -22,6 +22,7 @@ public class Constants {
     public static final int GRIDVIEW_IMG_COUNT = 3;
     public static final int GRIDVIEW_GIFT_COUNT = 4;
     public static final String APP_ID_WEIXIN="wx0636860f15a60e21";
+    public static final String APP_ID_BUDLY="f5e657251c";
 
 
     /*Extra*/

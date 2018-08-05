@@ -169,7 +169,7 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
                 .build();
         initTablayout();
         initScenicTypeData();
-//        initScenicTypePop();
+        initScenicTypePop();
         initCityData();
         initCityPop();
         initDatePop();
