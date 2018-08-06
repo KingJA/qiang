@@ -23,6 +23,12 @@ import butterknife.OnClick;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
+/**
+ * Description:主界面
+ * Create Time:2018/5/14 14:20
+ * Author:KingJA
+ * Email:kingjavip@gmail.com
+ */
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.iv_nav_home)

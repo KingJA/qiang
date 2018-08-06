@@ -14,7 +14,7 @@ import com.kingja.qiang.service.initialize.InitializeService;
 import com.kingja.qiang.util.GoUtil;
 
 /**
- * Description:TODO
+ * Description:启动页
  * Create Time:2018/5/14 13:20
  * Author:KingJA
  * Email:kingjavip@gmail.com

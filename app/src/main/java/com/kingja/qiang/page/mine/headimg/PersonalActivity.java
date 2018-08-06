@@ -1,15 +1,12 @@
 package com.kingja.qiang.page.mine.headimg;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
-import android.webkit.PermissionRequest;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -26,7 +23,6 @@ import com.kingja.qiang.util.DialogUtil;
 import com.kingja.qiang.util.FileUtil;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.SpSir;
-import com.kingja.qiang.util.ToastUtil;
 import com.kingja.supershapeview.view.SuperShapeImageView;
 import com.orhanobut.logger.Logger;
 import com.tbruyelle.rxpermissions2.Permission;

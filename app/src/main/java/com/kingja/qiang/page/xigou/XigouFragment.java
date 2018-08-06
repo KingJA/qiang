@@ -53,7 +53,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
- * Description:TODO
+ * Description:嬉购主界面
  * Create Time:2018/1/22 13:24
  * Author:KingJA
  * Email:kingjavip@gmail.com

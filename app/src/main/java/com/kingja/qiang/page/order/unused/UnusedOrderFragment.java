@@ -8,8 +8,6 @@ import com.kingja.loadsir.core.LoadSir;
 import com.kingja.qiang.R;
 import com.kingja.qiang.adapter.UnusedOrderAdapter;
 import com.kingja.qiang.base.BaseFragment;
-import com.kingja.qiang.callback.EmptyCallback;
-import com.kingja.qiang.callback.EmptyMsgCallback;
 import com.kingja.qiang.callback.EmptyOrderCallback;
 import com.kingja.qiang.callback.UnLoginCallback;
 import com.kingja.qiang.constant.Constants;

@@ -47,7 +47,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
- * Description:TODO
+ * Description:我的界面
  * Create Time:2018/1/22 13:24
  * Author:KingJA
  * Email:kingjavip@gmail.com

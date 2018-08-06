@@ -9,13 +9,10 @@ import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.Message;
 
-import java.io.Serializable;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
- * Description:TODO
+ * Description:消息详情
  * Create Time:2018/3/10 10:20
  * Author:KingJA
  * Email:kingjavip@gmail.com

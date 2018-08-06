@@ -11,7 +11,6 @@ import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.kingja.qiang.R;
-import com.kingja.qiang.activity.MsgDetailActivity;
 import com.kingja.qiang.adapter.VisitorAdapter;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.callback.EmptyMsgCallback;

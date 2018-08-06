@@ -11,7 +11,6 @@ import com.kingja.loadsir.core.LoadSir;
 import com.kingja.qiang.R;
 import com.kingja.qiang.adapter.BesellAdapter;
 import com.kingja.qiang.base.BaseFragment;
-import com.kingja.qiang.callback.EmptyMsgCallback;
 import com.kingja.qiang.callback.EmptyTicketCallback;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.event.TicketFilterEvent;

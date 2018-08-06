@@ -23,7 +23,7 @@ import butterknife.OnClick;
 
 
 /**
- * Description:TODO
+ * Description:忘记密码
  * Create Time:2018/3/8 13:43
  * Author:KingJA
  * Email:kingjavip@gmail.com
