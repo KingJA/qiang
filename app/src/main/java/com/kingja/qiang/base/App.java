@@ -62,7 +62,7 @@ public class App extends MultiDexApplication {
         setupComponent();
         initBugly();
         Logger.d("token:"+ SpSir.getInstance().getToken());
-        Logger.d("RegistrationID:"+ JPushInterface.getRegistrationID(this));
+
         SpSir.getInstance().clearMsgCount();
     }
 

@@ -45,6 +45,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Description:我的界面
@@ -127,7 +128,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     @Override
     protected void initNet() {
 //        VersionUpdateSir.getInstance(getActivity()).checkUpdate();
-
+        Logger.d("RegistrationID:"+ JPushInterface.getRegistrationID(getActivity()));
     }
 
     @Override
@@ -227,8 +228,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     public void onStart() {
         super.onStart();
         resetMsgCount();
-//        CrashReport.testJavaCrash();
-//        Beta.checkUpgrade(true,false);
+        CrashReport.testJavaCrash();
+        Beta.checkUpgrade(true,false);
     }
 
     private void resetMsgCount() {

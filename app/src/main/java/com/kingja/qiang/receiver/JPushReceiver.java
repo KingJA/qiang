@@ -51,9 +51,10 @@ public class JPushReceiver extends BroadcastReceiver {
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             Log.e(TAG, "接受到推送下来的通知");
             receivingNotification(context, bundle);
-            SpSir.getInstance().addMsgCount();
-            EventBus.getDefault().post(new MsgCountEvent());
-
+            if (!TextUtils.isEmpty(SpSir.getInstance().getToken())) {
+                SpSir.getInstance().addMsgCount();
+                EventBus.getDefault().post(new MsgCountEvent());
+            }
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.e(TAG, "用户点击打开了通知");
             goTicketDetail(context, bundle);
@@ -67,11 +68,16 @@ public class JPushReceiver extends BroadcastReceiver {
         String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
         Log.e(TAG, "extras : " + extras);
         Notification notification = new Gson().fromJson(extras, Notification.class);
-        Log.e(TAG, "productId : " + notification.getProductId());
-        Intent intent = new Intent(context, TicketDetailActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("productId", notification.getProductId());
-        context.startActivity(intent);
+        if (notification != null) {
+            String productId = notification.getProductId();
+            if (!TextUtils.isEmpty(productId)) {
+                Log.e(TAG, "productId : " + productId);
+                Intent intent = new Intent(context, TicketDetailActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("productId", productId);
+                context.startActivity(intent);
+            }
+        }
     }
 
     private void receivingNotification(Context context, Bundle bundle) {
@@ -118,26 +124,4 @@ public class JPushReceiver extends BroadcastReceiver {
         }
         return sb.toString();
     }
-//    private void openNotification(Context context, Bundle bundle){
-//        String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
-//        String myValue = "";
-//        try {
-//            JSONObject extrasJson = new JSONObject(extras);
-//            myValue = extrasJson.optString("myKey");
-//        } catch (Exception e) {
-//            Logger.w(TAG, "Unexpected: extras is not a valid json", e);
-//            return;
-//        }
-//        if (TYPE_THIS.equals(myValue)) {
-//            Intent mIntent = new Intent(context, ThisActivity.class);
-//            mIntent.putExtras(bundle);
-//            mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            context.startActivity(mIntent);
-//        } else if (TYPE_ANOTHER.equals(myValue)){
-//            Intent mIntent = new Intent(context, AnotherActivity.class);
-//            mIntent.putExtras(bundle);
-//            mIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            context.startActivity(mIntent);
-//        }
-//    }
 }
