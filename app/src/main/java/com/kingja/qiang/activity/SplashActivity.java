@@ -1,5 +1,6 @@
 package com.kingja.qiang.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -7,17 +8,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.kingja.qiang.MainActivity;
 import com.kingja.qiang.R;
+import com.kingja.qiang.service.initialize.InitializeService;
 import com.kingja.qiang.util.GoUtil;
 
 /**
- * Description:TODO
+ * Description:启动页
  * Create Time:2018/5/14 13:20
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
 public class SplashActivity extends AppCompatActivity {
-    private int DELAY_MILLIS = 2000;
+    private int DELAY_MILLIS = 500;
     private Handler dispatchHander;
     private DispatcherRunnable dispatcherRunnable;
 
@@ -30,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
         dispatchHander = new Handler();
         dispatcherRunnable = new DispatcherRunnable();
         dispatchHander.postDelayed(dispatcherRunnable, DELAY_MILLIS);
+        startService(new Intent(this, InitializeService.class));
     }
 
 
@@ -37,7 +41,7 @@ public class SplashActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            GoUtil.goActivityAndFinish(SplashActivity.this, GuideActivity.class);
+            GoUtil.goActivityAndFinish(SplashActivity.this, MainActivity.class);
         }
     }
 

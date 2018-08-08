@@ -13,8 +13,9 @@
         android:layout_height="110dp"/>
 
     <TextView
+        android:id="@+id/tv_tip"
         android:layout_marginBottom="36dp"
-        style="@style/font_orange_13"
+        style="@style/font_red_13"
         android:text="目前还没有消息"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

@@ -23,6 +23,7 @@ public abstract class BaseTitleActivity extends BaseActivity {
     protected View rootView;
     private TextView tvTitleTitle;
     private Unbinder bind;
+    private LinearLayout llTitleBack;
 
 
     @Override
@@ -30,7 +31,7 @@ public abstract class BaseTitleActivity extends BaseActivity {
         rootView = View.inflate(this, R.layout.activity_title, null);
         FrameLayout flContent = rootView.findViewById(R.id.fl_content);
         tvTitleTitle = rootView.findViewById(R.id.tv_title_title);
-        LinearLayout llTitleBack = rootView.findViewById(R.id.ll_title_back);
+        llTitleBack = rootView.findViewById(R.id.ll_title_back);
         tvTitleTitle.setText(getContentTitle() == null ? "" : getContentTitle());
         llTitleBack.setOnClickListener(v -> finish());
         View content = View.inflate(this, getContentView(), null);
@@ -42,6 +43,10 @@ public abstract class BaseTitleActivity extends BaseActivity {
             // register after ButterKnife.bind()
         }
         return rootView;
+    }
+
+    public void hideBack() {
+        llTitleBack.setVisibility(View.GONE);
     }
 
     @Override

@@ -21,7 +21,7 @@
 
         <EditText
             android:inputType="number"
-            android:id="@+id/et_register_mobile"
+            android:id="@+id/et_forgetpwd_mobile"
             style="@style/BgNullEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             android:background="@mipmap/icon_register_msg"/>
 
         <EditText
-            android:id="@+id/et_register_code"
+            android:id="@+id/et_forgetpwd_code"
             style="@style/BgNullEditText"
             android:inputType="number"
             android:layout_width="0dp"
@@ -57,8 +57,8 @@
             android:hint="请输入验证码"/>
 
         <com.kingja.supershapeview.view.SuperShapeTextView
-            style="@style/font_orange_12"
-            android:id="@+id/stv_register_getCode"
+            style="@style/font_red_12"
+            android:id="@+id/stv_forgetpwd_getCode"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             android:paddingTop="4dp"
             android:text="获取验证码"
             app:super_cornerRadius="2dp"
-            app:super_strokeColor="@color/orange_hi"
+            app:super_strokeColor="@color/red_hi"
             app:super_strokeWidth="1dp"/>
 
     </LinearLayout>
@@ -90,7 +90,7 @@
             android:background="@mipmap/icon_register_lock"/>
 
         <EditText
-            android:id="@+id/et_register_password"
+            android:id="@+id/et_forgetpwd_password"
             style="@style/BgNullEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
 
 
         <ImageView
-            android:id="@+id/iv_register_showPassword"
+            android:id="@+id/iv_forgetpwd_showPassword"
             android:layout_width="16dp"
             android:layout_height="21dp"
             android:background="@mipmap/icon_register_lock"/>
@@ -112,7 +112,7 @@
     <View style="@style/div_hor_gray"/>
 
     <TextView
-        android:id="@+id/tv_register_confirm"
+        android:id="@+id/tv_forgetpwd_confirm"
         style="@style/Action_Button"
         android:layout_marginTop="36dp"
         android:text="确定"/>

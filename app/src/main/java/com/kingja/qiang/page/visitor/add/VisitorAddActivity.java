@@ -6,9 +6,10 @@ import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
+import com.kingja.qiang.event.AddVisitorEvent;
 import com.kingja.qiang.event.RefreshVisitorsEvent;
 import com.kingja.qiang.injector.component.AppComponent;
-import com.kingja.qiang.page.visitor.list.DaggerVisitorCompnent;
+import com.kingja.qiang.page.visitor.Visitor;
 import com.kingja.qiang.util.CheckUtil;
 import com.kingja.qiang.util.ToastUtil;
 
@@ -43,8 +44,7 @@ public class VisitorAddActivity extends BaseTitleActivity implements VisitorAddC
         String phone = etVisitorPhone.getText().toString().trim();
         String idcode = etVisitorIdcode.getText().toString().trim();
         if (CheckUtil.checkEmpty(name, "请输入姓名")
-                && CheckUtil.checkPhoneFormat(phone)
-                && CheckUtil.checkIdCard(idcode, "身份证格式有误")) {
+                && CheckUtil.checkPhoneFormat(phone)) {
             addVisitor(name,phone,idcode);
         }
 
@@ -103,7 +103,7 @@ public class VisitorAddActivity extends BaseTitleActivity implements VisitorAddC
     }
 
     @Override
-    public void onAddVisitorSuccess() {
+    public void onAddVisitorSuccess(Visitor visitor) {
         ToastUtil.showText("添加游客信息成功");
         EventBus.getDefault().post(new RefreshVisitorsEvent());
         finish();

@@ -3,7 +3,6 @@ package com.kingja.qiang.page.mine;
 import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
-import com.kingja.qiang.model.entiy.PersonalInfo;
 import com.kingja.qiang.rx.ResultObserver;
 
 import javax.inject.Inject;
@@ -40,8 +39,8 @@ public class MinePresenter implements MineContract.Presenter {
     }
 
     @Override
-    public void logout() {
-        mApi.getUserService().logout().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe
+    public void logout(String userId, String osName) {
+        mApi.getUserService().logout( userId,  osName).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe
                 (new ResultObserver<Object>(mView) {
                     @Override
                     protected void onSuccess(Object object) {

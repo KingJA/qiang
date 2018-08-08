@@ -15,10 +15,17 @@ import java.util.List;
 public interface MessageContract {
     interface View extends BaseView {
         void onGetMessageSuccess(List<Message> messages);
+        void onGetMoreMessageSuccess(List<Message> messages);
+        void onDeleteMessageSuccess(int position);
+        void onReadMessageSuccess(int position);
     }
 
     interface Presenter extends BasePresenter<View> {
-        void getMessage();
+        void getMessage(Integer page, Integer pageSize);
+        void getMoreMessage(Integer page, Integer pageSize);
+
+        void deleteMessage(String messageId, Integer flag,int position);
+        void readMessage(String messageId, Integer flag,int position);
 
     }
 }

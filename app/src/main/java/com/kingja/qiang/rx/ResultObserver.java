@@ -1,12 +1,19 @@
 package com.kingja.qiang.rx;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.kingja.qiang.base.App;
 import com.kingja.qiang.base.BaseView;
+import com.kingja.qiang.constant.Status;
+import com.kingja.qiang.event.ResetLoginStatusEvent;
 import com.kingja.qiang.model.HttpResult;
+import com.kingja.qiang.util.SpSir;
 import com.kingja.qiang.util.ToastUtil;
 import com.orhanobut.logger.Logger;
+
+import org.greenrobot.eventbus.EventBus;
 
 import io.reactivex.observers.DefaultObserver;
 
@@ -37,18 +44,33 @@ public abstract class ResultObserver<T> extends DefaultObserver<HttpResult<T>> {
 
         Logger.json(new Gson().toJson(httpResult));
         baseView.hideLoading();
-        if (httpResult.getCode() == 0) {
+        if (httpResult.getCode() == Status.ResultCode.SUCCESS) {
             onSuccess(httpResult.getData());
-        } else if (httpResult.getCode() == 1) {
-            ToastUtil.showText("系统错误，请联系客服");
-        } else if (httpResult.getCode() == -1) {
-            ToastUtil.showText("登录失效");
+        } else if (httpResult.getCode() == Status.ResultCode.ERROR_SERVER) {
+            onServerError(httpResult.getCode(), httpResult.getMsg());
+        } else if (httpResult.getCode() == Status.ResultCode.ERROR_LOGIN_FAIL) {
+            onLoginFail();
         } else {
-            ToastUtil.showText(httpResult.getMsg());
+            onError(httpResult.getCode(), httpResult.getMsg());
         }
     }
 
     protected abstract void onSuccess(T t);
+
+    protected void onError(int code, String msg) {
+        ToastUtil.showText(msg);
+    }
+
+    protected void onServerError(int code, String msg) {
+        ToastUtil.showText("系统错误，请联系客服");
+    }
+
+    protected void onLoginFail() {
+        ToastUtil.showText("用户未登录或登录已过期，请重新登录");
+        SpSir.getInstance().clearData();
+        EventBus.getDefault().post(new ResetLoginStatusEvent());
+    }
+
 
     @Override
     public void onError(Throwable e) {

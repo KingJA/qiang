@@ -12,7 +12,7 @@
         android:background="@color/white_hi"
         android:padding="12dp">
 
-        <TextView
+        <com.kingja.qiang.view.RequiredTextView
             style="@style/font_3_14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         android:background="@color/white_hi"
         android:padding="12dp">
 
-        <TextView
+        <com.kingja.qiang.view.RequiredTextView
             style="@style/font_3_14"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -47,6 +47,7 @@
             android:text="手机号"/>
 
         <EditText
+            android:inputType="number"
             android:id="@+id/et_visitor_phone"
             style="@style/font_9_12"
             android:layout_width="0dp"
@@ -80,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:background="@null"
-            android:hint="与证件保持一致"/>
+            android:hint="请输入身份证号"/>
 
 
     </LinearLayout>

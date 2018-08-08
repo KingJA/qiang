@@ -1,6 +1,7 @@
 package com.kingja.qiang.util;
 
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.kingja.qiang.base.App;
 
@@ -16,6 +17,12 @@ public class SpSir {
     private static final String HEADIMG = "headImg";
     private static final String USERID = "userId";
     private static final String MOBILE = "mobile";
+    private static final String HOTSEARCH = "HOTSEARCH";
+    private static final String HistorySearch = "HistorySearch";
+    private static final String ScenicType = "ScenicType";
+    private static final String MsgCount = "MsgCount";
+    private static final String City = "City";
+    private static final String History_Keyword = "History_Keyword";
     private static final String EMPTY_STRING = "";
     private static SpSir mSpSir;
     private SharedPreferences mSp;
@@ -57,6 +64,30 @@ public class SpSir {
         return getString(HEADIMG);
     }
 
+    public String getHotSearch() {
+        return getString(HOTSEARCH);
+    }
+
+    public String getHistorySearch() {
+        return getString(HistorySearch);
+    }
+
+    public String getScenicType() {
+        return getString(ScenicType);
+    }
+
+    public String getCity() {
+        return getString(City);
+    }
+
+    public String getHistoryKeyword() {
+        return getString(History_Keyword);
+    }
+
+    public int getMsgCount() {
+        return getInt(MsgCount, 0);
+    }
+
     /*================================PUT================================*/
 
 
@@ -80,6 +111,48 @@ public class SpSir {
         putString(HEADIMG, headImg);
     }
 
+    public void putHotSearch(String hotsearch) {
+        putString(HOTSEARCH, hotsearch);
+    }
+
+    public void putScenicType(String scenicType) {
+        putString(ScenicType, scenicType);
+    }
+
+    public void putCity(String city) {
+        putString(City, city);
+    }
+
+    public void addMsgCount() {
+        int msgCount = getMsgCount();
+        putInt(MsgCount, ++msgCount);
+    }
+
+    public void clearMsgCount() {
+        putInt(MsgCount, 0);
+    }
+
+    public void putHistoryKeyword(String historyKeyword) {
+        putString(History_Keyword, historyKeyword);
+    }
+
+    public void addHistorySearch(String historySearch) {
+        if (TextUtils.isEmpty(historySearch)) {
+            return;
+        }
+        for (String history : getHistorySearch().split("#")) {
+            if (historySearch.equals(history)) {
+                return;
+            }
+        }
+        StringBuffer sb = new StringBuffer(historySearch).append("#").append(getHistorySearch());
+        putString(HistorySearch, sb.toString());
+    }
+
+    public void clearHistorySearch() {
+        putString(HistorySearch, "");
+    }
+
 
     private void putString(String key, String value) {
         if (value != null) {
@@ -89,6 +162,14 @@ public class SpSir {
 
     private String getString(String key, String defaultValue) {
         return mSp.getString(key, defaultValue);
+    }
+
+    private void putInt(String key, int value) {
+        mSp.edit().putInt(key, value).apply();
+    }
+
+    private int getInt(String key, int defaultValue) {
+        return mSp.getInt(key, defaultValue);
     }
 
     private String getString(String key) {

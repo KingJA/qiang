@@ -1,16 +1,20 @@
 package com.kingja.qiang.model.service;
 
+import com.kingja.qiang.event.ScenicType;
 import com.kingja.qiang.model.HttpResult;
-import com.kingja.qiang.model.entiy.Deal;
-import com.kingja.qiang.model.entiy.Discount;
-import com.kingja.qiang.model.entiy.Friend;
+import com.kingja.qiang.model.entiy.City;
+import com.kingja.qiang.model.entiy.HotSearch;
 import com.kingja.qiang.model.entiy.Login;
 import com.kingja.qiang.model.entiy.Message;
-import com.kingja.qiang.model.entiy.PersonalInfo;
-import com.kingja.qiang.model.entiy.Wallet;
+import com.kingja.qiang.model.entiy.OrderResult;
+import com.kingja.qiang.update.VersionInfo;
+import com.kingja.qiang.model.entiy.WeixinPayResult;
+import com.kingja.qiang.page.detail.TicketDetail;
+import com.kingja.qiang.page.sell.Ticket;
+import com.kingja.qiang.page.introduce.SceneryIntroduce;
 import com.kingja.qiang.page.order.Order;
 import com.kingja.qiang.page.order.orderdetail.OrderDetail;
-import com.kingja.qiang.page.visitor.list.Visitor;
+import com.kingja.qiang.page.visitor.Visitor;
 
 import java.util.List;
 
@@ -42,7 +46,7 @@ public interface UserService {
     /*发送验证码OK*/
     @FormUrlEncoded
     @POST("/app/user/smsmessage")
-    Observable<HttpResult<String>> sms(@Field("mobile") String mobile, @Field("flag") String flag);
+    Observable<HttpResult<String>> sms(@Field("mobile") String mobile, @Field("flag") int flag);
 
     /*注册OK*/
     @FormUrlEncoded
@@ -53,7 +57,8 @@ public interface UserService {
     /*修改密码*/
     @FormUrlEncoded
     @POST("/app/user/changepasswd")
-    Observable<HttpResult<Object>> modifyPassword(@Field("passwd") String password);
+    Observable<HttpResult<Object>> modifyPassword(@Field("oldpasswd") String oldpasswd, @Field("passwd") String
+            password);
 
 
     /*修改昵称*/
@@ -65,8 +70,9 @@ public interface UserService {
 
 
     /*退出登录OK*/
+    @FormUrlEncoded
     @POST("/app/user/logout")
-    Observable<HttpResult<Object>> logout();
+    Observable<HttpResult<Object>> logout(@Field("userId") String userId, @Field("osName") String osName);
 
     /*我的消息*/
     @FormUrlEncoded
@@ -83,8 +89,8 @@ public interface UserService {
     @Headers("Content-Type:application/x-www-form-urlencoded;charset=utf-8")
     @FormUrlEncoded
     @POST("/app/tourist/add")
-    Observable<HttpResult<Object>> addVisitor(@Field("name") String name, @Field("mobile") String mobile,
-                                              @Field("idcode") String idcode);
+    Observable<HttpResult<Visitor>> addVisitor(@Field("name") String name, @Field("mobile") String mobile,
+                                               @Field("idcode") String idcode);
 
     /*删除游客信息*/
     @FormUrlEncoded
@@ -99,7 +105,7 @@ public interface UserService {
     /*编辑游客信息*/
     @FormUrlEncoded
     @POST("/app/tourist/change")
-    Observable<HttpResult<Object>> editVisitor(@Field("touristId") String touristId, @Field("name") String name, @Field
+    Observable<HttpResult<Visitor>> editVisitor(@Field("touristId") String touristId, @Field("name") String name, @Field
             ("mobile") String mobile, @Field("idcode") String idcode);
 
     /*上传头像*/
@@ -112,38 +118,79 @@ public interface UserService {
     @POST("/app/order/list")
     Observable<HttpResult<List<Order>>> getOrders(@Field("page") Integer page, @Field("pageSize") Integer pageSize,
                                                   @Field("status") Integer status);
+
     /*获取订单详情*/
     @FormUrlEncoded
     @POST("/app/order/ticketcode")
     Observable<HttpResult<OrderDetail>> getOrderDetail(@Field("orderId") String orderId);
 
-    //=================================================================================
+    /*删除/已读消息 1 已读2 删除*/
+    @FormUrlEncoded
+    @POST("/app/message/confirm")
+    Observable<HttpResult<Object>> confirmMsg(@Field("messageId") String messageId, @Field("flag") Integer flag);
+
+
+    /*获取产品列表*/
+    @FormUrlEncoded
+    @POST("/app/product/list")
+    Observable<HttpResult<List<Ticket>>> getTickets(@Field("areaId") String areaId, @Field("productTypeId") String
+            productTypeId, @Field("useDates") String useDates, @Field("discountRate") String discountRate, @Field
+                                                            ("keyword") String keyword, @Field("page") Integer page,
+                                                    @Field("pageSize") Integer pageSize, @Field("status") Integer
+                                                            status);
+
+    /*获取热搜*/
+    @FormUrlEncoded
+    @POST("/app/product/hotsearch")
+    Observable<HttpResult<List<HotSearch>>> getHotSearch(@Field("limit") int areaId);
+
+    /*获取产品详情*/
+    @FormUrlEncoded
+    @POST("/app/product/details")
+    Observable<HttpResult<TicketDetail>> getTicketDetail(@Field("productId") String productId);
+
+    /*获取景区介绍*/
+    @FormUrlEncoded
+    @POST("/app/product/scenic")
+    Observable<HttpResult<SceneryIntroduce>> getSceneryIntroduce(@Field("scenicId") String scenicId);
+
+    /*订单保存*/
+    @FormUrlEncoded
+    @POST("/app/order/submit")
+    Observable<HttpResult<OrderResult>> sumbitOrder(@Field("productId") String productId, @Field("touristIds")
+            String touristIds, @Field("quantity") int quantity, @Field("from") String from);
+
+    /*支付宝支付*/
+    @FormUrlEncoded
+    @POST("/app/pay/alipay")
+    Observable<HttpResult<String>> alipay(@Field("orderId") String orderId);
+
+    /*微信支付*/
+    @FormUrlEncoded
+    @POST("/app/pay/weixinpay")
+    Observable<HttpResult<WeixinPayResult>> weixinpay(@Field("orderId") String orderId);
+
     /*忘记密码*/
     @FormUrlEncoded
-    @POST("forgetPw")
-    Observable<HttpResult<Object>> setNewPassword(@Field("mobile") String mobile, @Field("password") String password,
+    @POST("/app/user/findpasswd")
+    Observable<HttpResult<Object>> forgetPassword(@Field("mobile") String mobile, @Field("passwd") String passwd,
                                                   @Field("code") String code);
 
-    /*交易明细*/
-    @GET("me/deal_list")
-    Observable<HttpResult<List<Deal>>> getDealList();
+    /*获取景区类型*/
+    @FormUrlEncoded
+    @POST("/app/dict/data")
+    Observable<HttpResult<List<ScenicType>>> getScenicType(@Field("dictCategoryId") String dictCategoryId);
 
-    /*我的优惠券*/
-    @GET("me/voucher")
-    Observable<HttpResult<List<Discount>>> voucher();
-
-    /*我的钱包*/
-    @GET("me/wallet")
-    Observable<HttpResult<Wallet>> wallet();
+    /*获取地区*/
+    @POST("/app/area/list")
+    Observable<HttpResult<List<City>>> getCity();
 
 
-    /*个人信息*/
-    @GET("u/{id}")
-    Observable<HttpResult<PersonalInfo>> getPersonalInfo(@Path("id") String id);
-
-    /*我的好友*/
-    @GET("me/friends")
-    Observable<HttpResult<List<Friend>>> getMineFriends();
+    /*版本检测*/
+    @FormUrlEncoded
+    @POST("/app/version/detail")
+    Observable<HttpResult<VersionInfo>> checkUpdate(@Field("version") String version, @Field("flag") int flag);
 
 
+    //=================================================================================
 }

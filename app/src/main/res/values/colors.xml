@@ -5,15 +5,17 @@
     <color name="colorAccent">#FF4081</color>
 
 
-    <color name="orange_hi">#EA1022</color>
+    <color name="red_hi">#EA1022</color>
+    <color name="orange_hi">#FF7A40</color>
     <color name="delete_hi">#EC4D3D</color>
     <color name="orange_light_hi">#f9986b</color>
     <color name="orange_hi_light">#FCD2BC</color>
     <color name="green_hi">#64C99F</color>
     <color name="gray_hi">#CCCCCC</color>
-    <color name="bg_hi">#F6F6F6</color>
     <color name="yellow_hi">#F5EDCF</color>
     <color name="c_gold">#958543</color>
+    <color name="bg_hi">#F6F6F6</color>
+    <color name="blue_hi">#7097ED</color>
     <color name="bg_orange">#EF8D34</color>
     <color name="white_hi">#ffffff</color>
     <color name="tran_hi">#00000000</color>

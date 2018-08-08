@@ -1,68 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:background="@color/white_hi"
               android:orientation="vertical">
-
     <LinearLayout
+        android:id="@+id/ll_one_yuan"
+        android:padding="24dp"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="24dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="24dp">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_one_yuan"
+            android:layout_marginRight="12dp"
+            android:layout_width="96dp"
+            android:layout_height="17dp"
+            android:background="@mipmap/ic_oneyuan_nor"/>
 
-            <TextView
-                style="@style/font_3_13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="价格："/>
-
-            <TextView
-                style="@style/font_orange_13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="¥150-200"/>
-
-        </LinearLayout>
-
-        <com.kingja.rangebarsir.RangeBar
-            android:id="@+id/rangebar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="24dp"
-            app:maxNum="120"
-            app:minNum="20"
-            app:normalLineColor="@color/gray_hi"
-            app:normalLineWidth="4dp"
-            app:offsetNum="10"
-            app:selectedLineColor="@color/orange_hi"
-            app:selectedLineWidth="4dp"
-            app:sliderColor="@color/orange_hi"
-            app:sliderSzie="16dp"/>
-
-        <GridView
-            android:id="@+id/gv_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnWidth="80dp"
-            android:horizontalSpacing="12dp"
-            android:numColumns="4"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="12dp"
-            tools:listitem="@layout/item_price">
-        </GridView>
 
     </LinearLayout>
+    <View style="@style/div_hor_gray"
+          android:layout_marginLeft="12dp"
+          android:layout_marginRight="12dp"/>
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+
+
+        <LinearLayout
+            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/font_3_13"
+                android:text="折扣："
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_leftValue"
+                style="@style/font_red_13"
+                android:text="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                style="@style/font_red_13"
+                android:text="折"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                style="@style/font_red_13"
+                android:text="-"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_rightValue"
+                style="@style/font_red_13"
+                android:text="9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                style="@style/font_red_13"
+                android:text="折"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/font_3_13"
+                android:text="1折"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_alignParentRight="true"
+                style="@style/font_3_13"
+                android:text="9折"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <com.jaygoo.widget.RangeSeekBar
+            android:id="@+id/rsb_discountRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:rsb_min="1"
+            app:rsb_max="9"
+            app:rsb_range_interval="1"
+            app:rsb_mode="range"
+            app:rsb_tick_mark_mode="number"
+            app:rsb_indicator_text_size="12sp"
+            app:rsb_progress_color="#EA1022"
+            app:rsb_progress_default_color="@color/gray_hi"
+            app:rsb_thumb_size="36dp"
+            app:rsb_thumb_drawable="@mipmap/ic_seekbar"
+            app:rsb_indicator_radius="8dp"
+            android:layout_marginBottom="16dp"/>
+
+
+
+    </LinearLayout>
+
+
+
 
     <View style="@style/div_hor_gray"/>
 
@@ -71,20 +119,22 @@
         android:layout_height="48dp">
 
         <TextView
+            android:id="@+id/tv_cancel"
             style="@style/font_9_17"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="完成"/>
+            android:text="不限"/>
 
         <TextView
+            android:id="@+id/tv_confirm"
             style="@style/font_f_17"
-            android:background="@color/orange_hi"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
+            android:background="@color/red_hi"
             android:gravity="center"
-            android:text="不限"/>
+            android:text="完成"/>
     </LinearLayout>
 </LinearLayout>

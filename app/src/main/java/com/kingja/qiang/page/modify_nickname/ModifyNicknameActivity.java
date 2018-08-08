@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Description:TODO
+ * Description:修改昵称
  * Create Time:2018/3/8 14:57
  * Author:KingJA
  * Email:kingjavip@gmail.com

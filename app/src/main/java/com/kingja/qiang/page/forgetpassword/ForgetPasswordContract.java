@@ -12,13 +12,13 @@ import com.kingja.qiang.base.BaseView;
 public interface ForgetPasswordContract {
     interface View extends BaseView {
         void onModifyPasswordSuccess();
-        void onGetCodeSuccess();
+        void onGetCodeSuccess(String code);
     }
 
     interface Presenter extends BasePresenter<View> {
         void modifyPassword(String mobile, String password, String code);
 
-        void getCode(String mobile, String type);
+        void getCode(String mobile, int flag);
 
     }
 }

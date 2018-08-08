@@ -2,9 +2,6 @@ package com.kingja.qiang.page.order.orderdetail;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-import com.kingja.qiang.page.order.Order;
-
-import java.util.List;
 
 /**
  * Description：TODO

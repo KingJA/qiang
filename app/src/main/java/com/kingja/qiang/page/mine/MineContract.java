@@ -2,7 +2,8 @@ package com.kingja.qiang.page.mine;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-import com.kingja.qiang.model.entiy.PersonalInfo;
+
+import retrofit2.http.Field;
 
 /**
  * Description：TODO
@@ -16,7 +17,7 @@ public interface MineContract {
     }
 
     interface Presenter extends BasePresenter<View> {
-        void logout();
+        void logout(String userId, String osName);
 
     }
 }

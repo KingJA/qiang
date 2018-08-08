@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
+import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.page.order.Order;
 import com.kingja.qiang.page.order.orderdetail.OrderDetailActivity;
 import com.kingja.qiang.util.ToastUtil;
@@ -45,6 +46,7 @@ public class UnusedOrderAdapter extends BaseLvAdapter<Order> {
         viewHolder.tv_order_area.setText(list.get(position).getAreaText());
         viewHolder.tv_order_payamount.setText(String.valueOf(list.get(position).getPayamount()));
         viewHolder.tv_order_date.setText(list.get(position).getVisitDate());
+        ImageLoader.getInstance().loadImage(context, list.get(position).getHeadimg(),R.mipmap.ic_placeholder, viewHolder.iv_order_img);
         return convertView;
     }
 
@@ -64,6 +66,7 @@ public class UnusedOrderAdapter extends BaseLvAdapter<Order> {
         TextView tv_order_quantity;
         SuperShapeTextView stv_order_detail;
         ImageView iv_order_stamp;
+        ImageView iv_order_img;
 
         public ViewHolder(View root) {
             this.root = root;
@@ -76,6 +79,7 @@ public class UnusedOrderAdapter extends BaseLvAdapter<Order> {
             tv_order_status = root.findViewById(R.id.tv_order_status);
             stv_order_detail = root.findViewById(R.id.stv_order_detail);
             iv_order_stamp = root.findViewById(R.id.iv_order_stamp);
+            iv_order_img = root.findViewById(R.id.iv_order_img);
         }
     }
 }

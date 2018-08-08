@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.kingja.qiang">
 
     <!--网络访问-->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!--读取联系人-->
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <!--本地SD卡读写-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!--相机-->
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <!--拨打电话-->
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <!--JPush Required -->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
+    <uses-permission android:name="com.kingja.qiang.permission.JPUSH_MESSAGE"/>
+    <!--<uses-permission android:name="android.permission.WAKE_LOCK"/>-->
+    <!--<uses-permission android:name="android.permission.VIBRATE"/>-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--<uses-permission android:name="android.permission.WRITE_SETTINGS"/>-->
+    <!--允许挂载和反挂载文件系统可移动存储-->
+    <!--<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>-->
+    <!--8.0安装权限-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <!--bugly 极光推送获取RegistrationID-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--<uses-permission android:name="android.permission.READ_LOGS" />-->
+
+
     <application
         android:name="com.kingja.qiang.base.App"
         android:allowBackup="true"
@@ -20,45 +32,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:replace="icon,label,theme">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <!--引导页-->
-        <activity
-            android:name="com.kingja.qiang.activity.GuideActivity"
-            android:screenOrientation="portrait"/>
         <!--主界面-->
-        <!--<activity-->
-        <!--android:name="com.kingja.qiang.MainActivity"-->
-        <!--android:screenOrientation="portrait"/>-->
+        <activity
+            android:name="com.kingja.qiang.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
         <!--嘻购详情-->
-        <activity
-            android:name="com.kingja.qiang.activity.XigoDetailActivity"
-            android:screenOrientation="portrait"/>
-        <!--设置界面-->
-        <activity
-            android:name="com.kingja.qiang.page.setting.SettingActivity"
-            android:screenOrientation="portrait"/>
-        <!--我的钱包-->
-        <activity
-            android:name="com.kingja.qiang.page.wallet.WalletActivity"
-            android:screenOrientation="portrait"/>
-        <!--我的优惠券-->
-        <activity
-            android:name="com.kingja.qiang.page.discount.DiscountActivity"
-            android:screenOrientation="portrait"/>
-        <!--我的好友-->
-        <activity
-            android:name="com.kingja.qiang.page.mine_friends.MineFriendsActivity"
-            android:screenOrientation="portrait"/>
-        <!--我的订单-->
-        <activity
-            android:name="com.kingja.qiang.activity.OrderActivity"
-            android:screenOrientation="portrait"/>
         <!--我的消息-->
         <activity
             android:name=".page.message.MsgActivity"
@@ -86,38 +74,10 @@
             android:name="com.kingja.qiang.page.modify_nickname.ModifyNicknameActivity"
             android:screenOrientation="portrait"/>
         <!--更换手机号-->
-        <activity
-            android:name="com.kingja.qiang.activity.ModifyPhoneActivity"
-            android:screenOrientation="portrait"/>
         <!--消息详情-->
         <activity
             android:name="com.kingja.qiang.activity.MsgDetailActivity"
             android:screenOrientation="portrait"/>
-        <!--交易明细-->
-        <activity
-            android:name="com.kingja.qiang.page.deallist.DealListActivity"
-            android:screenOrientation="portrait"/>
-        <!--通讯录-->
-        <activity
-            android:name="com.kingja.qiang.activity.ContactsActivity"
-            android:screenOrientation="portrait"/>
-        <!--领券中心-->
-        <activity
-            android:name="com.kingja.qiang.activity.DiscountCenterActivity"
-            android:screenOrientation="portrait"/>
-        <!--购物车-->
-        <activity
-            android:name="com.kingja.qiang.activity.ShopCartActivity"
-            android:screenOrientation="portrait"/>
-        <!--收银台-->
-        <activity
-            android:name="com.kingja.qiang.activity.PayActivity"
-            android:screenOrientation="portrait"/>
-        <!--嬉逛分集详情-->
-        <activity
-            android:name="com.kingja.qiang.activity.XigoMultiDetailActivity"
-            android:screenOrientation="portrait"/>
-        <!--找回密码-->
         <activity
             android:name="com.kingja.qiang.page.forgetpassword.ForgetPasswordActivity"
             android:screenOrientation="portrait"/>
@@ -141,7 +101,100 @@
         <activity
             android:name=".page.order.orderdetail.OrderDetailActivity"
             android:screenOrientation="portrait"/>
+        <!--搜索设置页-->
+        <activity
+            android:name=".page.search.SearchDetailActivity"
+            android:screenOrientation="portrait"/>
 
+        <!--搜索结果页-->
+        <activity
+            android:name=".page.search.result.SearchResultActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--景区详情页-->
+        <activity
+            android:name=".page.detail.TicketDetailActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--景区介绍页-->
+        <activity
+            android:name=".page.introduce.SceneryIntroduceActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--完善游客信息-->
+        <activity
+            android:name=".page.visitor.prefect.VisitorPrefectActivity"
+            android:screenOrientation="portrait"/>
+
+        <!--支付页面-->
+        <activity
+            android:name=".page.pay.PayActivity"
+            android:screenOrientation="portrait"/>
+        <!--分享页面-->
+        <activity
+            android:name=".page.share.ShareActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Fullscreen.Translucent"/>
+
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Fullscreen.Translucent"/>
+
+
+        <!--JPush-->
+        <receiver
+            android:name=".receiver.JPushReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION"/>
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION"/>
+                <action android:name="cn.jpush.android.intent.CONNECTION"/>
+
+                <category android:name="com.kingja.qiang"/>
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".service.initialize.InitializeService"/>
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+
+        <!--7.0apk安装-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.kingja.qiang.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <!--元数据-->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/apk_path"/>
+        </provider>
+
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
     </application>
 
 </manifest>

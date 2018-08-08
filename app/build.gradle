@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.kingja.qiang"
         minSdkVersion MIN_SDK_VERSION as int
@@ -11,6 +11,11 @@ android {
         versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "1c5d6829a9998544c1fa5884", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
     }
     lintOptions {
         abortOnError false
@@ -34,6 +39,9 @@ android {
         }
         debug {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            buildApkBy()
         }
     }
 
@@ -48,54 +56,92 @@ dependencies {
     implementation "com.android.support:appcompat-v7:${SUPPORT_VERSION}"
     implementation "com.android.support:cardview-v7:${SUPPORT_VERSION}"
     implementation "com.android.support:design:${SUPPORT_VERSION}"
+
     /*jakewharton*/
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
     /*multidex*/
     implementation 'com.android.support:multidex:1.0.2'
+
     /*debugCompile*/
     implementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+
     //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
     //Logger
     implementation 'com.orhanobut:logger:2.1.1'
+
     /*glide*/
     implementation 'com.github.bumptech.glide:glide:3.7.0'
+
     /*dagger2*/
     implementation 'com.google.dagger:dagger:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+
     //RxJava,RxAndroid
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.4'
     implementation 'org.reactivestreams:reactive-streams:1.0.1'
+
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+
     /*dialog*/
+
     //    compile 'cn.pedant.sweetalert:library:1.3'
+
     /*KingJA's Libraries*/
     implementation 'com.kingja.supershapeview:supershapeview:1.2.0'
     implementation 'in.srain.cube:ultra-ptr:1.0.11'
     implementation 'com.kingja.loadsir:loadsir:1.3.6'
     implementation 'com.kingja.contactssir:contactssir:1.0.0'
-    implementation 'com.kingja.popwindowsir:popwindowsir:1.0.0'
+    implementation 'com.kingja.popwindowsir:popwindowsir:1.0.2'
+
     /*countdownview*/
     implementation 'com.github.iwgang:countdownview:2.1.6'
+
     /*pulltofresh*/
     implementation 'in.srain.cube:ultra-ptr:1.0.11'
+
     /*lottie*/
     implementation('com.airbnb.android:lottie:2.2.5') { exclude group: 'com.android.support' }
     implementation 'com.squareup:android-times-square:1.6.5@aar'
     implementation 'com.zhihu.android:matisse:0.4.3'
-    implementation project(':rangebarsir')
-    implementation('com.github.hotchemi:permissionsdispatcher:3.2.0') { exclude group: 'com.android.support' }
-    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.2.0"
+
+    //    implementation('com.github.hotchemi:permissionsdispatcher:3.2.0') { exclude group: 'com.android.support' }
+
+    //    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.2.0"
     implementation 'com.orhanobut:logger:2.2.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+
     /*material-dialogs*/
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+
     /*eventbus*/
     implementation 'org.greenrobot:eventbus:3.1.1'
+
+    /*jpush*/
+    implementation 'cn.jiguang.sdk:jpush:3.1.3'
+    implementation 'cn.jiguang.sdk:jcore:1.2.1'
+
+    /*flowlayout*/
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
+    implementation files('libs/alipaySdk-20180601.jar')
+
+    /*weixin*/
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation 'com.github.Jay-Goo:RangeSeekBar:v2.0.4'
+
+    /*rxpermissions*/
+    implementation('com.github.tbruyelle:rxpermissions:0.10.2') { exclude group: 'com.android.support' }
+
+    /*bugly*/
+
+    //    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
 }
 
 
@@ -110,14 +156,14 @@ def buildApkBy() {
                 buildType = BUILD_TYPE
                 variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apk")
             }
-            apkData.outputFileName = APP_NAME + "_" +
-                    versionName + "_" + buildDate + "_" + buildType + ".apk"
+            apkData.outputFileName = APP_NAME + "_V" +
+                    versionName + "_" + VERSION_CODE + "_" + buildType + ".apk"
         }
     }
 }
 
 def releaseTime() {
-    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
 }
 //configurations.all {
 //

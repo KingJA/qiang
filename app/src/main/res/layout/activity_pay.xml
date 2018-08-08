@@ -8,116 +8,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:background="@color/bg_hi"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#F5EDCF"
-            android:padding="12dp">
-
-            <TextView
-                style="@style/font_gold_13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="请在"/>
-
-            <TextView
-                style="@style/font_orange_17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="50分28秒内"/>
-
-            <TextView
-                style="@style/font_gold_13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="完成支付，否则系统将取消本次支付"/>
-
-        </LinearLayout>
-
-        <View style="@style/div_hor_gray"/>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <TextView
+            style="@style/font_3_16"
             android:background="@color/white_hi"
-            android:padding="18dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@mipmap/ic_balance"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <TextView
-                        style="@style/font_3_16"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="余额支付"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-
-                        <TextView
-                            style="@style/font_9_12"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="当前余额"/>
-
-                        <TextView
-                            style="@style/font_orange_15"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="2dp"
-                            android:layout_marginRight="2dp"
-                            android:text="1088"/>
-
-                        <TextView
-                            style="@style/font_9_12"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="元"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <android.support.v7.widget.AppCompatCheckBox
-                style="@style/CircleCheckbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
-
-
-        </RelativeLayout>
+            android:padding="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请选择支付方式"/>
 
         <View style="@style/div_hor_gray"/>
 
         <RelativeLayout
+            android:id="@+id/rl_weixinpay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white_hi"
@@ -159,10 +65,11 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.AppCompatCheckBox
-                style="@style/CircleCheckbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/iv_cb_weixinpay"
+                android:background="@mipmap/bg_cb_circle_nor"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"/>
 
@@ -172,6 +79,7 @@
         <View style="@style/div_hor_gray"/>
 
         <RelativeLayout
+            android:id="@+id/rl_alipay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white_hi"
@@ -213,65 +121,24 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.AppCompatCheckBox
-                style="@style/CircleCheckbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/iv_cb_alipay"
+                android:background="@mipmap/bg_cb_circle_nor"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"/>
-
 
         </RelativeLayout>
 
         <View style="@style/div_hor_gray"/>
     </LinearLayout>
+    <TextView
 
-    <View style="@style/div_hor_gray"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingLeft="12dp">
-
-
-            <TextView
-                style="@style/font_3_16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:text="支付金额:"/>
-
-            <TextView
-                style="@style/font_orange_16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:text="¥"/>
-
-            <TextView
-                style="@style/font_orange_16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="206"/>
-
-
-        </LinearLayout>
-
-        <TextView
-            style="@style/font_f_15"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:background="@color/orange_hi"
-            android:gravity="center"
-            android:paddingLeft="18dp"
-            android:paddingRight="18dp"
-            android:text="立即支付"/>
-
-    </RelativeLayout>
+        android:id="@+id/tv_pay"
+        style="@style/Action_Button"
+        android:layout_marginTop="36dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:text="立即支付"/>
 </LinearLayout>

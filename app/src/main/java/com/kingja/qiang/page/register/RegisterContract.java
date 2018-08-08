@@ -13,13 +13,13 @@ public interface RegisterContract {
     interface View extends BaseView {
         void onRegisterSuccess();
 
-        void onGetCodeSuccess();
+        void onGetCodeSuccess(String code);
     }
 
     interface Presenter extends BasePresenter<View> {
         void register(String mobile, String password, String code);
 
-        void getCode(String mobile, String type);
+        void getCode(String mobile, int flag);
 
     }
 }

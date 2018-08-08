@@ -1,16 +1,17 @@
 package com.kingja.qiang.page.mine.headimg;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.event.RefreshHeadImgEvent;
@@ -18,12 +19,14 @@ import com.kingja.qiang.event.RefreshNicknameEvent;
 import com.kingja.qiang.imgaeloader.ImageLoader;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.modify_nickname.ModifyNicknameActivity;
+import com.kingja.qiang.util.DialogUtil;
 import com.kingja.qiang.util.FileUtil;
 import com.kingja.qiang.util.GoUtil;
 import com.kingja.qiang.util.SpSir;
-import com.kingja.qiang.util.ToastUtil;
 import com.kingja.supershapeview.view.SuperShapeImageView;
 import com.orhanobut.logger.Logger;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -39,15 +42,11 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import permissions.dispatcher.NeedsPermission;
-import permissions.dispatcher.OnNeverAskAgain;
-import permissions.dispatcher.OnPermissionDenied;
-import permissions.dispatcher.OnShowRationale;
-import permissions.dispatcher.PermissionRequest;
-import permissions.dispatcher.RuntimePermissions;
 
 /**
  * Description:TODO
@@ -55,7 +54,6 @@ import permissions.dispatcher.RuntimePermissions;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-@RuntimePermissions
 public class PersonalActivity extends BaseTitleActivity implements PersonalContract.View {
     @BindView(R.id.iv_personal_head)
     SuperShapeImageView ivPersonalHead;
@@ -69,11 +67,14 @@ public class PersonalActivity extends BaseTitleActivity implements PersonalContr
     @Inject
     PersonalPresenter personalPresenter;
 
+    List<Uri> mSelected;
+    private RxPermissions rxPermissions;
+
     @OnClick({R.id.rl_personal_head, R.id.rl_personal_nickanme})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_personal_head:
-                PersonalActivityPermissionsDispatcher.selectPhotoWithPermissionCheck(this);
+                checkPhotoPermission();
                 break;
             case R.id.rl_personal_nickanme:
                 GoUtil.goActivity(this, ModifyNicknameActivity.class);
@@ -83,8 +84,43 @@ public class PersonalActivity extends BaseTitleActivity implements PersonalContr
         }
     }
 
-    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE})
-    public void selectPhoto() {
+    public void checkPhotoPermission() {
+
+        Disposable disposable = rxPermissions.requestEach(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .subscribe(new Consumer<Permission>() {
+                    @Override
+                    public void accept(Permission permission) throws Exception {
+                        if (permission.granted) {
+                            openCamera();
+                        } else if (permission.shouldShowRequestPermissionRationale) {
+                            // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
+                            DialogUtil.showDoubleDialog(PersonalActivity.this, "为保证您正常浏览图片，需要获取读写手机存储权限，请允许", new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    checkPhotoPermission();
+                                }
+                            });
+                        } else {
+                            // 用户拒绝了该权限，并且选中『不再询问』
+                            DialogUtil.showDoubleDialog(PersonalActivity.this, "未取得读写手机存储权限，将无法为部分图片提供预览。请前往应用权限设置打开权限。", new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    startAppSettings();
+                                }
+                            });
+
+                        }
+                    }
+                });
+
+    }
+    private void startAppSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.setData(Uri.fromParts("package", getPackageName(), null));
+        startActivity(intent);
+    }
+
+    private void openCamera() {
         Matisse.from(this)
                 .choose(MimeType.allOf())
                 .countable(true)
@@ -97,53 +133,19 @@ public class PersonalActivity extends BaseTitleActivity implements PersonalContr
                 .forResult(REQUEST_CODE_CHOOSE); // 设置作为标记的请求码
     }
 
-    List<Uri> mSelected;
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[]
-            grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        PersonalActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
-    }
-
-    @OnShowRationale({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE})
-    void showRationaleForCamera(final PermissionRequest request) {
-        new AlertDialog.Builder(this)
-                .setMessage("需要相机权限")
-                .setPositiveButton("确定", (dialog, button) -> request.proceed())
-                .setNegativeButton("取消", (dialog, button) -> request.cancel())
-                .show();
-    }
-
-    @OnPermissionDenied({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE})
-    void showDeniedForCamera() {
-        ToastUtil.showText("OnPermissionDenied");
-    }
-
-    @OnNeverAskAgain({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE})
-    void showNeverAskForCamera() {
-        ToastUtil.showText("OnNeverAskAgain");
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
             mSelected = Matisse.obtainResult(data);
-
-//            Glide.with(this)
-//                    .load(mSelected.get(0))
-//                    .centerCrop()
-//                    .crossFade()
-//                    .into(ivPersonalHead);
-
             uploadHeadImg(mSelected.get(0));
         }
     }
 
     private void uploadHeadImg(Uri uri) {
-        Logger.d("uri:"+uri.toString());
-        File  headImgFile = FileUtil.getFileByUri(uri,this);
+        Logger.d("uri:" + uri.toString());
+        File headImgFile = FileUtil.getFileByUri(uri, this);
         RequestBody body = RequestBody.create(MediaType.parse("image/jpg"), headImgFile);
         MultipartBody.Part photoPart = MultipartBody.Part.createFormData("headimg", headImgFile.getName(), body);
         personalPresenter.uploadHeadImg(photoPart);
@@ -182,6 +184,7 @@ public class PersonalActivity extends BaseTitleActivity implements PersonalContr
     @Override
     protected void initView() {
         personalPresenter.attachView(this);
+        rxPermissions = new RxPermissions(this);
     }
 
     @Override

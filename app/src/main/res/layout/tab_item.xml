@@ -9,8 +9,7 @@
         android:id="@+id/iv_tab"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginBottom="4dp"
-        android:background="@mipmap/ic_scenic"/>
+        android:layout_marginBottom="4dp"/>
 
     <TextView
         android:id="@+id/tv_tab"

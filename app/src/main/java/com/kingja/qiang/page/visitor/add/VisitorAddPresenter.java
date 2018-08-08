@@ -3,10 +3,8 @@ package com.kingja.qiang.page.visitor.add;
 import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
-import com.kingja.qiang.page.visitor.list.Visitor;
+import com.kingja.qiang.page.visitor.Visitor;
 import com.kingja.qiang.rx.ResultObserver;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -43,10 +41,10 @@ public class VisitorAddPresenter implements VisitorAddContract.Presenter {
     public void addVisitor(String name,String mobile, String idcode) {
         mApi.getUserService().addVisitor( name, mobile,  idcode).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers
                 .mainThread()).subscribe
-                (new ResultObserver<Object>(mView) {
+                (new ResultObserver<Visitor>(mView) {
                     @Override
-                    protected void onSuccess(Object obj) {
-                        mView.onAddVisitorSuccess();
+                    protected void onSuccess(Visitor visitor) {
+                        mView.onAddVisitorSuccess(visitor);
                     }
                 });
     }

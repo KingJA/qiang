@@ -32,7 +32,7 @@
             android:visibility="gone"
             android:id="@+id/iv_nickname_clear"
             android:layout_marginRight="12dp"
-            android:background="@mipmap/icon_input_clear"
+            android:background="@mipmap/ic_input_clear"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_width="18dp"

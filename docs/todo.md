@@ -25,3 +25,25 @@
 我的下面子路由
 订单
 对话框
+
+
+* 列表的下拉刷新
+* 分页
+* 密码MD5
+* SwipeRefreshLayout没在顶部就开始刷新: 重写RefreshSwipeRefreshLayout
+* ListView和子item点击冲突
+* ListView 上拉刷新
+
+* 流式布局FlowLayout
+
+* 错误返回页，检查网络错误，服务器错误哦
+
+* 登录失效
+* 折扣区间
+* 消息数
+
+* 所有权限动作都做权限判断
+* 【完成】返回顶部
+* 【完成】详情页加销售情况
+* 【完成】登录失效
+* buddy

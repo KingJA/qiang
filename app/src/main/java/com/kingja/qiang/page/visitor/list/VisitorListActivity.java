@@ -1,22 +1,28 @@
 package com.kingja.qiang.page.visitor.list;
 
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.kingja.qiang.R;
-import com.kingja.qiang.activity.MsgDetailActivity;
 import com.kingja.qiang.adapter.VisitorAdapter;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.callback.EmptyMsgCallback;
+import com.kingja.qiang.callback.EmptyVisitorCallback;
 import com.kingja.qiang.constant.Constants;
+import com.kingja.qiang.event.AddVisitorEvent;
 import com.kingja.qiang.event.RefreshVisitorsEvent;
 import com.kingja.qiang.injector.component.AppComponent;
+import com.kingja.qiang.page.visitor.Visitor;
 import com.kingja.qiang.page.visitor.add.VisitorAddActivity;
 import com.kingja.qiang.page.visitor.edit.VisitorEditActivity;
+import com.kingja.qiang.util.DialogUtil;
 import com.kingja.qiang.util.GoUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -45,10 +51,12 @@ public class VisitorListActivity extends BaseTitleActivity implements VisitorCon
     private VisitorAdapter mVisitorAdapter;
     private List<Visitor> visitors = new ArrayList<>();
     private LoadService loadService;
+    private boolean fromTitketDetail;
 
     @Override
     public void initVariable() {
         EventBus.getDefault().register(this);
+        fromTitketDetail = getIntent().getBooleanExtra("fromTitketDetail", false);
     }
 
     @Override
@@ -85,7 +93,8 @@ public class VisitorListActivity extends BaseTitleActivity implements VisitorCon
 
     @OnItemClick(R.id.lv_msg)
     public void itemClick(AdapterView<?> parent, View view, int position, long id) {
-        GoUtil.goActivity(VisitorListActivity.this, MsgDetailActivity.class);
+
+
     }
 
     @Override
@@ -124,6 +133,10 @@ public class VisitorListActivity extends BaseTitleActivity implements VisitorCon
     @Override
     public void onDeleteVisitorSuccess(int position) {
         mVisitorAdapter.removeItem(position);
+        if (mVisitorAdapter.getCount() == 0) {
+            loadService.showCallback(EmptyVisitorCallback.class);
+        }
+
     }
 
     @Override
@@ -138,7 +151,13 @@ public class VisitorListActivity extends BaseTitleActivity implements VisitorCon
 
     @Override
     public void onDeleteVisitor(String touristId, int position) {
-        visitorPresenter.deleteVisitor(touristId, position);
+        DialogUtil.showDoubleDialog(this, "是否删除该游客信息?", new MaterialDialog.SingleButtonCallback() {
+            @Override
+            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                visitorPresenter.deleteVisitor(touristId, position);
+            }
+        });
+
     }
 
     @Override
@@ -148,6 +167,14 @@ public class VisitorListActivity extends BaseTitleActivity implements VisitorCon
 
     @Override
     public void onEditVisitor(Visitor visitor) {
-        VisitorEditActivity.goActivity(this,visitor);
+        VisitorEditActivity.goActivity(this, visitor);
+    }
+
+    @Override
+    public void onSelectVisitor(Visitor visitor) {
+        if (fromTitketDetail) {
+            EventBus.getDefault().post(new AddVisitorEvent(visitor));
+            finish();
+        }
     }
 }

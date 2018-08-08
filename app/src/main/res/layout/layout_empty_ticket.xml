@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:id="@+id/ll_error"
+              android:orientation="vertical">
+
+    <ImageView
+        android:layout_marginBottom="18dp"
+        android:background="@mipmap/ic_callback_empty_msg"
+        android:layout_width="160dp"
+        android:layout_height="110dp"/>
+
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_marginBottom="36dp"
+        style="@style/font_red_13"
+        android:text="敬请期待"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>

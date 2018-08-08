@@ -22,14 +22,4 @@ public class EmptyOrderCallback extends Callback {
         return R.layout.layout_empty_order;
     }
 
-    @Override
-    protected boolean onReloadEvent(Context context, View view) {
-        (view.findViewById(R.id.stv_go_home)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context.getApplicationContext(), "It's your gift! :p", Toast.LENGTH_SHORT).show();
-            }
-        });
-        return true;
-    }
 }

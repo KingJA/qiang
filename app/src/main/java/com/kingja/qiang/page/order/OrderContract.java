@@ -5,8 +5,6 @@ import com.kingja.qiang.base.BaseView;
 
 import java.util.List;
 
-import okhttp3.MultipartBody;
-
 /**
  * Description：TODO
  * Create Time：2016/10/10 14:38

@@ -1,52 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:padding="12dp">
-
-
-    <RelativeLayout
-        android:layout_marginBottom="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_centerVertical="true"
-            style="@style/font_3_13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="新用户奖励"/>
-
-        <TextView
-            android:layout_centerVertical="true"
-            style="@style/font_9_13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="02-25"/>
-    </RelativeLayout>
+<com.kingja.qiang.view.DrawHelperLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawHelperLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_hi">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="12dp">
 
 
-        <TextView
-            android:layout_marginRight="18dp"
-            style="@style/font_9_13"
-            android:layout_width="0dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            android:singleLine="true"
-            android:text="你好，终于等到你了，这里是500个大洋，小小意思，务必笑纳"/>
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:id="@+id/tv_msg_date"
+                style="@style/font_9_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="02-25"/>
+            <TextView
+                android:layout_toLeftOf="@id/tv_msg_date"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="4dp"
+                android:id="@+id/tv_msg_title"
+                style="@style/font_3_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="新用户奖励"/>
 
-        <View
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:background="@drawable/shape_circle_orange"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/v_isread"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_circle_orange"/>
+
+            <TextView
+                android:id="@+id/tv_msg_content"
+                style="@style/font_9_13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="18dp"
+                android:layout_toLeftOf="@id/v_isread"
+                android:singleLine="true"
+                android:text="你好，终于等到你了，这里是500个大洋，小小意思，务必笑纳"/>
+
+
+        </RelativeLayout>
     </LinearLayout>
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/delete_hi"
+        android:gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+        <TextView
+            android:text="删除"
+            android:focusable="false"
+            android:id="@+id/tv_delete"
+            style="@style/font_f_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</com.kingja.qiang.view.DrawHelperLayout>
