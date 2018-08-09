@@ -2,14 +2,22 @@ package com.kingja.qiang.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.injector.component.AppComponent;
+import com.kingja.qiang.util.GoUtil;
+import com.kingja.qiang.util.VersionUtil;
 import com.kingja.supershapeview.view.SuperShapeTextView;
+import com.tencent.bugly.beta.Beta;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -21,10 +29,28 @@ import butterknife.OnClick;
 public class ContactUsActivity extends BaseTitleActivity {
     @BindView(R.id.stv_contact_phone)
     SuperShapeTextView stvContactPhone;
+    @BindView(R.id.tv_version)
+    TextView tvVersion;
+    private long[] mHits = new long[5];
 
-    @OnClick({R.id.stv_contact_phone})
+    @OnClick({R.id.stv_contact_phone, R.id.tv_version})
     public void click(View view) {
-        callPhone("057788218708");
+        switch (view.getId()) {
+            case R.id.stv_contact_phone:
+                callPhone("057788218708");
+                break;
+            case R.id.tv_version:
+                tvVersion.setText(VersionUtil.getVerName(this) + "/" + VersionUtil.getVersionCode(this));
+                System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
+                mHits[mHits.length - 1] = SystemClock.uptimeMillis();
+                if (mHits[0] >= (SystemClock.uptimeMillis() - 1000)) {
+                    Log.e(TAG, "检查更新: " );
+                    Beta.checkUpgrade(false,false);
+                }
+                break;
+
+        }
+
     }
 
     public void callPhone(String phoneNum) {
@@ -69,4 +95,10 @@ public class ContactUsActivity extends BaseTitleActivity {
 
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

@@ -66,6 +66,7 @@ public class App extends MultiDexApplication {
 
     private void initBugly() {
         Beta.enableNotification = true;
+        Beta.autoCheckUpgrade = false;
         Bugly.init(getApplicationContext(), Constants.APP_ID_BUDLY, false);
     }
 

@@ -17,6 +17,7 @@ import com.kingja.qiang.util.SpSir;
 import com.kingja.qiang.util.ToastUtil;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.tencent.bugly.beta.Beta;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -103,7 +104,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initNet() {
-
+        Beta.checkUpgrade(false,false);
     }
 
     @OnClick({R.id.ll_nav_home, R.id.ll_nav_order, R.id.ll_nav_mine})
