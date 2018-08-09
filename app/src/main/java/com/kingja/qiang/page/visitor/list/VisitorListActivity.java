@@ -19,7 +19,7 @@ import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.event.AddVisitorEvent;
 import com.kingja.qiang.event.RefreshVisitorsEvent;
 import com.kingja.qiang.injector.component.AppComponent;
-import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.model.entiy.Visitor;
 import com.kingja.qiang.page.visitor.add.VisitorAddActivity;
 import com.kingja.qiang.page.visitor.edit.VisitorEditActivity;
 import com.kingja.qiang.util.DialogUtil;

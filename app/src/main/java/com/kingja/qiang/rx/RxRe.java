@@ -1,5 +1,7 @@
 package com.kingja.qiang.rx;
 
+import com.kingja.qiang.model.entiy.ResultObserver;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

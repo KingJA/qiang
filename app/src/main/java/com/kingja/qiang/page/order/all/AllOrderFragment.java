@@ -13,7 +13,7 @@ import com.kingja.qiang.callback.UnLoginCallback;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.event.ResetLoginStatusEvent;
 import com.kingja.qiang.injector.component.AppComponent;
-import com.kingja.qiang.page.order.Order;
+import com.kingja.qiang.model.entiy.Order;
 import com.kingja.qiang.page.order.OrderContract;
 import com.kingja.qiang.page.order.OrderPresenter;
 import com.kingja.qiang.util.LoginChecker;

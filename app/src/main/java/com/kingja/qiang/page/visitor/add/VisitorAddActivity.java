@@ -6,10 +6,9 @@ import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
-import com.kingja.qiang.event.AddVisitorEvent;
 import com.kingja.qiang.event.RefreshVisitorsEvent;
 import com.kingja.qiang.injector.component.AppComponent;
-import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.model.entiy.Visitor;
 import com.kingja.qiang.util.CheckUtil;
 import com.kingja.qiang.util.ToastUtil;
 

@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
-import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.model.entiy.Visitor;
 import com.kingja.qiang.view.DrawHelperLayout;
 
 import java.util.List;
@@ -104,7 +104,7 @@ public class VisitorAdapter extends BaseLvAdapter<Visitor> {
         }
     }
 
-    public interface OnVistorOperListener {
+    public interface OnVistorOperListener extends DontObfuscateInterface{
         void onDeleteVisitor(String touristId, int position);
         void onDefaultVisitor(String touristId, int position);
         void onEditVisitor(Visitor visitor);

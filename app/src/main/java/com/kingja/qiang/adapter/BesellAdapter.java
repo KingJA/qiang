@@ -4,12 +4,11 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
 import com.kingja.qiang.imgaeloader.ImageLoader;
-import com.kingja.qiang.page.sell.Ticket;
+import com.kingja.qiang.model.entiy.Ticket;
 import com.kingja.qiang.util.DateUtil;
 import com.kingja.supershapeview.view.SuperShapeTextView;
 

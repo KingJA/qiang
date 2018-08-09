@@ -17,7 +17,7 @@ import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.event.TicketFilterEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.page.detail.TicketDetailActivity;
-import com.kingja.qiang.page.sell.Ticket;
+import com.kingja.qiang.model.entiy.Ticket;
 import com.kingja.qiang.page.sell.TicketContract;
 import com.kingja.qiang.page.sell.TicketPresenter;
 import com.kingja.qiang.util.ToastUtil;

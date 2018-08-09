@@ -1,7 +1,7 @@
 package com.kingja.qiang.model.service;
 
 import com.kingja.qiang.event.ScenicType;
-import com.kingja.qiang.model.HttpResult;
+import com.kingja.qiang.model.entiy.HttpResult;
 import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.model.entiy.HotSearch;
 import com.kingja.qiang.model.entiy.Login;
@@ -9,12 +9,12 @@ import com.kingja.qiang.model.entiy.Message;
 import com.kingja.qiang.model.entiy.OrderResult;
 import com.kingja.qiang.update.VersionInfo;
 import com.kingja.qiang.model.entiy.WeixinPayResult;
-import com.kingja.qiang.page.detail.TicketDetail;
-import com.kingja.qiang.page.sell.Ticket;
-import com.kingja.qiang.page.introduce.SceneryIntroduce;
-import com.kingja.qiang.page.order.Order;
-import com.kingja.qiang.page.order.orderdetail.OrderDetail;
-import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.model.entiy.TicketDetail;
+import com.kingja.qiang.model.entiy.Ticket;
+import com.kingja.qiang.model.entiy.SceneryIntroduce;
+import com.kingja.qiang.model.entiy.Order;
+import com.kingja.qiang.model.entiy.OrderDetail;
+import com.kingja.qiang.model.entiy.Visitor;
 
 import java.util.List;
 
@@ -22,12 +22,10 @@ import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.Path;
 
 /**
  * 项目名称：和Api相关联

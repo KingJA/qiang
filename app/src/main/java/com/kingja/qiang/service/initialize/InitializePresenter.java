@@ -6,7 +6,7 @@ import com.kingja.qiang.event.ScenicType;
 import com.kingja.qiang.model.api.UserApi;
 import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.model.entiy.HotSearch;
-import com.kingja.qiang.rx.ResultObserver;
+import com.kingja.qiang.model.entiy.ResultObserver;
 
 import java.util.List;
 

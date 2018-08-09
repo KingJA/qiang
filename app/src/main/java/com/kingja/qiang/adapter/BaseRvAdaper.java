@@ -92,11 +92,11 @@ public abstract class BaseRvAdaper<T> extends RecyclerView.Adapter<BaseRvAdaper.
     }
 
 
-    public interface OnItemClickListener<T> {
+    public interface OnItemClickListener<T> extends DontObfuscateInterface{
         void onItemClick(T t, int position);
     }
 
-    public interface OnItemLongClickListener<T> {
+    public interface OnItemLongClickListener<T> extends DontObfuscateInterface{
         void onItemLongClick(T t, int position);
     }
 

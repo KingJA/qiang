@@ -39,7 +39,7 @@ android {
         }
         debug {
             minifyEnabled true
-            proguardFiles  'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             buildApkBy()
         }
@@ -88,34 +88,19 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
-
-    /*dialog*/
-
-    //    compile 'cn.pedant.sweetalert:library:1.3'
+    //okhttp
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.1.2'
 
     /*KingJA's Libraries*/
     implementation 'com.kingja.supershapeview:supershapeview:1.2.0'
-    implementation 'in.srain.cube:ultra-ptr:1.0.11'
+//    implementation 'in.srain.cube:ultra-ptr:1.0.11'
     implementation 'com.kingja.loadsir:loadsir:1.3.6'
-    implementation 'com.kingja.contactssir:contactssir:1.0.0'
+//    implementation 'com.kingja.contactssir:contactssir:1.0.0'
     implementation 'com.kingja.popwindowsir:popwindowsir:1.0.2'
-
-    /*countdownview*/
-    implementation 'com.github.iwgang:countdownview:2.1.6'
-
-    /*pulltofresh*/
-    implementation 'in.srain.cube:ultra-ptr:1.0.11'
-
-    /*lottie*/
-    implementation('com.airbnb.android:lottie:2.2.5') { exclude group: 'com.android.support' }
     implementation 'com.squareup:android-times-square:1.6.5@aar'
     implementation 'com.zhihu.android:matisse:0.4.3'
-
-    //    implementation('com.github.hotchemi:permissionsdispatcher:3.2.0') { exclude group: 'com.android.support' }
-
-    //    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.2.0"
     implementation 'com.orhanobut:logger:2.2.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+
 
     /*material-dialogs*/
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'

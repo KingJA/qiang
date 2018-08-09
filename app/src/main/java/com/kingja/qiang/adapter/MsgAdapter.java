@@ -79,7 +79,7 @@ public class MsgAdapter extends BaseLvAdapter<Message> {
         }
     }
 
-    public interface OnMsgOperListener {
+    public interface OnMsgOperListener extends DontObfuscateInterface{
         void onDeleteMsg(String messageId, int position);
 
         void onReadMsg(Message message, int position);

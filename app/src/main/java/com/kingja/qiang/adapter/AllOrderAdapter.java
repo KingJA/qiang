@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.kingja.qiang.R;
 import com.kingja.qiang.constant.Status;
 import com.kingja.qiang.imgaeloader.ImageLoader;
-import com.kingja.qiang.page.order.Order;
+import com.kingja.qiang.model.entiy.Order;
 import com.kingja.qiang.page.order.orderdetail.OrderDetailActivity;
 import com.kingja.qiang.util.EnumUtil;
 import com.kingja.supershapeview.view.SuperShapeTextView;

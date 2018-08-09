@@ -1,4 +1,4 @@
-package com.kingja.qiang.ui;
+package com.kingja.qiang.view;
 
 import android.app.Activity;
 import android.content.Context;

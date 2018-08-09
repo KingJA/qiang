@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
 import com.kingja.qiang.model.entiy.Login;
-import com.kingja.qiang.rx.ResultObserver;
+import com.kingja.qiang.model.entiy.ResultObserver;
 
 import javax.inject.Inject;
 

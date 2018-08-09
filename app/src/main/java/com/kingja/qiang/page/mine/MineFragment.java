@@ -228,8 +228,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     public void onStart() {
         super.onStart();
         resetMsgCount();
-        CrashReport.testJavaCrash();
-        Beta.checkUpgrade(true,false);
+//        CrashReport.testJavaCrash();
+//        Beta.checkUpgrade(true,false);
     }
 
     private void resetMsgCount() {

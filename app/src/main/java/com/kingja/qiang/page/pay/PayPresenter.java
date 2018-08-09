@@ -3,9 +3,8 @@ package com.kingja.qiang.page.pay;
 import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
-import com.kingja.qiang.model.entiy.AliPayResult;
 import com.kingja.qiang.model.entiy.WeixinPayResult;
-import com.kingja.qiang.rx.ResultObserver;
+import com.kingja.qiang.model.entiy.ResultObserver;
 
 import javax.inject.Inject;
 

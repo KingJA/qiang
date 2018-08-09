@@ -1,4 +1,6 @@
-package com.kingja.qiang.model;
+package com.kingja.qiang.model.entiy;
+
+import java.io.Serializable;
 
 /**
  * Description：TODO
@@ -6,7 +8,7 @@ package com.kingja.qiang.model;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class HttpResult<T> {
+public class HttpResult<T>implements Serializable {
 
     private int code;
     private String msg;

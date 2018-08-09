@@ -12,7 +12,7 @@ import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.event.PrfectVisitorEvent;
 import com.kingja.qiang.event.RefreshVisitorsEvent;
 import com.kingja.qiang.injector.component.AppComponent;
-import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.model.entiy.Visitor;
 import com.kingja.qiang.page.visitor.edit.VisitorEditContract;
 import com.kingja.qiang.page.visitor.edit.VisitorEditPresenter;
 import com.kingja.qiang.util.CheckUtil;

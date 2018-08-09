@@ -1,4 +1,4 @@
-package com.kingja.qiang.page.visitor;
+package com.kingja.qiang.model.entiy;
 
 import java.io.Serializable;
 

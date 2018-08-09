@@ -3,7 +3,8 @@ package com.kingja.qiang.page.detail;
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
 import com.kingja.qiang.model.entiy.OrderResult;
-import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.model.entiy.TicketDetail;
+import com.kingja.qiang.model.entiy.Visitor;
 
 import java.util.List;
 

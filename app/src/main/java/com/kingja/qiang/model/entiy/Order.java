@@ -1,4 +1,4 @@
-package com.kingja.qiang.page.order;
+package com.kingja.qiang.model.entiy;
 
 /**
  * Description:TODO

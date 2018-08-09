@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import com.kingja.qiang.R;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.injector.component.AppComponent;
+import com.kingja.qiang.model.entiy.SceneryIntroduce;
 
 import javax.inject.Inject;
 

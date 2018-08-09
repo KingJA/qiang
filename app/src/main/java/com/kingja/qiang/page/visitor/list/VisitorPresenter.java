@@ -3,8 +3,8 @@ package com.kingja.qiang.page.visitor.list;
 import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
-import com.kingja.qiang.page.visitor.Visitor;
-import com.kingja.qiang.rx.ResultObserver;
+import com.kingja.qiang.model.entiy.Visitor;
+import com.kingja.qiang.model.entiy.ResultObserver;
 
 import java.util.List;
 

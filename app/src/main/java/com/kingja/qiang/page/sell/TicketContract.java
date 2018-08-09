@@ -2,6 +2,7 @@ package com.kingja.qiang.page.sell;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
+import com.kingja.qiang.model.entiy.Ticket;
 
 import java.util.List;
 

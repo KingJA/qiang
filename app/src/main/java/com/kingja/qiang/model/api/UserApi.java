@@ -4,8 +4,7 @@ package com.kingja.qiang.model.api;
 import com.kingja.qiang.constant.Constants;
 import com.kingja.qiang.model.entiy.Login;
 import com.kingja.qiang.model.service.UserService;
-import com.kingja.qiang.model.HttpResult;
-import com.kingja.qiang.util.AddTokenInterceptor;
+import com.kingja.qiang.model.entiy.HttpResult;
 import com.kingja.qiang.util.TokenHeadInterceptor;
 
 import java.util.concurrent.TimeUnit;
@@ -18,7 +17,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Field;
 
 /**
  * 项目名称：和ApiService相关联

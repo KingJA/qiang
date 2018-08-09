@@ -2,7 +2,7 @@ package com.kingja.qiang.page.introduce;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-import com.kingja.qiang.page.detail.TicketDetail;
+import com.kingja.qiang.model.entiy.SceneryIntroduce;
 
 /**
  * Description：TODO

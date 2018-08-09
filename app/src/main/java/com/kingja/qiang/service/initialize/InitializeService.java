@@ -83,18 +83,17 @@ public class InitializeService extends IntentService implements InitializeContra
     @Override
     public void onGetHotSearch(List<HotSearch> hotSearches) {
         SpSir.getInstance().putHotSearch(new Gson().toJson(hotSearches));
-        LogUtil.e(TAG, "【数据初始化成功】:[热搜]:" + hotSearches.size() + "条");
+//        LogUtil.e(TAG, "【数据初始化成功】:[热搜]:" + hotSearches.size() + "条");
     }
 
     @Override
     public void onGetScenicTypeSuccess(List<ScenicType> scenicTypes) {
         SpSir.getInstance().putScenicType(new Gson().toJson(scenicTypes));
-        LogUtil.e(TAG, "【数据初始化成功】:[景区类型]:" + scenicTypes.size() + "条");
     }
 
     @Override
     public void onGetCitySuccess(List<City> cities) {
         SpSir.getInstance().putCity(new Gson().toJson(cities));
-        LogUtil.e(TAG, "【数据初始化成功】:[城市]:" + cities.size() + "条");
+//        LogUtil.e(TAG, "【数据初始化成功】:[城市]:" + cities.size() + "条");
     }
 }

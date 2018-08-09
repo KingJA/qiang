@@ -2,7 +2,7 @@ package com.kingja.qiang.page.visitor.add;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.model.entiy.Visitor;
 
 /**
  * Description：TODO

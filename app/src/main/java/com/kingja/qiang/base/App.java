@@ -61,8 +61,6 @@ public class App extends MultiDexApplication {
         mSharedPreferences = getSharedPreferences(Constants.APPLICATION_NAME, MODE_PRIVATE);
         setupComponent();
         initBugly();
-        Logger.d("token:"+ SpSir.getInstance().getToken());
-
         SpSir.getInstance().clearMsgCount();
     }
 

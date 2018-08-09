@@ -1,26 +1,20 @@
 package com.kingja.qiang.update;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 import com.kingja.qiang.constant.Constants;
-import com.kingja.qiang.model.HttpResult;
+import com.kingja.qiang.model.entiy.HttpResult;
 import com.kingja.qiang.model.service.UserService;
-import com.kingja.qiang.page.order.Order;
-import com.kingja.qiang.rx.ResultObserver;
 import com.kingja.qiang.util.DialogUtil;
 import com.kingja.qiang.util.ToastUtil;
 import com.kingja.qiang.util.TokenHeadInterceptor;
 import com.kingja.qiang.util.VersionUtil;
 import com.orhanobut.logger.Logger;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -32,7 +26,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Field;
 
 /**
  * Description:TODO

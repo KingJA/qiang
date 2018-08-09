@@ -5,11 +5,8 @@ import com.kingja.qiang.base.BaseView;
 import com.kingja.qiang.event.ScenicType;
 import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.model.entiy.HotSearch;
-import com.kingja.qiang.page.sell.Ticket;
 
 import java.util.List;
-
-import retrofit2.http.Field;
 
 /**
  * Description：TODO

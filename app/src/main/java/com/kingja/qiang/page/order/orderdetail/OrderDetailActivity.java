@@ -2,10 +2,8 @@ package com.kingja.qiang.page.order.orderdetail;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +13,7 @@ import com.kingja.qiang.adapter.QcodePagerAdapter;
 import com.kingja.qiang.base.BaseTitleActivity;
 import com.kingja.qiang.constant.Status;
 import com.kingja.qiang.injector.component.AppComponent;
+import com.kingja.qiang.model.entiy.OrderDetail;
 import com.kingja.qiang.util.AppUtil;
 import com.kingja.supershapeview.view.SuperShapeRelativeLayout;
 
@@ -24,7 +23,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Description:TODO

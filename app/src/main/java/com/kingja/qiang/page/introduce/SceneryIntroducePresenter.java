@@ -3,9 +3,8 @@ package com.kingja.qiang.page.introduce;
 import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
-import com.kingja.qiang.page.detail.TicketDetail;
-import com.kingja.qiang.page.detail.TicketDetailContract;
-import com.kingja.qiang.rx.ResultObserver;
+import com.kingja.qiang.model.entiy.SceneryIntroduce;
+import com.kingja.qiang.model.entiy.ResultObserver;
 
 import javax.inject.Inject;
 

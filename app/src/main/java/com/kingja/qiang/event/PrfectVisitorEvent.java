@@ -1,8 +1,6 @@
 package com.kingja.qiang.event;
 
-import com.kingja.qiang.page.visitor.Visitor;
-
-import java.io.Serializable;
+import com.kingja.qiang.model.entiy.Visitor;
 
 /**
  * Description:TODO

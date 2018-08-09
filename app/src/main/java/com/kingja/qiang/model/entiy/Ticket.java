@@ -1,4 +1,4 @@
-package com.kingja.qiang.page.sell;
+package com.kingja.qiang.model.entiy;
 
 import com.kingja.qiang.util.DateUtil;
 

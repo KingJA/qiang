@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.kingja.qiang.R;
 import com.kingja.qiang.event.AddVisitorEvent;
 import com.kingja.qiang.event.PrfectVisitorEvent;
-import com.kingja.qiang.page.visitor.Visitor;
+import com.kingja.qiang.model.entiy.Visitor;
 
 import java.util.List;
 

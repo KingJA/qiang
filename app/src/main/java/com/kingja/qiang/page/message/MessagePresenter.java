@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.kingja.qiang.model.api.UserApi;
 import com.kingja.qiang.model.entiy.Message;
-import com.kingja.qiang.rx.ResultObserver;
+import com.kingja.qiang.model.entiy.ResultObserver;
 
 import java.util.List;
 
