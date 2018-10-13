@@ -26,7 +26,7 @@ import com.kingja.qiang.base.BaseActivity;
 import com.kingja.qiang.callback.EmptyTicketCallback;
 import com.kingja.qiang.callback.TicketCallback;
 import com.kingja.qiang.constant.Constants;
-import com.kingja.qiang.event.ScenicType;
+import com.kingja.qiang.model.entiy.ScenicType;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.page.detail.TicketDetailActivity;

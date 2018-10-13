@@ -21,7 +21,7 @@ import com.kingja.qiang.adapter.XigoPageAdapter;
 import com.kingja.qiang.base.App;
 import com.kingja.qiang.base.BaseFragment;
 import com.kingja.qiang.event.MsgCountEvent;
-import com.kingja.qiang.event.ScenicType;
+import com.kingja.qiang.model.entiy.ScenicType;
 import com.kingja.qiang.event.TicketFilterEvent;
 import com.kingja.qiang.injector.component.AppComponent;
 import com.kingja.qiang.model.entiy.City;

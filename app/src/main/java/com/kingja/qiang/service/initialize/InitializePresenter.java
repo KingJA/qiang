@@ -2,7 +2,7 @@ package com.kingja.qiang.service.initialize;
 
 import android.support.annotation.NonNull;
 
-import com.kingja.qiang.event.ScenicType;
+import com.kingja.qiang.model.entiy.ScenicType;
 import com.kingja.qiang.model.api.UserApi;
 import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.model.entiy.HotSearch;

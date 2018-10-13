@@ -2,7 +2,7 @@ package com.kingja.qiang.page.xigou;
 
 import com.kingja.qiang.base.BasePresenter;
 import com.kingja.qiang.base.BaseView;
-import com.kingja.qiang.event.ScenicType;
+import com.kingja.qiang.model.entiy.ScenicType;
 import com.kingja.qiang.model.entiy.City;
 
 import java.util.List;

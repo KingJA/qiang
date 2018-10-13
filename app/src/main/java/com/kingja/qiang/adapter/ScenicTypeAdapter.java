@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kingja.qiang.R;
-import com.kingja.qiang.event.ScenicType;
+import com.kingja.qiang.model.entiy.ScenicType;
 
 import java.util.List;
 

@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.kingja.qiang.event.MsgCountEvent;
-import com.kingja.qiang.event.Notification;
+import com.kingja.qiang.model.entiy.Notification;
 import com.kingja.qiang.page.detail.TicketDetailActivity;
 import com.kingja.qiang.util.SpSir;
 import com.orhanobut.logger.Logger;

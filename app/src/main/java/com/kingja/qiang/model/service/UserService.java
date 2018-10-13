@@ -1,6 +1,6 @@
 package com.kingja.qiang.model.service;
 
-import com.kingja.qiang.event.ScenicType;
+import com.kingja.qiang.model.entiy.ScenicType;
 import com.kingja.qiang.model.entiy.HttpResult;
 import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.model.entiy.HotSearch;

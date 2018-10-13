@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.kingja.qiang.base.App;
-import com.kingja.qiang.event.ScenicType;
+import com.kingja.qiang.model.entiy.ScenicType;
 import com.kingja.qiang.model.entiy.City;
 import com.kingja.qiang.model.entiy.HotSearch;
 import com.kingja.qiang.util.LogUtil;
