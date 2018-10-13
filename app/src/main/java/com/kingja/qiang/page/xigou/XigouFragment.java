@@ -80,7 +80,6 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
     Unbinder unbinder;
     @BindView(R.id.iv_msg)
     ImageView ivMsg;
-    Unbinder unbinder1;
     @BindView(R.id.tv_msgCount)
     TextView tvMsgCount;
     private String[] items = {"在售", "待售"};
@@ -119,7 +118,6 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
     @Override
     protected void initVariable() {
         EventBus.getDefault().register(this);
-
     }
 
     @Override
@@ -174,8 +172,6 @@ public class XigouFragment extends BaseFragment implements XigouContract.View {
         initCityPop();
         initDatePop();
         initPricePop();
-
-
     }
 
     private void initHint() {
